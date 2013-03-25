@@ -26,6 +26,7 @@
 	
 	var AtributoHttp = new EnumeracaoDeConstantes({
 		CONTENT_TYPE: "Content-Type",
+		ACCEPT: "Accept",
 		ACCEPT_CHARSET: "Accept-Charset",
 		ACCEPT_ENCODING: "Accept-Encoding",
 		ACCESS_CONTROL_REQUEST_HEADERS: "Access-Control-Request-Headers",
@@ -56,6 +57,74 @@
 		DELETE: "DELETE",
 		HEAD: "HEAD",
 		OPTIONS: "OPTIONS"
+	});
+	
+	var TipoDeResposta = new EnumeracaoDeConstantes({
+		JSON: "",
+		TEXTO: "text",
+		DOCUMENTO: "document",
+		BLOB: "blob",
+		ARRAY_BUFFER: "arraybuffer"
+	});
+	
+	var TipoGenericoDeMidia = new EnumeracaoDePrototipos({
+		APLICACAO: ["application"],
+		AUDIO: ["audio"],
+		IMAGEM: ["image"],
+		MENSAGEM: ["message"],
+		MODELO: ["model"],
+		MULTIPARTE: ["multipart"],
+		TEXTO: ["text"],
+		VIDEO: ["video"]
+	}, {
+		inicializarEnumeracao: function (chave) {
+			this.chave = chave;
+		},
+		
+		comoTexto: function () {
+			return this.chave;
+		},
+		
+		comoTextoGenerico: function () {
+			return String.formatar("%@/*", this.chave);
+		}
+	});
+	
+	var TipoDeMidia = new EnumeracaoDePrototipos({
+		JS: [TipoGenericoDeMidia.APLICACAO, "javascript"],
+		JSON: [TipoGenericoDeMidia.APLICACAO, "json"],
+		PDF: [TipoGenericoDeMidia.APLICACAO, "pdf"],
+		XML: [TipoGenericoDeMidia.APLICACAO, "xml"],
+		ZIP: [TipoGenericoDeMidia.APLICACAO, "zip"],
+		MP3: [TipoGenericoDeMidia.AUDIO, "mpeg"],
+		GIF: [TipoGenericoDeMidia.IMAGEM, "gif"],
+		JPEG: [TipoGenericoDeMidia.IMAGEM, "jpeg"],
+		PNG: [TipoGenericoDeMidia.IMAGEM, "png"],
+		SVG: [TipoGenericoDeMidia.IMAGEM, "svg+xml"],
+		FORMULARIO: [TipoGenericoDeMidia.MULTIPARTE, "form-data"],
+		CSS: [TipoGenericoDeMidia.TEXTO, "css"],
+		CSV: [TipoGenericoDeMidia.TEXTO, "csv"],
+		HTML: [TipoGenericoDeMidia.TEXTO, "html"],
+		TEXTO: [TipoGenericoDeMidia.TEXTO, "plain"],
+		MP4: [TipoGenericoDeMidia.VIDEO, "mp4"],
+		MPEG: [TipoGenericoDeMidia.VIDEO, "mpeg"],
+		OGG: [TipoGenericoDeMidia.VIDEO, "ogg"],
+		VORBIS: [TipoGenericoDeMidia.VIDEO, "vorbis"],
+		WEBM: [TipoGenericoDeMidia.VIDEO, "webm"]
+	}, {
+		inicializarEnumeracao: function (tipoGenerico, tipo) {
+			this.tipoGenerico = tipoGenerico;
+			this.tipo = tipo;
+			this.chave = String.formatar("%@/%@", this.tipoGenerico.comoTexto(), this.tipo);
+		},
+		
+		comoTexto: function () {
+			return this.chave;
+		},
+		
+		comoTextoGenerico: function () {
+			return this.tipoGenerico.comoTextoGenerico();
+		}
 	});
 	
 	var CodigoHttp = new EnumeracaoDePrototipos({
@@ -146,5 +215,7 @@
 	global.AtributoHttp = AtributoHttp;
 	global.MetodoHttp = MetodoHttp;
 	global.CodigoHttp = CodigoHttp;
+	global.TipoDeResposta = TipoDeResposta;
+	global.TipoDeMidia = TipoDeMidia;
+	global.TipoGenericoDeMidia = TipoGenericoDeMidia;
 }(this));
-
