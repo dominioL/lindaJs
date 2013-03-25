@@ -6,15 +6,21 @@
 	
 	var Prototipo = function Prototipo(corpoDoPrototipo) {
 		var inicializar = corpoDoPrototipo.inicializar;
-		var inicializa = Linda.instanciaDe(corpoDoPrototipo.inicializar, Function);
-		var novoPrototipo = function Objeto() {
+		var inicializa = Linda.instanciaDe(inicializar, Function);
+		var Estende = corpoDoPrototipo.Estende;
+		var estende = Linda.instanciaDe(Estende, Function);
+		var NovoPrototipo = function Objeto() {
 			if (inicializa) {
 				inicializar.aplicarComEscopo(this, arguments);
 			}
 		};
+		if (estende) {
+			NovoPrototipo.prototype = new Estende();
+		}
 		delete corpoDoPrototipo.inicializar;
-		novoPrototipo.implementar(corpoDoPrototipo);
-		return novoPrototipo;
+		delete corpoDoPrototipo.Estende;
+		NovoPrototipo.implementar(corpoDoPrototipo);
+		return NovoPrototipo;
 	};
 	
 	var PrototipoUnico = function PrototipoUnico(corpoDoPrototipo) {
@@ -25,7 +31,7 @@
 				var NovoPrototipo = new Prototipo(corpoDoPrototipo);
 				this.instanciaUnica = new NovoPrototipo();
 				this.instanciaUnica.inicializarUnico.aplicarComEscopo(this.instanciaUnica, arguments);
-				novoPrototipoUnico.definirPropriedade("instanciaUnica", Linda.propriedadesDeFuncoes);
+				novoPrototipoUnico.definirPropriedade("instanciaUnica", Linda.propriedadesDeAtributos);
 				novoPrototipoUnico.definirPropriedade("instancia", {
 					configuravel: false,
 					enumeravel: false,
@@ -102,4 +108,3 @@
 	global.EnumeracaoDePrototipos = EnumeracaoDePrototipos;
 	global.EnumeracaoDeConstantes = EnumeracaoDeConstantes;
 }(this));
-
