@@ -33,7 +33,7 @@
 		paraCada: function (funcaoDeIteracao, escopo) {
 			funcaoDeIteracao = funcaoDeIteracao.vincularEscopo(escopo);
 			for (var chave in this) {
-				if (this.hasOwnProperty(chave)) {
+				if (this.possuiPropriedadePropria(chave)) {
 					funcaoDeIteracao(this[chave], chave);
 				}
 			}
@@ -52,4 +52,3 @@
 		}
 	});
 }(this));
-

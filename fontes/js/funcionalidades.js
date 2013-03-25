@@ -17,6 +17,7 @@
 	Object.prototype.definirPropriedade("fornecerPropriedadesEnumeraveis", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributosGravaveis);
 	Object.prototype.definirPropriedade("possuiPropriedade", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("possuiPropriedadePropria", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("prototipoDe", Linda.propriedadesDeAtributos);
 	
 	Function.prototype.definirPropriedade("aplicarComEscopo", Linda.propriedadesDeAtributos);
@@ -37,5 +38,12 @@
 	String.definirPropriedade("concatenar", Linda.propriedadesDeAtributos);
 	String.definirPropriedade("concatenarComEspaco", Linda.propriedadesDeAtributos);
 	String.definirPropriedade("formatar", Linda.propriedadesDeAtributos);
+	
+	HTMLElement.definirPropriedade("selecionar", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("selecionarTodos", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("tratadorDeTeclaPressionada", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("tratadorDeClique", Linda.propriedadesDeAtributos);
+	HTMLElement.definirPropriedade("tratadorDeCarregamento", Linda.propriedadesDeAtributos);
 }());
-

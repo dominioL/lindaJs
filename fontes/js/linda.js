@@ -71,6 +71,7 @@
 		janela: window,
 		historico: window.history,
 		localizacao: window.location,
+		performance: window.performance,
 		global: global,
 		
 		propriedadesDeAtributos: {
@@ -197,6 +198,14 @@
 			return document.getElementById(identificador);
 		},
 		
+		criarElemento: function (elemento) {
+			return document.createElement(elemento);
+		},
+		
+		avaliar: function (texto) {
+			return window.eval(texto);
+		},
+		
 		habilitarTelaCheia: function () {
 			this.privadoHabilitarTelaCheia();
 			this.privadoHabilitarTelaCheiaChrome();
@@ -248,4 +257,3 @@
 	
 	global.Linda = Linda;
 }(this));
-
