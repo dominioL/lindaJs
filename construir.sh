@@ -1,34 +1,97 @@
 #!/bin/bash
 
+projeto=Linda
+pacoteDoProjeto=linda
+
+bibliotecas=bibliotecas
+binarios=binarios
+construcao=construcao
+documentacao=documentacao
 fontes=fontes
+recursos=recursos
+testes=testes
+
+bibliotecasCss=${bibliotecas}/css
+bibliotecasJs=${bibliotecas}/js
+binariosCss=${binarios}/css
+binariosHtml=${binarios}/html
+binariosJs=${binarios}/js
 fontesHtml=${fontes}/html
 fontesJs=${fontes}/js
-bibliotecas=bibliotecas
-bibliotecaQUnit=${bibliotecas}/qUnit
-binarios=binarios
-binariosJs=${binarios}/js
-binarioLindaJs=${binariosJs}/linda.js
+testesHtml=${testes}/html
+testesJs=${testes}/js
 
-echo ":limpar"
-rm -rf ${binarios}
+limpar() {
+	echo ":limpar";
+	rm -rf ${binarios};
+	rm -rf ${construcao};
+}
 
-echo ":criarDiretorios"
-mkdir -p ${fontes}
-mkdir -p ${fontesHtml}
-mkdir -p ${fontesJs}
-mkdir -p ${bibliotecas}
-mkdir -p ${binarios}
-mkdir -p ${binariosJs}
+criarEstrutura() {
+	echo ":criarEstrutura";
+	mkdir -p ${bibliotecasCss};
+	mkdir -p ${bibliotecasJs};
+	mkdir -p ${binariosCss};
+	mkdir -p ${binariosHtml};
+	mkdir -p ${binariosJs};
+	mkdir -p ${construcao};
+	mkdir -p ${fontesHtml};
+	mkdir -p ${fontesJs};
+	mkdir -p ${testesHtml};
+	mkdir -p ${testesJs};
+}
 
-echo ":compilarFontesJs"
-cat ${fontesJs}/linda.js > ${binarioLindaJs}
-cat ${fontesJs}/funcao.js >> ${binarioLindaJs}
-cat ${fontesJs}/objeto.js >> ${binarioLindaJs}
-cat ${fontesJs}/lista.js >> ${binarioLindaJs}
-cat ${fontesJs}/texto.js >> ${binarioLindaJs}
-cat ${fontesJs}/numero.js >> ${binarioLindaJs}
-cat ${fontesJs}/prototipo.js >> ${binarioLindaJs}
-cat ${fontesJs}/enumeracoes.js >> ${binarioLindaJs}
-cat ${fontesJs}/utilidades.js >> ${binarioLindaJs}
-cat ${fontesJs}/funcionalidades.js >> ${binarioLindaJs}
+adicionarBibliotecas() {
+	echo ":adicionarBibliotecas";
+}
 
+compilar() {
+	limpar;
+	criarEstrutura;
+	adicionarBibliotecas;
+	echo ":compilar";
+	cp -rf ${bibliotecasCss}/* ${binariosCss};
+	cp -rf ${fontesHtml}/* ${testesHtml}/* ${binariosHtml};
+	cp -rf ${bibliotecasJs}/* ${fontesJs}/* ${testesJs}/* ${binariosJs};
+}
+
+construir() {
+	compilar;
+	echo ":construir";
+	cat ${binariosJs}/linda.js > ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/funcao.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/objeto.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/lista.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/texto.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/numero.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/prototipo.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/enumeracoes.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/utilidades.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/elemento.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/funcionalidades.js >> ${construcao}/${pacoteDoProjeto}.js;
+}
+
+testar() {
+	construir;
+	echo ":testar";
+	chromium-browser `find ${binariosHtml} -name teste*.html`;
+}
+
+depurar() {
+	construir;
+	echo ":depurar";
+}
+
+executar() {
+	construir;
+	echo ":executar";
+	chromium-browser ${binariosHtml}/${pacoteDoProjeto}.html;
+}
+
+echo :${pacoteDoProjeto}
+if [ -n "$1" ]
+then
+	$1;
+else
+	construir;
+fi
