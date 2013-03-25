@@ -3,9 +3,10 @@
 (function (global) {
 	"use strict";
 	
-	var RequisicaoJson = new Prototipo({
-		inicializar: function (uri) {
+	var RequisicaoHttp = new Prototipo({
+		inicializarSuper: function (uri, tipoDeResposta) {
 			this.requisicaoXml = new XMLHttpRequest();
+			this.requisicaoXml.responseType = tipoDeResposta;
 			this.uri = uri;
 			this.usuario = null;
 			this.senha = null;
@@ -59,12 +60,6 @@
 			this.cabecalho.paraCada(function (atributo) {
 				this.requisicaoXml.setRequestHeader(atributo.nome, atributo.valor);
 			}, this);
-			//this.requisicaoXml.responseType = "json";
-			try {
-				dados = JSON.stringify(dados);
-			} catch (excecao) {
-				
-			}
 			this.requisicaoXml.send(dados);
 			if (!assincrono) {
 				return this.fornecerResposta();
@@ -72,7 +67,7 @@
 		},
 		
 		enviarGet: function (assincrono) {
-			return this.enviar(MetodoHttp.GET, {}, assincrono);
+			return this.enviar(MetodoHttp.GET, null, assincrono);
 		},
 		
 		enviarPut: function (dados, assincrono) {
@@ -84,7 +79,7 @@
 		},
 		
 		envirDelete: function (assincrono) {
-			return this.enviar(MetodoHttp.DELETE, {}, assincrono);
+			return this.enviar(MetodoHttp.DELETE, null, assincrono);
 		},
 		
 		tratarInicio: function (carregado, total, estampaDeTempo) {},
@@ -115,8 +110,6 @@
 		},
 		
 		fixarAtributoDeCabecalho: function (nome, valor) {
-			var atributosPossiveis = AtributoHttp.comoLista();
-			nome = AtributoHttp.mapear(nome);
 			this.cabecalho.push({nome: nome, valor: valor});
 			return this;
 		},
@@ -128,22 +121,46 @@
 		},
 		
 		fixarTempoLimite: function (tempoLimite) {
-			this.requisicaoXml.timeout = tempoLimite
-			return this;
+			this.requisicaoXml.timeout = tempoLimite;
+			return this; 
 		},
 		
 		fornecerResposta: function () {
-			try {
-				return JSON.parse(this.requisicaoXml.response);
-			} catch (excecao) {
-				return this.requisicaoXml.response;
-			}
+			return this.requisicaoXml.response;
+		}
+	});
+	
+	var RequisicaoJson = new Prototipo({
+		Estende: RequisicaoHttp,
+		
+		inicializar: function (uri) {
+			this.inicializarSuper(uri, TipoDeResposta.JSON);
+		},
+		
+		fornecerResposta: function () {
+			return JSON.parse(this.requisicaoXml.response);
+		}
+	});
+	
+	var RequisicaoDocumento = new Prototipo({
+		Estende: RequisicaoHttp,
+		
+		inicializar: function (uri) {
+			this.inicializarSuper(uri, TipoDeResposta.DOCUMENTO);
+		}
+	});
+	
+	var RequisicaoTexto = new Prototipo({
+		Estende: RequisicaoHttp,
+		
+		inicializar: function (uri) {
+			this.inicializarSuper(uri, TipoDeResposta.TEXTO);
 		}
 	});
 	
 	var Tratador = new Prototipo({
-		inicializar: function (elemento) {
-			this.elemento = (Linda.nuloOuIndefinido(elemento)) ? Linda.janela() : elemento;
+		inicializarSuper: function (elemento) {
+			this.elemento = (Linda.nuloOuIndefinido(elemento)) ? Linda.janela : elemento;
 		},
 		
 		adicionar: function (evento, tratador) {
@@ -156,18 +173,20 @@
 	});
 	
 	var TratadorDeTeclado = new Prototipo({
+		Estende: Tratador,
+		
 		inicializar: function (tecla, elemento) {
+			this.inicializarSuper(elemento);
 			this.tecla = tecla;
-			this.tratador = new Tratador(elemento);
 		},
 		
 		paraTeclaPressionada: function (tratador) {
-			this.tratador.adicionar(Evento.TECLA_PRESSIONADA, this.adicionarTratadorDeTeclado(tratador));
+			this.adicionar(Evento.TECLA_PRESSIONADA, this.adicionarTratadorDeTeclado(tratador));
 			return this;
 		},
 		
 		paraTeclaSolta: function (tratador) {
-			this.tratador.adicionar(Evento.TECLA_SOLTA, this.adicionarTratadorDeTeclado(tratador));
+			this.adicionar(Evento.TECLA_SOLTA, this.adicionarTratadorDeTeclado(tratador));
 			return this;
 		},
 		
@@ -176,36 +195,40 @@
 				if (this.tecla === evento.keyCode) {
 					tratador();
 				}
-			}.bind(this);
+			}.vincularEscopo(this);
 		}
 	});
 	
 	var TratadorDeMouse = new Prototipo({
+		Estende: Tratador,
+		
 		inicializar: function (elemento) {
-			this.tratador = new Tratador(elemento);
+			this.inicializarSuper(elemento);
 		},
 		
 		paraClique: function (tratador) {
-			this.tratador.adicionar(Evento.CLIQUE, tratador);
+			this.adicionar(Evento.CLIQUE, tratador);
 			return this;
 		}
 	});
 	
 	var TratadorDePagina = new Prototipo({
-		inicializar: function () {
-			this.tratador = new Tratador();
+		Estende: Tratador,
+		
+		inicializar: function (elemento) {
+			this.inicializarSuper(elemento);
 		},
 		
-		paraCarregada: function (tratador) {
-			this.tratador.adicionar(Evento.CARREGADO, tratador);
+		paraCarregamento: function (tratador) {
+			this.adicionar(Evento.CARREGADO, tratador);
 			return this;
 		}
 	});
 	
 	global.RequisicaoJson = RequisicaoJson;
-	global.Tratador = Tratador;
+	global.RequisicaoDocumento = RequisicaoDocumento;
+	global.RequisicaoTexto = RequisicaoTexto;
 	global.TratadorDeTeclado = TratadorDeTeclado;
 	global.TratadorDeMouse = TratadorDeMouse;
 	global.TratadorDePagina = TratadorDePagina;
 }(this));
-
