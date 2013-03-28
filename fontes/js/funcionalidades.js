@@ -29,12 +29,14 @@
 	Function.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
 
 	Array.prototype.definirPropriedade("contem", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("dentroDosLimites", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("fornecerIndice", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("primeiro", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("removerPosicao", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("removerElemento", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("ultimo", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("ultimoIndice", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("vazio", Linda.propriedadesDeAtributos);
 	
 	String.prototype.definirPropriedade("paraInteiro", Linda.propriedadesDeAtributos);

@@ -8,6 +8,10 @@
 			return (this.indexOf(valor) >= 0);
 		},
 		
+		dentroDosLimites: function (indice) {
+			return (!this.vazio() && indice >= 0 && indice < this.length);
+		},
+		
 		fornecerIndice: function (elemento) {
 			return this.indexOf(elemento);
 		},
@@ -35,8 +39,12 @@
 			return this[this.length - 1];
 		},
 		
+		ultimoIndice: function () {
+			return (this.length - 1);
+		},
+		
 		vazio: function () {
-			return (this.length > 0);
+			return (this.length === 0);
 		}
 	});
 } ());
