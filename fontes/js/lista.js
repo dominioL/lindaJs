@@ -16,6 +16,10 @@
 			return this.indexOf(elemento);
 		},
 		
+		fundir: function (outra) {
+			this.push.aplicarComEscopo(this, outra);
+		},
+		
 		paraCada: function (funcaoDeIteracao, escopo) {
 			funcaoDeIteracao = funcaoDeIteracao.vincularEscopo(escopo);
 			for (var indice = 0; indice < this.length; indice++) {
