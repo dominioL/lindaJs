@@ -19,12 +19,20 @@
 			}
 		},
 		
+		primeiro: function () {
+			return this[0];
+		},
+		
 		removerPosicao: function (posicao) {
 			this.splice(posicao, 1);
 		},
 		
 		removerElemento: function (elemento) {
 			this.removerPosicao(this.fornecerIndice(elemento));
+		},
+		
+		ultimo: function () {
+			return this[this.length - 1];
 		},
 		
 		vazio: function () {

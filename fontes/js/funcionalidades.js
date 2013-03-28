@@ -26,11 +26,16 @@
 	Function.prototype.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
 	Function.prototype.definirPropriedade("vincularEscopo", Linda.propriedadesDeAtributos);
 	
+	Function.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
+
 	Array.prototype.definirPropriedade("contem", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("fornecerIndice", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("primeiro", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("removerPosicao", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("removerElemento", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("ultimo", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("vazio", Linda.propriedadesDeAtributos);
 	
 	String.prototype.definirPropriedade("paraInteiro", Linda.propriedadesDeAtributos);
 	String.prototype.definirPropriedade("paraFlutuante", Linda.propriedadesDeAtributos);
@@ -39,11 +44,15 @@
 	String.definirPropriedade("concatenarComEspaco", Linda.propriedadesDeAtributos);
 	String.definirPropriedade("formatar", Linda.propriedadesDeAtributos);
 	
-	HTMLElement.definirPropriedade("selecionar", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("selecionarTodos", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("tratadorDeTeclaPressionada", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("tratadorDeClique", Linda.propriedadesDeAtributos);
-	HTMLElement.definirPropriedade("tratadorDeCarregamento", Linda.propriedadesDeAtributos);
+	Number.definirPropriedade("naoNumero", Linda.propriedadesDeAtributos);
+	
+	Node.prototype.definirPropriedade("limpar", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("selecionar", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("selecionarTodos", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("tratadorDeCarregamento", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("tratadorDeClique", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("tratadorDeTeclaPressionada", Linda.propriedadesDeAtributos);
+	Node.prototype.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
+	
+	Node.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
 }());

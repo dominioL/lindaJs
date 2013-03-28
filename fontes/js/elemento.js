@@ -6,7 +6,7 @@
 (function () {
 	"use strict";
 	
-	HTMLElement.implementar = function (implementacoes) {
+	Node.implementar = function (implementacoes) {
 		for (var implementacao in implementacoes) {
 			if (implementacoes.hasOwnProperty(implementacao)) {
 				this.prototype[implementacao] = implementacoes[implementacao];
@@ -14,7 +14,13 @@
 		}
 	};
 	
-	HTMLElement.implementar({
+	Node.implementar({
+		limpar: function () {
+			while (this.hasChildNodes()) {
+				this.removeChild(this.firstChild);
+			}
+		},
+		
 		selecionar: function (selecao) {
 			return this.querySelector(selecao);
 		},
@@ -23,20 +29,20 @@
 			return this.querySelectorAll(selecao);
 		},
 		
-		tratadorDeTeclaPressionada: function (tecla, tratador) {
-			return new TratadorDeTeclado(tecla, this).paraTeclaPressionada(tratador);
-		},
-			
-		tratadorDeTeclaSolta: function (tecla, tratador) {
-			return new TratadorDeTeclado(tecla, this).paraTeclaSolta(tratador);
-		},
-		
 		tratadorDeClique: function (tratador) {
 			return new TratadorDeMouse(this).paraClique(tratador);
 		},
 		
 		tratadorDeCarregamento: function (tratador) {
 			return new TratadorDePagina(this).paraCarregamento(tratador);
+		},
+		
+		tratadorDeTeclaPressionada: function (tecla, tratador) {
+			return new TratadorDeTeclado(tecla, this).paraTeclaPressionada(tratador);
+		},
+			
+		tratadorDeTeclaSolta: function (tecla, tratador) {
+			return new TratadorDeTeclado(tecla, this).paraTeclaSolta(tratador);
 		}
 	});
 }(this));
