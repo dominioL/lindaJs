@@ -209,6 +209,13 @@
 		}
 	});
 	
+	var TipoDeObservacao = new EnumeracaoDeConstantes({
+		ATUALIZACAO: "updated",
+		RECONFIGURACAO: "reconfigured",
+		REMOCAO: "deleted",
+		CRIACAO: "new"
+	});
+	
 	global.Tipo = Tipo;
 	global.Evento = Evento;
 	global.Tecla = Tecla;
@@ -218,4 +225,5 @@
 	global.TipoDeResposta = TipoDeResposta;
 	global.TipoDeMidia = TipoDeMidia;
 	global.TipoGenericoDeMidia = TipoGenericoDeMidia;
+	global.TipoDeObservacao = TipoDeObservacao;
 }(this));

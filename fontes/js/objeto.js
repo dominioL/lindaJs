@@ -30,6 +30,38 @@
 			return Object.keys(this);
 		},
 		
+		observar: function (tratador, propriedade, tipoDeObservacao) {
+			Object.observe(this, function (observacoes) {
+				observacoes.paraCada(function (observacao) {
+					var observacaoDesejada = (observacao.type === tipoDeObservacao || Linda.nuloOuIndefinido(tipoDeObservacao));
+					var propriedadeDesejada = (observacao.name === propriedade || Linda.nuloOuIndefinido(propriedade));
+					if (observacaoDesejada && propriedadeDesejada) {
+						tratador(observacao.object, observacao.name, observacao.type, observacao.oldValue);
+					}
+				});
+			});
+		},
+		
+		observarAtualizacao: function (tratador, propriedade) {
+			this.observar(tratador, propriedade, TipoDeObservacao.ATUALIZACAO);
+		},
+		
+		observarCriacao: function (tratador, propriedade) {
+			this.observar(tratador, propriedade, TipoDeObservacao.CRIACAO);
+		},
+		
+		observarReconfiguracao: function (tratador, propriedade) {
+			this.observar(tratador, propriedade, TipoDeObservacao.RECONFIGURACAO);
+		},
+		
+		observarRemocao: function (tratador, propriedade) {
+			this.observar(tratador, propriedade, TipoDeObservacao.REMOCAO);
+		},
+		
+		desobservar: function (tratador) {
+			Object.unobserve(this, tratador);
+		},
+		
 		paraCada: function (funcaoDeIteracao, escopo) {
 			funcaoDeIteracao = funcaoDeIteracao.vincularEscopo(escopo);
 			for (var chave in this) {

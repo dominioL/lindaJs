@@ -15,6 +15,12 @@
 	Object.prototype.definirPropriedade("privadoDefinirPropriedade", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("fornecerPropriedades", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("fornecerPropriedadesEnumeraveis", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("observar", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("observarAtualizacao", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("observarCriacao", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("observarReconfiguracao", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("observarRemocao", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedade("desobservar", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributosGravaveis);
 	Object.prototype.definirPropriedade("possuiPropriedade", Linda.propriedadesDeAtributos);
 	Object.prototype.definirPropriedade("possuiPropriedadePropria", Linda.propriedadesDeAtributos);
@@ -31,6 +37,7 @@
 	Array.prototype.definirPropriedade("contem", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("dentroDosLimites", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("fornecerIndice", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedade("fundir", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("primeiro", Linda.propriedadesDeAtributos);
 	Array.prototype.definirPropriedade("removerPosicao", Linda.propriedadesDeAtributos);
