@@ -6,13 +6,9 @@
 (function () {
 	"use strict";
 	
-	Node.implementar = function (implementacoes) {
-		for (var implementacao in implementacoes) {
-			if (implementacoes.hasOwnProperty(implementacao)) {
-				this.prototype[implementacao] = implementacoes[implementacao];
-			}
-		}
-	};
+	Node.implementar = Function.prototype.implementar;
+	NodeList.implementar = Function.prototype.implementar;
+	HTMLCollection.implementar = Function.prototype.implementar;
 	
 	Node.implementar({
 		limpar: function () {
@@ -44,5 +40,13 @@
 		tratadorDeTeclaSolta: function (tecla, tratador) {
 			return new TratadorDeTeclado(tecla, this).paraTeclaSolta(tratador);
 		}
+	});
+	
+	NodeList.implementar({
+		paraCada: Array.prototype.paraCada
+	});
+	
+	HTMLCollection.implementar({
+		paraCada: Array.prototype.paraCada
 	});
 }(this));
