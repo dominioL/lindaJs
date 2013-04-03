@@ -2,66 +2,81 @@
 /*jshint maxstatements: 10*/
 
 (function () {
-	Linda.definirPropriedade("privadoInstanciaDeTipoPrimitivo", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoInstanciaDeDiretaOuIndireta", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoHabilitarTelaCheia", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoHabilitarTelaCheiaChrome", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoHabilitarTelaCheiaFirefox", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoDesabilitarTelaCheia", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoDesabilitarTelaCheiaChrome", Linda.propriedadesDeAtributos);
-	Linda.definirPropriedade("privadoDesabilitarTelaCheiaFirefox", Linda.propriedadesDeAtributos);
+	Linda.definirPropriedades({
+		privadoInstanciaDeTipoPrimitivo: Linda.propriedadesDeAtributos,
+		privadoInstanciaDeDiretaOuIndireta: Linda.propriedadesDeAtributos,
+		privadoHabilitarTelaCheia: Linda.propriedadesDeAtributos,
+		privadoHabilitarTelaCheiaChrome: Linda.propriedadesDeAtributos,
+		privadoHabilitarTelaCheiaFirefox: Linda.propriedadesDeAtributos,
+		privadoDesabilitarTelaCheia: Linda.propriedadesDeAtributos,
+		privadoDesabilitarTelaCheiaChrome: Linda.propriedadesDeAtributos,
+		privadoDesabilitarTelaCheiaFirefox: Linda.propriedadesDeAtributos
+	});
 	
-	Object.prototype.definirPropriedade("definirPropriedade", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("privadoDefinirPropriedade", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("fornecerPropriedades", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("fornecerPropriedadesEnumeraveis", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("observar", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("observarAtualizacao", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("observarCriacao", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("observarReconfiguracao", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("observarRemocao", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("desobservar", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributosGravaveis);
-	Object.prototype.definirPropriedade("possuiPropriedade", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("possuiPropriedadePropria", Linda.propriedadesDeAtributos);
-	Object.prototype.definirPropriedade("prototipoDe", Linda.propriedadesDeAtributos);
+	Object.prototype.definirPropriedades({
+		definirPropriedade: Linda.propriedadesDeAtributos,
+		definirPropriedades: Linda.propriedadesDeAtributos,
+		privadoDefinirPropriedade: Linda.propriedadesDeAtributos,
+		fornecerPropriedades: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesEnumeraveis: Linda.propriedadesDeAtributos,
+		fundir: Linda.propriedadesDeAtributos,
+		observar: Linda.propriedadesDeAtributos,
+		observarAtualizacao: Linda.propriedadesDeAtributos,
+		observarCriacao: Linda.propriedadesDeAtributos,
+		observarReconfiguracao: Linda.propriedadesDeAtributos,
+		observarRemocao: Linda.propriedadesDeAtributos,
+		desobservar: Linda.propriedadesDeAtributos,
+		paraCada: Linda.propriedadesDeAtributosGravaveis,
+		possuiPropriedade: Linda.propriedadesDeAtributos,
+		possuiPropriedadePropria: Linda.propriedadesDeAtributos,
+		prototipoDe: Linda.propriedadesDeAtributos
+	});
 	
-	Function.prototype.definirPropriedade("aplicarComEscopo", Linda.propriedadesDeAtributos);
-	Function.prototype.definirPropriedade("chamarComEscopo", Linda.propriedadesDeAtributos);
-	Function.prototype.definirPropriedade("estender", Linda.propriedadesDeAtributos);
-	Function.prototype.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
-	Function.prototype.definirPropriedade("vincularEscopo", Linda.propriedadesDeAtributos);
+	Function.prototype.definirPropriedades({
+		aplicarComEscopo: Linda.propriedadesDeAtributos,
+		chamarComEscopo: Linda.propriedadesDeAtributos,
+		estender: Linda.propriedadesDeAtributos,
+		implementar: Linda.propriedadesDeAtributos,
+		vincularEscopo: Linda.propriedadesDeAtributos
+	});
 	
-	Function.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
-
-	Array.prototype.definirPropriedade("contem", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("dentroDosLimites", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("fornecerIndice", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("fundir", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("paraCada", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("primeiro", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("removerPosicao", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("removerElemento", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("ultimo", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("ultimoIndice", Linda.propriedadesDeAtributos);
-	Array.prototype.definirPropriedade("vazio", Linda.propriedadesDeAtributos);
+	Array.prototype.definirPropriedades({
+		contem: Linda.propriedadesDeAtributos,
+		dentroDosLimites: Linda.propriedadesDeAtributos,
+		embaralhar: Linda.propriedadesDeAtributos,
+		fornecerIndice: Linda.propriedadesDeAtributos,
+		fundir: Linda.propriedadesDeAtributos,
+		paraCada: Linda.propriedadesDeAtributos,
+		primeiro: Linda.propriedadesDeAtributos,
+		primeiroIndice: Linda.propriedadesDeAtributos,
+		quantidadeMenorQue: Linda.propriedadesDeAtributos,
+		quantidadeMenorIgualQue: Linda.propriedadesDeAtributos,
+		quantidadeMaiorQue: Linda.propriedadesDeAtributos,
+		quantidadeMaiorIgualQue: Linda.propriedadesDeAtributos,
+		quantidadeIgual: Linda.propriedadesDeAtributos,
+		primeiro: Linda.propriedadesDeAtributos,
+		reduzir: Linda.propriedadesDeAtributos,
+		removerPosicao: Linda.propriedadesDeAtributos,
+		removerElemento: Linda.propriedadesDeAtributos,
+		ultimo: Linda.propriedadesDeAtributos,
+		ultimoIndice: Linda.propriedadesDeAtributos,
+		vazio: Linda.propriedadesDeAtributos
+	});
 	
-	String.prototype.definirPropriedade("paraInteiro", Linda.propriedadesDeAtributos);
-	String.prototype.definirPropriedade("paraFlutuante", Linda.propriedadesDeAtributos);
+	String.prototype.definirPropriedades({
+		paraInteiro: Linda.propriedadesDeAtributos,
+		paraFlutuante: Linda.propriedadesDeAtributos
+	});
 	
-	String.definirPropriedade("concatenar", Linda.propriedadesDeAtributos);
-	String.definirPropriedade("concatenarComEspaco", Linda.propriedadesDeAtributos);
-	String.definirPropriedade("formatar", Linda.propriedadesDeAtributos);
+	String.definirPropriedades({
+		concatenar: Linda.propriedadesDeAtributos,
+		concatenarComEspaco: Linda.propriedadesDeAtributos,
+		formatar: Linda.propriedadesDeAtributos
+	});
 	
-	Number.definirPropriedade("naoNumero", Linda.propriedadesDeAtributos);
-	
-	Node.prototype.definirPropriedade("limpar", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("selecionar", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("selecionarTodos", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("tratadorDeCarregamento", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("tratadorDeClique", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("tratadorDeTeclaPressionada", Linda.propriedadesDeAtributos);
-	Node.prototype.definirPropriedade("tratadorDeTeclaSolta", Linda.propriedadesDeAtributos);
-	
-	Node.definirPropriedade("implementar", Linda.propriedadesDeAtributos);
+	Number.definirPropriedades({
+		naoNumero: Linda.propriedadesDeAtributos,
+		sortear: Linda.propriedadesDeAtributos,
+		sortearInteiro: Linda.propriedadesDeAtributos
+	});
 }());

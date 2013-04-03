@@ -16,6 +16,13 @@
 			Object.defineProperty(this, atributo, propriedades);
 		},
 		
+		definirPropriedades: function (definicoes) {
+			for (var indice = 0, propriedades = Object.getOwnPropertyNames(definicoes), tamanho = propriedades.length; indice < tamanho; indice++) {
+				var propriedade = propriedades[indice];
+				this.definirPropriedade(propriedade, definicoes[propriedade]);
+			}
+		},
+		
 		privadoDefinirPropriedade: function (propriedades, chave, valor) {
 			if (!Linda.indefinido(valor)) {
 				propriedades[chave] = valor;
@@ -28,6 +35,12 @@
 		
 		fornecerPropriedadesEnumeraveis: function () {
 			return Object.keys(this);
+		},
+		
+		fundir: function (outro) {
+			outro.paraCada(function (propriedade, chave) {
+				this[chave] = propriedade;
+			}, this);
 		},
 		
 		observar: function (tratador, propriedade, tipoDeObservacao) {

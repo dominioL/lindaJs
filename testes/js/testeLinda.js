@@ -487,3 +487,21 @@
 	});
 }());
 
+(function () {
+	"use strict";
+	
+	module("funcionalidades");
+	
+	test("Elementos da linguagem permanecem com configurações padrão.", function () {
+		deepEqual(Object.prototype.fornecerPropriedadesEnumeraveis(), [], "Object.prototype não é alterado fora do padrão.");
+		deepEqual(Function.prototype.fornecerPropriedadesEnumeraveis(), [], "Function.prototype não é alterado fora do padrão.");
+		deepEqual(Array.prototype.fornecerPropriedadesEnumeraveis(), [], "Array.prototype não é alterado fora do padrão.");
+		deepEqual(String.prototype.fornecerPropriedadesEnumeraveis(), [], "String.prototype não é alterado fora do padrão.");
+		deepEqual(Number.prototype.fornecerPropriedadesEnumeraveis(), [], "Number.prototype não é alterado fora do padrão.");
+		deepEqual(Object.fornecerPropriedadesEnumeraveis(), [], "Object não é alterado fora do padrão.");
+		deepEqual(Function.fornecerPropriedadesEnumeraveis(), [], "Function não é alterado fora do padrão.");
+		deepEqual(Array.fornecerPropriedadesEnumeraveis(), [], "Array não é alterado fora do padrão.");
+		deepEqual(String.fornecerPropriedadesEnumeraveis(), [], "String não é alterado fora do padrão.");
+		deepEqual(Number.fornecerPropriedadesEnumeraveis(), [], "Number não é alterado fora do padrão.");
+	});
+}());
