@@ -8,6 +8,15 @@
 			return (this.indexOf(valor) >= 0);
 		},
 		
+		embaralhar: function () {
+			for (var indice = 0, tamanho = this.length - 1; indice <= tamanho; indice++) {
+				var novoIndice = Numero.sortearInteiro(0, tamanho);
+				var valorSalvo = this[indice];
+				this[indice] = this[novoIndice]
+				this[novoIndice] = valorSalvo;
+			}
+		},
+		
 		dentroDosLimites: function (indice) {
 			return (!this.vazio() && indice >= 0 && indice < this.length);
 		},
@@ -29,6 +38,39 @@
 		
 		primeiro: function () {
 			return this[0];
+		},
+		
+		primeiroIndice: function () {
+			return 0;
+		},
+		
+		quantidadeMenorQue: function (quantidade) {
+			return (this.length < quantidade);
+		},
+		
+		quantidadeMenorIgualQue: function (quantidade) {
+			return (this.length <= quantidade);
+		},
+		
+		quantidadeMaiorQue: function (quantidade) {
+			return (this.length > quantidade);
+		},
+
+		quantidadeMaiorIgualQue: function (quantidade) {
+			return (this.length >= quantidade);
+		},
+
+		quantidadeIgual: function (quantidade) {
+			return (this.length === quantidade);
+		},
+		
+		reduzir: function (funcaoDeReducao, valorAtual, escopo) {
+			funcaoDeReducao = funcaoDeReducao.vincularEscopo(escopo);
+			valorAtual = valorAtual || 0;
+			for (var indice = 0; indice < this.length; indice++) {
+				valorAtual = funcaoDeReducao(valorAtual, this[indice], indice);
+			}
+			return valorAtual;
 		},
 		
 		removerPosicao: function (posicao) {

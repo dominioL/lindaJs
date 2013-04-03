@@ -41,4 +41,15 @@
 		deepEqual(listaA, [1, 2, 3, 4, 5, 6], "listaA fica com os seus elementos e com elementos da listaB.");
 		deepEqual(listaB, [4, 5, 6], "listaB é inalterada.");
 	});
+	
+	module("reduzir");
+	
+	test("Somar valores de uma lista.", function () {
+		var lista = [1, 2, 3, 4, 5];
+		var soma = lista.reduzir(function (soma, valor) {
+			return (soma + valor);
+		});
+		deepEqual(lista, [1, 2, 3, 4, 5], "Lista não é alterada.");
+		equal(soma, 15, "Realiza a redução fornecendo o valor final.");
+	});
 }());
