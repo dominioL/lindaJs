@@ -80,6 +80,7 @@ testar() {
 depurar() {
 	construir;
 	echo ":depurar";
+	chromium-browser ${binariosHtml}/testeDeCodigo.html --allow-file-access-from-files;
 }
 
 executar() {

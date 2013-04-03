@@ -1,14 +1,14 @@
+/*global deepEqual*/
+/*global Linda*/
+/*global ok*/
 /*global module*/
 /*global test*/
-/*global ok*/
-/*global Linda*/
-/*jshint bitwise: true, camelcase: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, noarg: true, noempty: true, nonew: false, plusplus: false, quotmark: "double", regexp: true, undef: true, unused: true, strict: true, trailing: true, indent: 4, maxparams: 3, maxdepth: 2, maxstatements: 15, maxcomplexity: 3, maxlen: 128 asi: false, boss: false, debug: false, eqnull: false, es5: false, esnext: false, evil: false, expr: false, globalstrict: false, funcscope: false, iterator: false, lastsemic: false, laxbreak: false, laxcomma: false, loopfunc: false, multistr: false, onecase: false, proto: false, regexdash: false, scripturl: false, smarttabs: false, shadow: false, sub: false, supernew: false, browser: true*/
 
 (function () {
 	"use strict";
-	
+
 	module("tipoDe");
-	
+
 	test("Object.", function () {
 		ok(!Linda.tipoDe(function () {}, Object), "function () {} não é do tipo Object.");
 		ok(!Linda.tipoDe(Object, Object), "Oject não é do tipo Object.");
@@ -23,7 +23,7 @@
 		ok(!Linda.tipoDe(false, Object), "false não é do tipo Object.");
 		ok(!Linda.tipoDe(undefined, Object), "undefined não é do tipo Object.");
 	});
-	
+
 	test("Function.", function () {
 		ok(Linda.tipoDe(function () {}, Function), "function () {} é do tipo Function.");
 		ok(Linda.tipoDe(Object, Function), "Oject é do tipo Function.");
@@ -38,7 +38,7 @@
 		ok(!Linda.tipoDe(false, Function), "false não é do tipo Function.");
 		ok(!Linda.tipoDe(undefined, Function), "undefined não é do tipo Function.");
 	});
-	
+
 	test("String.", function () {
 		ok(!Linda.tipoDe(function () {}, String), "function () {} não é do tipo String.");
 		ok(!Linda.tipoDe(Object, String), "Oject não é do tipo String.");
@@ -52,7 +52,7 @@
 		ok(!Linda.tipoDe(false, String), "false não é do tipo String.");
 		ok(!Linda.tipoDe(undefined, String), "undefined não é do tipo String.");
 	});
-	
+
 	test("Number.", function () {
 		ok(!Linda.tipoDe(function () {}, Number), "function () {} não é do tipo Number.");
 		ok(!Linda.tipoDe(Object, Number), "Oject não é do tipo Number.");
@@ -66,7 +66,7 @@
 		ok(!Linda.tipoDe(false, Number), "false não é do tipo Number.");
 		ok(!Linda.tipoDe(undefined, Number), "undefined não é do tipo Number.");
 	});
-	
+
 	test("Boolean.", function () {
 		ok(!Linda.tipoDe(function () {}, Boolean), "function () {} não é do tipo Boolean.");
 		ok(!Linda.tipoDe(Object, Boolean), "Oject não é do tipo Boolean.");
@@ -80,7 +80,7 @@
 		ok(Linda.tipoDe(false, Boolean), "false é do tipo Boolean.");
 		ok(!Linda.tipoDe(undefined, Boolean), "undefined não é do tipo Boolean.");
 	});
-	
+
 	test("undefined.", function () {
 		ok(!Linda.tipoDe(function () {}, undefined), "function () {} não é do tipo undefined.");
 		ok(!Linda.tipoDe(Object, undefined), "Oject não é do tipo undefined.");
@@ -94,7 +94,7 @@
 		ok(!Linda.tipoDe(false, undefined), "false não é do tipo undefined.");
 		ok(Linda.tipoDe(undefined, undefined), "undefined é do tipo undefined.");
 	});
-	
+
 	test("Tipos diferentes de Object, Function, String, Number, Boolean e undefined.", function () {
 		ok(!Linda.tipoDe(Function, Array), "Function não é um tipo de Array.");
 		ok(!Linda.tipoDe(Function, String), "Function não é um tipo de String.");
@@ -108,13 +108,9 @@
 		ok(!Linda.tipoDe(Number, 10), "Number não é um tipo de 10.");
 		ok(!Linda.tipoDe(Boolean, true), "Boolean não é um tipo de true.");
 	});
-}());
 
-(function () {
-	"use strict";
-	
 	module("instanciaDe");
-	
+
 	test("Object.", function () {
 		ok(Linda.instanciaDe(Object, Object), "Object é uma instância de Object.");
 		ok(Linda.instanciaDe(Function, Object), "Function é uma instância de Object.");
@@ -131,7 +127,7 @@
 		ok(!Linda.instanciaDe(true, Object), "true não é uma instância de Object.");
 		ok(!Linda.instanciaDe(undefined, Object), "undefined não é uma instância de Object.");
 	});
-	
+
 	test("Function.", function () {
 		ok(Linda.instanciaDe(Object, Function), "Object é uma instância de Function.");
 		ok(Linda.instanciaDe(Function, Function), "Function é uma instância de Function.");
@@ -148,7 +144,7 @@
 		ok(!Linda.instanciaDe(true, Function), "true não é uma instância de Function.");
 		ok(!Linda.instanciaDe(undefined, Function), "undefined não é uma instância de Function.");
 	});
-	
+
 	test("Array.", function () {
 		ok(!Linda.instanciaDe(Object, Array), "Object não é uma instância de Array.");
 		ok(!Linda.instanciaDe(Function, Array), "Function não é uma instância de Array.");
@@ -165,7 +161,7 @@
 		ok(!Linda.instanciaDe(true, Array), "true não é uma instância de Array.");
 		ok(!Linda.instanciaDe(undefined, Array), "undefined não é uma instância de Array.");
 	});
-	
+
 	test("String.", function () {
 		ok(!Linda.instanciaDe(Object, String), "Object não é uma instância de String.");
 		ok(!Linda.instanciaDe(Function, String), "Function não é uma instância de String.");
@@ -182,7 +178,7 @@
 		ok(!Linda.instanciaDe(true, String), "true não é uma instância de String.");
 		ok(!Linda.instanciaDe(undefined, String), "undefined não é uma instância de String.");
 	});
-	
+
 	test("Number.", function () {
 		ok(!Linda.instanciaDe(Object, Number), "Object não é uma instância de Number.");
 		ok(!Linda.instanciaDe(Function, Number), "Function não é uma instância de Number.");
@@ -199,7 +195,7 @@
 		ok(!Linda.instanciaDe(true, Number), "true não é uma instância de Number.");
 		ok(!Linda.instanciaDe(undefined, Number), "undefined não é uma instância de Number.");
 	});
-	
+
 	test("Boolean.", function () {
 		ok(!Linda.instanciaDe(Object, Boolean), "Object não é uma instância de Boolean.");
 		ok(!Linda.instanciaDe(Function, Boolean), "Function não é uma instância de Boolean.");
@@ -216,7 +212,7 @@
 		ok(Linda.instanciaDe(true, Boolean), "true é uma instância de Boolean.");
 		ok(!Linda.instanciaDe(undefined, Boolean), "undefined não é uma instância de Boolean.");
 	});
-	
+
 	test("{} não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe({}, function () {}), "{} não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe({}, {}), "{} não é uma instância de {} .");
@@ -227,7 +223,7 @@
 		ok(!Linda.instanciaDe({}, true), "{} não é uma instância de true.");
 		ok(!Linda.instanciaDe({}, undefined), "{} não é uma instância de undefined.");
 	});
-	
+
 	test("[] não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe([], function () {}), "[] não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe([], {}), "[] não é uma instância de {} .");
@@ -238,7 +234,7 @@
 		ok(!Linda.instanciaDe([], true), "[] não é uma instância de true.");
 		ok(!Linda.instanciaDe([], undefined), "[] não é uma instância de undefined.");
 	});
-	
+
 	test("null não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe(null, function () {}), "null não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe(null, {}), "null não é uma instância de {} .");
@@ -249,7 +245,7 @@
 		ok(!Linda.instanciaDe(null, true), "null não é uma instância de true.");
 		ok(!Linda.instanciaDe(null, undefined), "null não é uma instância de undefined.");
 	});
-	
+
 	test("'texto' não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe("texto", function () {}), "'texto' não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe("texto", {}), "'texto' não é uma instância de {} .");
@@ -260,7 +256,7 @@
 		ok(!Linda.instanciaDe("texto", true), "'texto' não é uma instância de true.");
 		ok(!Linda.instanciaDe("texto", undefined), "'texto' não é uma instância de undefined.");
 	});
-	
+
 	test("10 não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe(10, function () {}), "10 não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe(10, {}), "10 não é uma instância de {} .");
@@ -271,7 +267,7 @@
 		ok(!Linda.instanciaDe(10, true), "10 não é uma instância de true.");
 		ok(!Linda.instanciaDe(10, undefined), "10 não é uma instância de undefined.");
 	});
-	
+
 	test("true não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe(true, function () {}), "true não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe(true, {}), "true não é uma instância de {} .");
@@ -282,7 +278,7 @@
 		ok(!Linda.instanciaDe(true, true), "true não é uma instância de true.");
 		ok(!Linda.instanciaDe(true, undefined), "true não é uma instância de undefined.");
 	});
-	
+
 	test("undefined não é instância de funções não construtoras.", function () {
 		ok(!Linda.instanciaDe(undefined, function () {}), "undefined não é uma instância de function () {}.");
 		ok(!Linda.instanciaDe(undefined, {}), "undefined não é uma instância de {} .");
@@ -293,9 +289,8 @@
 		ok(!Linda.instanciaDe(undefined, true), "undefined não é uma instância de true.");
 		ok(!Linda.instanciaDe(undefined, undefined), "undefined não é uma instância de undefined.");
 	});
-	
+
 	test("Prototipação.", function () {
-		/*jshint maxstatements: 133*/
 		function A() {}
 		function B() {}
 		function C() {}
@@ -429,19 +424,15 @@
 		ok(!Linda.instanciaDe(i, J), "new I() não é uma instância de function J() {}.");
 		ok(Linda.instanciaDe(j, J), "new J() é uma instância de function J() {}.");
 	});
-}());
 
-(function () {
-	"use strict";
-	
 	module("nuloOuIndefinido");
-	
+
 	test("Funções.", function () {
 		ok(!Linda.nuloOuIndefinido(Function), "Function não é nulo nem indefinido.");
 		ok(!Linda.nuloOuIndefinido(Object), "Object não é nulo nem indefinido.");
 		ok(!Linda.nuloOuIndefinido(function () {}), "function () {} não é nulo nem indefinido.");
 	});
-	
+
 	test("Object, Array, String, Number e Boolean.", function () {
 		ok(!Linda.nuloOuIndefinido({}), "{} não é nulo nem indefinido.");
 		ok(!Linda.nuloOuIndefinido([]), "[] não é nulo nem indefinido.");
@@ -449,7 +440,7 @@
 		ok(!Linda.nuloOuIndefinido(10), "10 não é nulo nem indefinido.");
 		ok(!Linda.nuloOuIndefinido(true), "true não é nulo nem indefinido.");
 	});
-	
+
 	test("null, undefined, variáveis não inicializadas e atributos inexistentes são nulos ou indefinidos.", function () {
 		var variavelNaoInicializada;
 		ok(Linda.nuloOuIndefinido(null), "null é nulo ou indefinido.");
@@ -457,13 +448,9 @@
 		ok(Linda.nuloOuIndefinido(variavelNaoInicializada), "var variavelNaoInicializada; é nulo ou indefinido.");
 		ok(Linda.nuloOuIndefinido({}.atributoNaoExistente), "{}.atributoNaoExistente é nulo ou indefinido.");
 	});
-}());
 
-(function () {
-	"use strict";
-	
 	module("nulo");
-	
+
 	test("null, undefined, variáveis não inicializadas e atributos inexistentes.", function () {
 		var variavelNaoInicializada;
 		ok(Linda.nulo(null), "null é nulo.");
@@ -471,13 +458,9 @@
 		ok(!Linda.nulo(undefined), "undefined não é nulo.");
 		ok(!Linda.nulo({}.atributoNaoExistente), "{}.atributoNaoExistente não é nulo.");
 	});
-}());
 
-(function () {
-	"use strict";
-	
 	module("indefinido");
-	
+
 	test("null, undefined, e atributos inexistentes.", function () {
 		var variavelNaoInicializada;
 		ok(!Linda.indefinido(null), "null não é indefinido.");
@@ -485,13 +468,9 @@
 		ok(Linda.indefinido(undefined), "undefined é indefinido.");
 		ok(Linda.indefinido({}.atributoNaoExistente), "{}.atributoNaoExistente é indefinido.");
 	});
-}());
 
-(function () {
-	"use strict";
-	
 	module("funcionalidades");
-	
+
 	test("Elementos da linguagem permanecem com configurações padrão.", function () {
 		deepEqual(Object.prototype.fornecerPropriedadesEnumeraveis(), [], "Object.prototype não é alterado fora do padrão.");
 		deepEqual(Function.prototype.fornecerPropriedadesEnumeraveis(), [], "Function.prototype não é alterado fora do padrão.");

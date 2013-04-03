@@ -1,14 +1,12 @@
 /*global Linda*/
 /*global EnumeracaoDeConstantes*/
 /*global EnumeracaoDePrototipos*/
-/*jshint bitwise: true, camelcase: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, noarg: true, noempty: true, nonew: false, plusplus: false, quotmark: "double", regexp: true, undef: true, unused: true, strict: true, trailing: true, indent: 4, maxparams: 3, maxdepth: 2, maxstatements: 10, maxcomplexity: 3, maxlen: 128 asi: false, boss: false, debug: false, eqnull: false, es5: false, esnext: false, evil: false, expr: false, globalstrict: false, funcscope: false, iterator: false, lastsemic: false, laxbreak: false, laxcomma: false, loopfunc: false, multistr: false, onecase: false, proto: false, regexdash: false, scripturl: false, smarttabs: false, shadow: false, sub: false, supernew: false, browser: true*/
-/*jshint maxstatements: 20*/
 
 (function (global) {
 	"use strict";
-	
+
 	var Tipo = new EnumeracaoDeConstantes(Linda.tipos);
-	
+
 	var Evento = new EnumeracaoDeConstantes({
 		TECLA_PRESSIONADA: "keydown",
 		TECLA_SOLTA: "keyup",
@@ -16,14 +14,14 @@
 		CLIQUE: "click",
 		DUPLO_CLIQUE: "dbclick"
 	});
-	
+
 	var Tecla = new EnumeracaoDeConstantes({
 		CIMA: 38,
 		BAIXO: 40,
 		ESQUERDA: 37,
 		DIREITA: 39
 	});
-	
+
 	var AtributoHttp = new EnumeracaoDeConstantes({
 		CONTENT_TYPE: "Content-Type",
 		ACCEPT: "Accept",
@@ -49,7 +47,7 @@
 		USER_AGENT: "User-Agent",
 		VIA: "Via"
 	});
-	
+
 	var MetodoHttp = new EnumeracaoDeConstantes({
 		GET: "GET",
 		PUT: "PUT",
@@ -58,7 +56,7 @@
 		HEAD: "HEAD",
 		OPTIONS: "OPTIONS"
 	});
-	
+
 	var TipoDeResposta = new EnumeracaoDeConstantes({
 		JSON: "",
 		TEXTO: "text",
@@ -66,7 +64,7 @@
 		BLOB: "blob",
 		ARRAY_BUFFER: "arraybuffer"
 	});
-	
+
 	var TipoGenericoDeMidia = new EnumeracaoDePrototipos({
 		APLICACAO: ["application"],
 		AUDIO: ["audio"],
@@ -80,16 +78,16 @@
 		inicializarEnumeracao: function (chave) {
 			this.chave = chave;
 		},
-		
+
 		comoTexto: function () {
 			return this.chave;
 		},
-		
+
 		comoTextoGenerico: function () {
 			return String.formatar("%@/*", this.chave);
 		}
 	});
-	
+
 	var TipoDeMidia = new EnumeracaoDePrototipos({
 		JS: [TipoGenericoDeMidia.APLICACAO, "javascript"],
 		JSON: [TipoGenericoDeMidia.APLICACAO, "json"],
@@ -117,16 +115,16 @@
 			this.tipo = tipo;
 			this.chave = String.formatar("%@/%@", this.tipoGenerico.comoTexto(), this.tipo);
 		},
-		
+
 		comoTexto: function () {
 			return this.chave;
 		},
-		
+
 		comoTextoGenerico: function () {
 			return this.tipoGenerico.comoTextoGenerico();
 		}
 	});
-	
+
 	var CodigoHttp = new EnumeracaoDePrototipos({
 		HTTP_100: [100, "Continuar", "Continue"],
 		HTTP_101: [101, "Trocando protocolos", "Switching Protocols"],
@@ -175,47 +173,47 @@
 			this.texto = texto;
 			this.textoIngles = textoIngles;
 		},
-		
+
 		comoNumero: function () {
 			return this.chave;
 		},
-		
+
 		comoTexto: function () {
 			return this.texto;
 		},
-		
+
 		comoTextoIngles: function () {
 			return this.textoIngles;
 		},
-		
+
 		informacional: function () {
 			return (this.chave >= 100 && this.chave < 200);
 		},
-		
+
 		sucesso: function () {
 			return (this.chave >= 200 && this.chave < 300);
 		},
-		
+
 		redirecionamento: function () {
 			return (this.chave >= 300 && this.chave < 400);
 		},
-		
+
 		erroDoCliente: function () {
 			return (this.chave >= 400 && this.chave < 500);
 		},
-		
+
 		erroDoServidor: function () {
 			return (this.chave >= 500 && this.chave < 600);
 		}
 	});
-	
+
 	var TipoDeObservacao = new EnumeracaoDeConstantes({
 		ATUALIZACAO: "updated",
 		RECONFIGURACAO: "reconfigured",
 		REMOCAO: "deleted",
 		CRIACAO: "new"
 	});
-	
+
 	global.Tipo = Tipo;
 	global.Evento = Evento;
 	global.Tecla = Tecla;

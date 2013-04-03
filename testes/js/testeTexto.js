@@ -1,13 +1,12 @@
 /*global module*/
 /*global test*/
 /*global equal*/
-/*jshint bitwise: true, camelcase: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, noarg: true, noempty: true, nonew: false, plusplus: false, quotmark: "double", regexp: true, undef: true, unused: true, strict: true, trailing: true, indent: 4, maxparams: 3, maxdepth: 2, maxstatements: 15, maxcomplexity: 3, maxlen: 128 asi: false, boss: false, debug: false, eqnull: false, es5: false, esnext: false, evil: false, expr: false, globalstrict: false, funcscope: false, iterator: false, lastsemic: false, laxbreak: false, laxcomma: false, loopfunc: false, multistr: false, onecase: false, proto: false, regexdash: false, scripturl: false, smarttabs: false, shadow: false, sub: false, supernew: false, browser: true*/
 
 (function () {
 	"use strict";
-	
+
 	module("formatar");
-	
+
 	test("Substitui campos de acordo com a ordem dos argumentos.", function () {
 		equal(String
 				.formatar("Os %@ bebem %@, fumam %@ e criam %@.", "alemães", "cerveja", "Dunhill", "cachorros"),
@@ -22,7 +21,7 @@
 				"Os ingleses bebem chá, fumam Blends e criam cavalos em uma casa .",
 				"Elimina os campos extras.");
 	});
-	
+
 	test("Substitui campos de acordo com o indíce dos campos.", function () {
 		equal(String
 				.formatar("Os %1 bebem %2, fumam %3 e criam %4.", "alemães", "cerveja", "Dunhill", "cachorros"),
@@ -45,7 +44,7 @@
 				"Os dinamarqueses bebem água, fumam água e criam dinamarqueses.",
 				"Campos podem ser repetidos.");
 	});
-	
+
 	test("Substitui campos de acordo com a ordem dos argumentos e indíce dos campos.", function () {
 		equal(String
 				.formatar("Os %1 bebem %@, fumam %3 e criam %@.", "alemães", "cerveja", "Dunhill", "cachorros"),
