@@ -10,14 +10,9 @@
 	};
 
 	Function.implementar({
-		aplicarComEscopo: function (escopo, argumentos) {
-			return this.apply(escopo, argumentos);
-		},
+		aplicarComEscopo: Function.prototype.apply,
 
-		chamarComEscopo: function (escopo) {
-			arguments.removerPosicao(0);
-			return this.aplicarComEscopo(escopo, arguments);
-		},
+		chamarComEscopo: Function.prototype.call,
 
 		estender: function (implementacoes) {
 			for (var implementacao in implementacoes) {

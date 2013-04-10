@@ -4,20 +4,17 @@
 	"use strict";
 
 	var Prototipo = function Prototipo(corpoDoPrototipo) {
-		var inicializar = corpoDoPrototipo.inicializar;
-		var inicializa = Linda.instanciaDe(inicializar, Function);
-		var Estende = corpoDoPrototipo.Estende;
-		var estende = Linda.instanciaDe(Estende, Function);
+		var Estensao = corpoDoPrototipo.Estende;
+		var estende = Linda.instanciaDe(Estensao, Function);
 		var NovoPrototipo = function Objeto() {
-			if (inicializa) {
-				inicializar.aplicarComEscopo(this, arguments);
+			if (Linda.instanciaDe(this.inicializar, Function)) {
+				this.inicializar.aplicarComEscopo(this, arguments);
 			}
 		};
 		if (estende) {
-			NovoPrototipo.prototype = new Estende();
+			NovoPrototipo.prototype = new Estensao();
 		}
-		delete corpoDoPrototipo.inicializar;
-		delete corpoDoPrototipo.Estende;
+		delete corpoDoPrototipo.Estensao;
 		NovoPrototipo.implementar(corpoDoPrototipo);
 		return NovoPrototipo;
 	};

@@ -43,6 +43,9 @@ criarEstrutura() {
 
 adicionarBibliotecas() {
 	echo ":adicionarBibliotecas";
+	cp -rf ../verificaJs/construcao/verifica.css ${bibliotecasCss};
+	cp -rf ../verificaJs/construcao/verifica.js ${bibliotecasJs};
+	cp -rf ../verificaJs/construcao/jsHint.js ${bibliotecasJs};
 }
 
 compilar() {
@@ -64,7 +67,7 @@ construir() {
 	cat ${binariosJs}/lista.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/texto.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/numero.js >> ${construcao}/${pacoteDoProjeto}.js;
-	cat ${binariosJs}/prototipo.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/prototipacao.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/enumeracoes.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/utilidades.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/elemento.js >> ${construcao}/${pacoteDoProjeto}.js;

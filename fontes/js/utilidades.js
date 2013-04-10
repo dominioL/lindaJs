@@ -1,15 +1,15 @@
+/*global Classe*/
 /*global CodigoHttp*/
 /*global Evento*/
 /*global Linda*/
 /*global MetodoHttp*/
-/*global Prototipo*/
 /*global TipoDeResposta*/
 
 (function (global) {
 	"use strict";
 
-	var RequisicaoHttp = new Prototipo({
-		inicializarSuper: function (uri, tipoDeResposta) {
+	var RequisicaoHttp = Classe.criar({
+		inicializar: function (uri, tipoDeResposta) {
 			this.requisicaoXml = new XMLHttpRequest();
 			this.requisicaoXml.responseType = tipoDeResposta;
 			this.uri = uri;
@@ -134,11 +134,11 @@
 		}
 	});
 
-	var RequisicaoJson = new Prototipo({
-		Estende: RequisicaoHttp,
+	var RequisicaoJson = Classe.criar({
+		estende: RequisicaoHttp,
 
 		inicializar: function (uri) {
-			this.inicializarSuper(uri, TipoDeResposta.JSON);
+			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.JSON);
 		},
 
 		fornecerResposta: function () {
@@ -146,41 +146,48 @@
 		}
 	});
 
-	var RequisicaoDocumento = new Prototipo({
-		Estende: RequisicaoHttp,
+	var RequisicaoDocumento = Classe.criar({
+		estende: RequisicaoHttp,
 
 		inicializar: function (uri) {
-			this.inicializarSuper(uri, TipoDeResposta.DOCUMENTO);
+			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.DOCUMENTO);
 		}
 	});
 
-	var RequisicaoTexto = new Prototipo({
-		Estende: RequisicaoHttp,
+	var RequisicaoTexto = Classe.criar({
+		estende: RequisicaoHttp,
 
 		inicializar: function (uri) {
-			this.inicializarSuper(uri, TipoDeResposta.TEXTO);
+			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.TEXTO);
 		}
 	});
 
-	var Tratador = new Prototipo({
-		inicializarSuper: function (elemento) {
+	var Tratador = Classe.criar({
+		inicializar: function (elemento) {
 			this.elemento = (Linda.nuloOuIndefinido(elemento)) ? Linda.janela : elemento;
+			this.tratadores = [];
 		},
 
 		adicionar: function (evento, tratador) {
+			var eventoTratador = {};
+			eventoTratador.evento = evento;
+			eventoTratador.tratador = tratador;
+			this.tratadores.push(eventoTratador);
 			this.elemento.addEventListener(evento, tratador);
 		},
 
-		remover: function (evento) {
-			this.elemento.removeEventListener(evento);
+		remover: function () {
+			this.tratadores.paraCada(function (eventoTratador) {
+				this.elemento.removeEventListener(eventoTratador.evento, eventoTratador.tratador);
+			});
 		}
 	});
 
-	var TratadorDeTeclado = new Prototipo({
-		Estende: Tratador,
+	var TratadorDeTeclado = Classe.criar({
+		estende: Tratador,
 
 		inicializar: function (tecla, elemento) {
-			this.inicializarSuper(elemento);
+			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
 			this.tecla = tecla;
 		},
 
@@ -203,11 +210,11 @@
 		}
 	});
 
-	var TratadorDeMouse = new Prototipo({
-		Estende: Tratador,
+	var TratadorDeMouse = Classe.criar({
+		estende: Tratador,
 
 		inicializar: function (elemento) {
-			this.inicializarSuper(elemento);
+			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
 		},
 
 		paraClique: function (tratador) {
@@ -216,11 +223,11 @@
 		}
 	});
 
-	var TratadorDePagina = new Prototipo({
-		Estende: Tratador,
+	var TratadorDePagina = Classe.criar({
+		estende: Tratador,
 
 		inicializar: function (elemento) {
-			this.inicializarSuper(elemento);
+			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
 		},
 
 		paraCarregamento: function (tratador) {

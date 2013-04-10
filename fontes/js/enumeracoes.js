@@ -1,13 +1,12 @@
 /*global Linda*/
-/*global EnumeracaoDeConstantes*/
-/*global EnumeracaoDePrototipos*/
+/*global Classe*/
 
 (function (global) {
 	"use strict";
 
-	var Tipo = new EnumeracaoDeConstantes(Linda.tipos);
+	var Tipo = Classe.criarEnumeracaoDeConstantes(Linda.tipos);
 
-	var Evento = new EnumeracaoDeConstantes({
+	var Evento = Classe.criarEnumeracaoDeConstantes({
 		TECLA_PRESSIONADA: "keydown",
 		TECLA_SOLTA: "keyup",
 		CARREGADO: "load",
@@ -15,14 +14,14 @@
 		DUPLO_CLIQUE: "dbclick"
 	});
 
-	var Tecla = new EnumeracaoDeConstantes({
+	var Tecla = Classe.criarEnumeracaoDeConstantes({
 		CIMA: 38,
 		BAIXO: 40,
 		ESQUERDA: 37,
 		DIREITA: 39
 	});
 
-	var AtributoHttp = new EnumeracaoDeConstantes({
+	var AtributoHttp = Classe.criarEnumeracaoDeConstantes({
 		CONTENT_TYPE: "Content-Type",
 		ACCEPT: "Accept",
 		ACCEPT_CHARSET: "Accept-Charset",
@@ -48,7 +47,7 @@
 		VIA: "Via"
 	});
 
-	var MetodoHttp = new EnumeracaoDeConstantes({
+	var MetodoHttp = Classe.criarEnumeracaoDeConstantes({
 		GET: "GET",
 		PUT: "PUT",
 		POST: "POST",
@@ -57,7 +56,7 @@
 		OPTIONS: "OPTIONS"
 	});
 
-	var TipoDeResposta = new EnumeracaoDeConstantes({
+	var TipoDeResposta = Classe.criarEnumeracaoDeConstantes({
 		JSON: "",
 		TEXTO: "text",
 		DOCUMENTO: "document",
@@ -65,7 +64,14 @@
 		ARRAY_BUFFER: "arraybuffer"
 	});
 
-	var TipoGenericoDeMidia = new EnumeracaoDePrototipos({
+	var TipoDeObservacao = Classe.criarEnumeracaoDeConstantes({
+		ATUALIZACAO: "updated",
+		RECONFIGURACAO: "reconfigured",
+		REMOCAO: "deleted",
+		CRIACAO: "new"
+	});
+
+	var TipoGenericoDeMidia = Classe.criarEnumeracao({
 		APLICACAO: ["application"],
 		AUDIO: ["audio"],
 		IMAGEM: ["image"],
@@ -75,7 +81,7 @@
 		TEXTO: ["text"],
 		VIDEO: ["video"]
 	}, {
-		inicializarEnumeracao: function (chave) {
+		inicializar: function (chave) {
 			this.chave = chave;
 		},
 
@@ -88,7 +94,7 @@
 		}
 	});
 
-	var TipoDeMidia = new EnumeracaoDePrototipos({
+	var TipoDeMidia = Classe.criarEnumeracao({
 		JS: [TipoGenericoDeMidia.APLICACAO, "javascript"],
 		JSON: [TipoGenericoDeMidia.APLICACAO, "json"],
 		PDF: [TipoGenericoDeMidia.APLICACAO, "pdf"],
@@ -110,7 +116,7 @@
 		VORBIS: [TipoGenericoDeMidia.VIDEO, "vorbis"],
 		WEBM: [TipoGenericoDeMidia.VIDEO, "webm"]
 	}, {
-		inicializarEnumeracao: function (tipoGenerico, tipo) {
+		inicializar: function (tipoGenerico, tipo) {
 			this.tipoGenerico = tipoGenerico;
 			this.tipo = tipo;
 			this.chave = String.formatar("%@/%@", this.tipoGenerico.comoTexto(), this.tipo);
@@ -125,7 +131,7 @@
 		}
 	});
 
-	var CodigoHttp = new EnumeracaoDePrototipos({
+	var CodigoHttp = Classe.criarEnumeracao({
 		HTTP_100: [100, "Continuar", "Continue"],
 		HTTP_101: [101, "Trocando protocolos", "Switching Protocols"],
 		HTTP_200: [200, "Certo", "OK"],
@@ -168,7 +174,7 @@
 		HTTP_504: [504, "Estouro de tempo do portão de acesso", "Gateway Time-out"],
 		HTTP_505: [505, "Versão do protocolo não suportada", "HTTP Version not supported"]
 	}, {
-		inicializarEnumeracao: function (chave, texto, textoIngles) {
+		inicializar: function (chave, texto, textoIngles) {
 			this.chave = chave;
 			this.texto = texto;
 			this.textoIngles = textoIngles;
@@ -205,13 +211,6 @@
 		erroDoServidor: function () {
 			return (this.chave >= 500 && this.chave < 600);
 		}
-	});
-
-	var TipoDeObservacao = new EnumeracaoDeConstantes({
-		ATUALIZACAO: "updated",
-		RECONFIGURACAO: "reconfigured",
-		REMOCAO: "deleted",
-		CRIACAO: "new"
 	});
 
 	global.Tipo = Tipo;

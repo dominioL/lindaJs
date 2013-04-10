@@ -42,24 +42,23 @@
 	});
 
 	Array.prototype.definirPropriedades({
+		clonar: Linda.propriedadesDeAtributos,
 		contem: Linda.propriedadesDeAtributos,
 		dentroDosLimites: Linda.propriedadesDeAtributos,
 		embaralhar: Linda.propriedadesDeAtributos,
 		fornecerIndice: Linda.propriedadesDeAtributos,
 		fundir: Linda.propriedadesDeAtributos,
 		paraCada: Linda.propriedadesDeAtributos,
-		primeiro: Linda.propriedadesDeAtributos,
-		primeiroIndice: Linda.propriedadesDeAtributos,
 		quantidadeMenorQue: Linda.propriedadesDeAtributos,
 		quantidadeMenorIgualQue: Linda.propriedadesDeAtributos,
 		quantidadeMaiorQue: Linda.propriedadesDeAtributos,
 		quantidadeMaiorIgualQue: Linda.propriedadesDeAtributos,
 		quantidadeIgual: Linda.propriedadesDeAtributos,
 		reduzir: Linda.propriedadesDeAtributos,
+		reduzirSemPrimeiro: Linda.propriedadesDeAtributos,
+		reduzirSemUltimo: Linda.propriedadesDeAtributos,
 		removerPosicao: Linda.propriedadesDeAtributos,
 		removerElemento: Linda.propriedadesDeAtributos,
-		ultimo: Linda.propriedadesDeAtributos,
-		ultimoIndice: Linda.propriedadesDeAtributos,
 		vazio: Linda.propriedadesDeAtributos
 	});
 

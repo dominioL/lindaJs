@@ -3,137 +3,44 @@
 	<head lang="pt-br">
 		<meta charset="utf-8" />
 		<title>Testes de código</title>
-		<style type="text/css">
-			* {
-				font-family: sans-serif;
-			}
-
-			li {
-				list-style: none;
-				margin-top: 5px;
-			}
-
-			span {
-				display: inline-block;
-				padding: 5px;
-			}
-
-			span.linha {
-				background-color: #C32;
-				color: #FFF;
-			}
-
-			span.razao {
-				color: #C32;
-			}
-
-			span.evidencia {
-				background-color: #444;
-				color: #FFF;
-				font-family: monospace;
-			}
-		</style>
-		<script src="../js/jsHint.js" type="text/javascript"></script>
+		<link href="../css/verifica.css" type="text/css" rel="stylesheet" />
+		<script src="../js/linda.js" type="application/javascript"></script>
+		<script src="../js/funcao.js" type="application/javascript"></script>
+		<script src="../js/objeto.js" type="application/javascript"></script>
+		<script src="../js/lista.js" type="application/javascript"></script>
+		<script src="../js/texto.js" type="application/javascript"></script>
+		<script src="../js/numero.js" type="application/javascript"></script>
+		<script src="../js/prototipacao.js" type="application/javascript"></script>
+		<script src="../js/enumeracoes.js" type="application/javascript"></script>
+		<script src="../js/utilidades.js" type="application/javascript"></script>
+		<script src="../js/elemento.js" type="application/javascript"></script>
+		<script src="../js/jsHint.js" type="application/javascript"></script>
+		<script src="../js/verifica.js" type="application/javascript"></script>
 		<script defer type="application/javascript">
-			function inicializar() {
-				"use strict";
-
-				var opcoes = {
-					bitwise: true,
-					camelcase: true,
-					curly: true,
-					eqeqeq: true,
-					forin: true,
-					immed: true,
-					latedef: true,
-					newcap: true,
-					noarg: true,
-					noempty: true,
-					nonew: false,
-					plusplus: false,
-					quotmark: "double",
-					regexp: true,
-					undef: true,
-					unused: true,
-					strict: true,
-					trailing: true,
-					indent: 4,
-					asi: false,
-					boss: false,
-					debug: false,
-					eqnull: false,
-					es5: true,
-					esnext: false,
-					evil: true,
-					expr: false,
-					funcscope: false,
-					globalstrict: false,
-					iterator: false,
-					lastsemic: false,
-					laxbreak: false,
-					laxcomma: false,
-					loopfunc: false,
-					multistr: false,
-					proto: false,
-					scripturl: false,
-					smarttabs: false,
-					shadow: false,
-					sub: false,
-					supernew: false,
-					nomen: true,
-					onevar: false,
-					passfail: false,
-					browser: true
-				}
-
+			new TratadorDePagina().paraCarregamento(function () {
 				var arquivos = [
-					"../js/linda.js",
-					"../js/funcao.js",
-					"../js/objeto.js",
-					"../js/lista.js",
-					"../js/texto.js",
-					"../js/numero.js",
-					"../js/prototipo.js",
-					"../js/enumeracoes.js",
-					"../js/utilidades.js",
 					"../js/elemento.js",
+					"../js/enumeracoes.js",
+					"../js/funcao.js",
 					"../js/funcionalidades.js",
+					"../js/linda.js",
+					"../js/lista.js",
+					"../js/numero.js",
+					"../js/objeto.js",
+					"../js/prototipacao.js",
+					"../js/texto.js",
+					"../js/utilidades.js",
 					"../js/testeLinda.js",
 					"../js/testeLista.js",
+					"../js/testePrototipacao.js",
 					"../js/testeTexto.js"
 				];
-
-				var listaErros = document.createElement("ul");
-				document.body.appendChild(listaErros);
-				for (var indiceDoArquivo = 0; indiceDoArquivo < arquivos.length; indiceDoArquivo++) {
-					var arquivo =  arquivos[indiceDoArquivo];
-					var requisicao = new XMLHttpRequest();
-					requisicao.open("GET", arquivo, false);
-					requisicao.send();
-					var analise = JSHINT(requisicao.responseText, opcoes);
-					var erros = JSHINT.errors;
-					var itemErrosArquivo = document.createElement("li");
-					var tituloErrosArquivo = document.createElement("h1");
-					var listaErrosArquivo = document.createElement("ul");
-					listaErros.appendChild(itemErrosArquivo);
-					itemErrosArquivo.appendChild(tituloErrosArquivo);
-					itemErrosArquivo.appendChild(listaErrosArquivo);
-					tituloErrosArquivo.textContent = arquivo;
-					for (var indiceDoErro = 0; indiceDoErro < erros.length; indiceDoErro++) {
-						var itemErro = document.createElement("li");
-						var textoErro = '<span class="linha">' + erros[indiceDoErro].line + '</span>';
-						textoErro += '<span class="razao">' + erros[indiceDoErro].reason + '</span>';
-						textoErro += '<span class="evidencia">' + erros[indiceDoErro].evidence + '</span>';
-						itemErro.innerHTML = textoErro;
-						listaErrosArquivo.appendChild(itemErro);
-						console.log(JSHINT.data());
-						console.log(JSHINT.erros);
-					}
-				}
-			}
-
-			window.addEventListener("load", inicializar);
+				var verificacao = new Verifica(arquivos);
+				verificacao.verificar();
+			});
 		</script>
 	</head>
-	<body></body>
+	<body>
+		<div class="verificaJs"></div>
+	</body>
 </html>

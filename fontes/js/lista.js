@@ -1,7 +1,21 @@
+/*global Linda*/
+
 (function () {
 	"use strict";
 
 	Array.implementar({
+		clonar: function () {
+			var clone = new Array(this.length);
+			for (var indice = 0, tamanho = this.length; indice < tamanho; indice++) {
+				var elemento = this[indice];
+				if (Linda.tipoDe(elemento.clonar, Function)) {
+					elemento = elemento.clonar();
+				}
+				clone[indice] = elemento;
+			}
+			return clone;
+		},
+
 		contem: function (valor) {
 			return (this.indexOf(valor) >= 0);
 		},
@@ -34,14 +48,6 @@
 			}
 		},
 
-		primeiro: function () {
-			return this[0];
-		},
-
-		primeiroIndice: function () {
-			return 0;
-		},
-
 		quantidadeMenorQue: function (quantidade) {
 			return (this.length < quantidade);
 		},
@@ -71,6 +77,24 @@
 			return valorAtual;
 		},
 
+		reduzirSemPrimeiro: function (funcaoDeReducao, valorAtual, escopo) {
+			funcaoDeReducao = funcaoDeReducao.vincularEscopo(escopo);
+			valorAtual = valorAtual || 0;
+			for (var indice = 1; indice < this.length; indice++) {
+				valorAtual = funcaoDeReducao(valorAtual, this[indice], indice);
+			}
+			return valorAtual;
+		},
+
+		reduzirSemUltimo: function (funcaoDeReducao, valorAtual, escopo) {
+			funcaoDeReducao = funcaoDeReducao.vincularEscopo(escopo);
+			valorAtual = valorAtual || 0;
+			for (var indice = 0; indice < (this.length - 1); indice++) {
+				valorAtual = funcaoDeReducao(valorAtual, this[indice], indice);
+			}
+			return valorAtual;
+		},
+
 		removerPosicao: function (posicao) {
 			this.splice(posicao, 1);
 		},
@@ -79,16 +103,34 @@
 			this.removerPosicao(this.fornecerIndice(elemento));
 		},
 
-		ultimo: function () {
-			return this[this.length - 1];
-		},
-
-		ultimoIndice: function () {
-			return (this.length - 1);
-		},
-
 		vazio: function () {
 			return (this.length === 0);
+		}
+	});
+
+	Array.prototype.definirPropriedades({
+		primeiro: {
+			funcaoFornecer: function () {
+				return this[0];
+			}
+		},
+
+		primeiroIndice: {
+			funcaoFornecer: function () {
+				return 0;
+			}
+		},
+
+		ultimo: {
+			funcaoFornecer: function () {
+				return this[this.length - 1];
+			}
+		},
+
+		ultimoIndice: {
+			funcaoFornecer: function () {
+				return (this.length - 1);
+			}
 		}
 	});
 } ());

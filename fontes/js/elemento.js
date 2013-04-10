@@ -1,4 +1,6 @@
 /*global HTMLCollection*/
+/*global HTMLTemplateElement*/
+/*global Linda*/
 /*global NodeList*/
 /*global TratadorDeMouse*/
 /*global TratadorDePagina*/
@@ -13,8 +15,13 @@
 
 	Node.implementar({
 		limpar: function () {
-			while (this.hasChildNodes()) {
-				this.removeChild(this.firstChild);
+			var nodosFilhos = this.children;
+			for (var indice = 0; indice < nodosFilhos.length; indice++) {
+				var nodoFilho = nodosFilhos[indice];
+				if (!Linda.instanciaDe(nodoFilho, HTMLTemplateElement)) {
+					this.removeChild(nodoFilho);
+					indice--;
+				}
 			}
 		},
 
