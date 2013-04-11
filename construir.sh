@@ -71,13 +71,13 @@ construir() {
 	cat ${binariosJs}/enumeracoes.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/utilidades.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/elemento.js >> ${construcao}/${pacoteDoProjeto}.js;
-	cat ${binariosJs}/funcionalidades.js >> ${construcao}/${pacoteDoProjeto}.js;
+	# cat ${binariosJs}/funcionalidades.js >> ${construcao}/${pacoteDoProjeto}.js;
 }
 
 testar() {
 	construir;
 	echo ":testar";
-	chromium-browser `find ${binariosHtml} -name teste*.html`;
+	chromium-browser `find ${binariosHtml} -name teste*.html` --allow-file-access-from-files;
 }
 
 depurar() {
