@@ -6,7 +6,7 @@
 	Array.implementar({
 		clonar: function () {
 			var clone = new Array(this.length);
-			for (var indice = 0, tamanho = this.length; indice < tamanho; indice++) {
+			for (var indice = 0; indice < this.length; indice++) {
 				var elemento = this[indice];
 				if (Linda.tipoDe(elemento.clonar, Function)) {
 					elemento = elemento.clonar();
@@ -21,8 +21,8 @@
 		},
 
 		embaralhar: function () {
-			for (var indice = 0, tamanho = this.length - 1; indice <= tamanho; indice++) {
-				var novoIndice = Number.sortearInteiro(0, tamanho);
+			for (var indice = 0; indice < this.length; indice++) {
+				var novoIndice = Number.sortearInteiro(0, this.length - 1);
 				var valorSalvo = this[indice];
 				this[indice] = this[novoIndice];
 				this[novoIndice] = valorSalvo;
@@ -30,7 +30,7 @@
 		},
 
 		dentroDosLimites: function (indice) {
-			return (!this.vazio() && indice >= 0 && indice < this.length);
+			return (this.length !== 0 && indice >= 0 && indice < this.length);
 		},
 
 		fornecerIndice: function (elemento) {

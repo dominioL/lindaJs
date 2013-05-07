@@ -179,7 +179,7 @@
 		remover: function () {
 			this.tratadores.paraCada(function (eventoTratador) {
 				this.elemento.removeEventListener(eventoTratador.evento, eventoTratador.tratador);
-			});
+			}, this);
 		}
 	});
 

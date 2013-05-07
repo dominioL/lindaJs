@@ -38,20 +38,23 @@
 		},
 
 		fundir: function (outro) {
-			outro.paraCada(function (propriedade, chave) {
-				this[chave] = propriedade;
-			}, this);
+			for (var chave in outro) {
+				if (outro.possuiPropriedadePropria(chave)) {
+					this[chave] = outro[chave];
+				}
+			}
 		},
 
 		observar: function (tratador, propriedade, tipoDeObservacao) {
 			Object.observe(this, function (observacoes) {
-				observacoes.paraCada(function (observacao) {
+				for (var indice = 0, tamanho = observacoes.length; indice < tamanho; indice++) {
+					var observacao = observacoes[indice];
 					var observacaoDesejada = (observacao.type === tipoDeObservacao || Linda.nuloOuIndefinido(tipoDeObservacao));
 					var propriedadeDesejada = (observacao.name === propriedade || Linda.nuloOuIndefinido(propriedade));
 					if (observacaoDesejada && propriedadeDesejada) {
 						tratador(observacao.object, observacao.name, observacao.type, observacao.oldValue);
 					}
-				});
+				}
 			});
 		},
 
