@@ -65,7 +65,7 @@
 		},
 
 		criarEnumeracaoDeConstantes: function (enumeracoes) {
-			var NovaEnumeracaoDeConstantes = new Enumeracao();
+			var NovaEnumeracaoDeConstantes = new EnumeracaoDeConstantes();
 			enumeracoes.paraCada(function (valor, enumeracao) {
 				this[enumeracao] = valor;
 			}, NovaEnumeracaoDeConstantes);
@@ -88,7 +88,7 @@
 		mapear: function (chave) {
 			var enumeracaoEncontrada = null;
 			this.paraCada(function (enumeracao) {
-				if (enumeracao.chave === chave) {
+				if (enumeracao.chave === chave || enumeracao === chave) {
 					enumeracaoEncontrada = enumeracao;
 					return;
 				}
@@ -107,7 +107,27 @@
 		}
 	});
 
+	var EnumeracaoDeConstantes = Classe.criar({
+		mapear: function (chave) {
+			var enumeracaoEncontrada = null;
+			this.paraCada(function (enumeracao) {
+				if (enumeracao === chave) {
+					enumeracaoEncontrada = enumeracao;
+					return;
+				}
+			}, this);
+			return enumeracaoEncontrada;
+		},
+
+		comoLista: function () {
+			var lista = [];
+			this.paraCada(function (enumeracao) {
+				lista.push(enumeracao);
+			}, this);
+			return lista;
+		}
+	});
+
 	global.Classe = Classe;
 	global.Objeto = Objeto;
-	global.Enumeracao = Enumeracao;
 }(this));
