@@ -2,6 +2,11 @@
 	"use strict";
 
 	String.implementar({
+		emBranco: function () {
+			var padraoSemEspaco = /^\s*$/;
+			return padraoSemEspaco.test(this);
+		},
+
 		paraInteiro: function () {
 			return parseInt(this, 10);
 		},

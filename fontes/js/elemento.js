@@ -2,6 +2,7 @@
 /*global HTMLTemplateElement*/
 /*global Linda*/
 /*global NodeList*/
+/*global TratadorDeAlteracao*/
 /*global TratadorDeMouse*/
 /*global TratadorDePagina*/
 /*global TratadorDeTeclado*/
@@ -47,6 +48,10 @@
 
 		tratadorDeTeclaSolta: function (tecla, tratador) {
 			return new TratadorDeTeclado(tecla, this).paraTeclaSolta(tratador);
+		},
+
+		tratadorDeAlteracao: function (tratador) {
+			return new TratadorDeAlteracao(this).paraAlteracao(tratador);
 		}
 	});
 

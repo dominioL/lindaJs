@@ -41,6 +41,10 @@
 			this.push.aplicarComEscopo(this, outra);
 		},
 
+		limpar: function () {
+			this.splice(0, this.length);
+		},
+
 		paraCada: function (funcaoDeIteracao, escopo) {
 			funcaoDeIteracao = funcaoDeIteracao.vincularEscopo(escopo);
 			for (var indice = 0; indice < this.length; indice++) {

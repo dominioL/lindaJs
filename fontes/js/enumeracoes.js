@@ -7,11 +7,12 @@
 	var Tipo = Classe.criarEnumeracaoDeConstantes(Linda.tipos);
 
 	var Evento = Classe.criarEnumeracaoDeConstantes({
-		TECLA_PRESSIONADA: "keydown",
-		TECLA_SOLTA: "keyup",
+		ALTERADO: "change",
 		CARREGADO: "load",
 		CLIQUE: "click",
-		DUPLO_CLIQUE: "dbclick"
+		DUPLO_CLIQUE: "dbclick",
+		TECLA_PRESSIONADA: "keydown",
+		TECLA_SOLTA: "keyup"
 	});
 
 	var Tecla = Classe.criarEnumeracaoDeConstantes({

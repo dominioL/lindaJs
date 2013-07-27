@@ -236,10 +236,24 @@
 		}
 	});
 
+	var TratadorDeAlteracao = Classe.criar({
+		estende: Tratador,
+
+		inicializar: function (elemento) {
+			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
+		},
+
+		paraAlteracao: function (tratador) {
+			this.adicionar(Evento.ALTERADO, tratador);
+			return this;
+		}
+	});
+
 	global.RequisicaoJson = RequisicaoJson;
 	global.RequisicaoDocumento = RequisicaoDocumento;
 	global.RequisicaoTexto = RequisicaoTexto;
 	global.TratadorDeTeclado = TratadorDeTeclado;
 	global.TratadorDeMouse = TratadorDeMouse;
 	global.TratadorDePagina = TratadorDePagina;
+	global.TratadorDeAlteracao = TratadorDeAlteracao;
 }(this));
