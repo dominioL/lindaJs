@@ -42,12 +42,16 @@
 			return new TratadorDePagina(this).paraCarregamento(tratador);
 		},
 
-		tratadorDeTeclaPressionada: function (tecla, tratador) {
-			return new TratadorDeTeclado(tecla, this).paraTeclaPressionada(tratador);
+		tratadorDeTeclaPressionada: function (tratador, tecla) {
+			return new TratadorDeTeclado(this, tecla).paraTeclaPressionada(tratador);
 		},
 
-		tratadorDeTeclaSolta: function (tecla, tratador) {
-			return new TratadorDeTeclado(tecla, this).paraTeclaSolta(tratador);
+		tratadorDeTeclaSolta: function (tratador, tecla) {
+			return new TratadorDeTeclado(this, tecla).paraTeclaSolta(tratador);
+		},
+
+		tratadorDeCaractereDigitado: function (tratador) {
+			return new TratadorDeTeclado(this).paraQualquerCaractere(tratador);
 		},
 
 		tratadorDeAlteracao: function (tratador) {

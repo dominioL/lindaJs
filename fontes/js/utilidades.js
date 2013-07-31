@@ -186,7 +186,7 @@
 	var TratadorDeTeclado = Classe.criar({
 		estende: Tratador,
 
-		inicializar: function (tecla, elemento) {
+		inicializar: function (elemento, tecla) {
 			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
 			this.tecla = tecla;
 		},
@@ -201,12 +201,26 @@
 			return this;
 		},
 
+		paraQualquerCaractere: function (tratador) {
+			this.adicionar(Evento.TECLA_SOLTA, this.adicionarTratadorDeTecladoParaQualquerCaractere(tratador));
+			return this;
+		},
+
+		adicionarTratadorDeTecladoParaQualquerCaractere: function (tratador) {
+			return function (evento) {
+				if (Tecla.APAGAR !== evento.keyCode) {
+					tratador();
+				}
+			}.vincularEscopo(this);
+		},
+
 		adicionarTratadorDeTeclado: function (tratador) {
 			return function (evento) {
 				if (this.tecla === evento.keyCode) {
 					tratador();
 				}
 			}.vincularEscopo(this);
+
 		}
 	});
 

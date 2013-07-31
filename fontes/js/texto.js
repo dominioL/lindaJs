@@ -7,6 +7,23 @@
 			return padraoSemEspaco.test(this);
 		},
 
+		formatarNumero: function (formato) {
+			var formatado = formato;
+			var padrao = /[^0-9]/g;
+			var padraoDeSubstituicao = /#/;
+			var emBranco = " ";
+			var vazio = "";
+			var numeros = this.replace(padrao, vazio).split(vazio);
+			for (var indice = 0, tamanho = numeros.length; indice < tamanho; indice++) {
+				formatado = formatado.replace(padraoDeSubstituicao, numeros[indice]);
+			}
+			var proximaSubstituicao = formatado.search(padraoDeSubstituicao);
+			if (proximaSubstituicao !== -1) {
+				formatado = formatado.slice(0, proximaSubstituicao);
+			}
+			return formatado;
+		},
+
 		paraInteiro: function () {
 			return parseInt(this, 10);
 		},

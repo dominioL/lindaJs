@@ -16,6 +16,7 @@
 	});
 
 	var Tecla = Classe.criarEnumeracaoDeConstantes({
+		APAGAR: 8,
 		CIMA: 38,
 		BAIXO: 40,
 		ESQUERDA: 37,
