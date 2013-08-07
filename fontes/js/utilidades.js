@@ -247,6 +247,11 @@
 		paraCarregamento: function (tratador) {
 			this.adicionar(Evento.CARREGADO, tratador);
 			return this;
+		},
+
+		paraAlteracaoNoHistorico: function (tratador) {
+			this.adicionar(Evento.HISTORICO_ALTERADO, tratador);
+			return this;
 		}
 	});
 

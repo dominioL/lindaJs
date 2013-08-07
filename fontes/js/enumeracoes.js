@@ -11,6 +11,7 @@
 		CARREGADO: "load",
 		CLIQUE: "click",
 		DUPLO_CLIQUE: "dbclick",
+		HISTORICO_ALTERADO: "popstate",
 		TECLA_PRESSIONADA: "keydown",
 		TECLA_SOLTA: "keyup"
 	});
@@ -188,6 +189,10 @@
 
 		comoTexto: function () {
 			return this.texto;
+		},
+
+		comoTextoFormatado: function () {
+			return String.formatar("%@ - %@", this.comoNumero(), this.comoTexto());
 		},
 
 		comoTextoIngles: function () {
