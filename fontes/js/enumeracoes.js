@@ -7,11 +7,17 @@
 	var Tipo = Classe.criarEnumeracaoDeConstantes(Linda.tipos);
 
 	var Evento = Classe.criarEnumeracaoDeConstantes({
+		ABORTADO: "abort",
 		ALTERADO: "change",
 		CARREGADO: "load",
+		CARREGAMENTO_INICIADO: "loadstart",
+		CARREGAMENTO_FINALIZADO: "loadend",
 		CLIQUE: "click",
 		DUPLO_CLIQUE: "dbclick",
+		ESTOURO_DE_TEMPO: "timeout",
+		ERRO: "error",
 		HISTORICO_ALTERADO: "popstate",
+		PROGRESSO: "progress",
 		TECLA_PRESSIONADA: "keydown",
 		TECLA_SOLTA: "keyup"
 	});
