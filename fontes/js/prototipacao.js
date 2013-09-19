@@ -33,7 +33,7 @@
 				this.inicializar.aplicarComEscopo(this, arguments);
 			}
 			SuperClasse = (estende) ? SuperClasse : Objeto;
-			corpoDaClasse.SuperClasse = SuperClasse
+			corpoDaClasse.SuperClasse = SuperClasse;
 			NovaClasse.prototype = Object.create(SuperClasse.prototype);
 			NovaClasse.prototipo = NovaClasse.prototype;
 			NovaClasse.implementar(corpoDaClasse);

@@ -4,6 +4,7 @@
 /*global Linda*/
 /*global MetodoHttp*/
 /*global TipoDeResposta*/
+/*global Tecla*/
 
 (function (global) {
 	"use strict";

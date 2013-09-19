@@ -5,6 +5,7 @@
 /*global ok*/
 /*global Objeto*/
 /*global module*/
+/*global notEqual*/
 /*global test*/
 
 (function () {

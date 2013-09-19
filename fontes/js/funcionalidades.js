@@ -57,7 +57,7 @@
 		observarReconfiguracao: Linda.propriedadesDeAtributos,
 		observarRemocao: Linda.propriedadesDeAtributos,
 		desobservar: Linda.propriedadesDeAtributos,
-		paraCada: Linda.propriedadesDeAtributos  
+		paraCada: Linda.propriedadesDeAtributos
 	});
 
 	Function.prototype.definirPropriedades({

@@ -145,7 +145,7 @@
 		},
 
 		fornecerPropriedadesHerdadasEnumeraveis: function () {
-			var propriedadesHerdadasEnumeraveis = []
+			var propriedadesHerdadasEnumeraveis = [];
 			for (var propriedadeEnumeravel in this) {
 				if (!this.possuiPropriedadePropriaEnumeravel(propriedadeEnumeravel)) {
 					propriedadesHerdadasEnumeraveis.push(propriedadeEnumeravel);
@@ -219,7 +219,7 @@
 			while (!Linda.nulo(prototipoDoObjeto) && prototipoDoObjeto !== prototipoDoTipo) {
 				prototipoDoObjeto = prototipoDoObjeto.fornecerPrototipo();
 			}
-			return (prototipoDoObjeto == prototipoDoTipo);
+			return (prototipoDoObjeto === prototipoDoTipo);
 		},
 
 		prototipoDe: function (objeto) {

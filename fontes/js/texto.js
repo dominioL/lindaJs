@@ -11,7 +11,6 @@
 			var formatado = formato;
 			var padrao = /[^0-9]/g;
 			var padraoDeSubstituicao = /#/;
-			var emBranco = " ";
 			var vazio = "";
 			var numeros = this.replace(padrao, vazio).split(vazio);
 			for (var indice = 0, tamanho = numeros.length; indice < tamanho; indice++) {
