@@ -55,7 +55,7 @@
 						instancia: {
 							configuravel: false,
 							enumeravel: false,
-							funcaoFornecer: function () {
+							fornecer: function () {
 								return this.instanciaUnica;
 							}
 						}

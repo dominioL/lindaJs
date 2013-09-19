@@ -22,8 +22,8 @@
 			configuravel: false,
 			enumeravel: false,
 			gravavel: false,
-			funcaoFornecer: undefined,
-			funcaoFixar: undefined,
+			fornecer: undefined,
+			fixar: undefined,
 			valor: undefined
 		},
 
@@ -31,8 +31,8 @@
 			configuravel: false,
 			enumeravel: false,
 			gravavel: true,
-			funcaoFornecer: undefined,
-			funcaoFixar: undefined,
+			fornecer: undefined,
+			fixar: undefined,
 			valor: undefined
 		},
 
@@ -40,8 +40,8 @@
 			configuravel: true,
 			enumeravel: false,
 			gravavel: true,
-			funcaoFornecer: undefined,
-			funcaoFixar: undefined,
+			fornecer: undefined,
+			fixar: undefined,
 			valor: undefined
 		},
 

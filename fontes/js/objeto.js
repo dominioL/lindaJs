@@ -234,11 +234,29 @@
 			return Object.getPrototypeOf(this);
 		},
 
+		fornecerDescritorDePropriedade: function (propriedade) {
+			var descritorOriginal = Object.getOwnPropertyDescriptor(this, propriedade);
+			var descritor = {};
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.value, "valor");
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.get, "fornecer");
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.set, "fixar");
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.writable, "gravavel");
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.enumerable, "enumeravel");
+			this.privadoFornecerDescritorDePropriedade(descritor, descritorOriginal.configurable, "configuravel");
+			return descritor;
+		},
+
+		privadoFornecerDescritorDePropriedade: function (descritor, propriedade, chave) {
+			if (!Linda.indefinido(propriedade)) {
+				descritor[chave] = propriedade;
+			}
+		},
+
 		definirPropriedade: function (atributo, definicao) {
 			var propriedades = {};
 			this.privadoDefinirPropriedade(propriedades, "value", definicao.valor);
-			this.privadoDefinirPropriedade(propriedades, "get", definicao.funcaoFornecer);
-			this.privadoDefinirPropriedade(propriedades, "set", definicao.funcaoFixar);
+			this.privadoDefinirPropriedade(propriedades, "get", definicao.fornecer);
+			this.privadoDefinirPropriedade(propriedades, "set", definicao.fixar);
 			this.privadoDefinirPropriedade(propriedades, "writable", definicao.gravavel);
 			this.privadoDefinirPropriedade(propriedades, "enumerable", definicao.enumeravel);
 			this.privadoDefinirPropriedade(propriedades, "configurable", definicao.configuravel);

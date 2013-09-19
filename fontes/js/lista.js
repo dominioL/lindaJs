@@ -114,25 +114,25 @@
 
 	Array.prototype.definirPropriedades({
 		primeiro: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return this[0];
 			}
 		},
 
 		primeiroIndice: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return 0;
 			}
 		},
 
 		ultimo: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return this[this.length - 1];
 			}
 		},
 
 		ultimoIndice: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return (this.length - 1);
 			}
 		}

@@ -15,7 +15,7 @@
 	});
 
 	Object.prototype.definirPropriedades({
-		cadaPropriedade: Linda.propriedadesDeAtributosGravaveis,
+		cadaPropriedade: Linda.propriedadesDeAtributos,
 		cadaPropriedadeEnumeravel: Linda.propriedadesDeAtributos,
 		cadaPropriedadeInvisivel: Linda.propriedadesDeAtributos,
 		cadaPropriedadePropria: Linda.propriedadesDeAtributos,
@@ -47,6 +47,7 @@
 		prototipoDe: Linda.propriedadesDeAtributos,
 		fornecerPrototipo: Linda.propriedadesDeAtributos,
 		fornecerDescritorDePropriedade: Linda.propriedadesDeAtributos,
+		privadoFornecerDescritorDePropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedades: Linda.propriedadesDeAtributos,
 		privadoDefinirPropriedade: Linda.propriedadesDeAtributos,
@@ -57,7 +58,7 @@
 		observarReconfiguracao: Linda.propriedadesDeAtributos,
 		observarRemocao: Linda.propriedadesDeAtributos,
 		desobservar: Linda.propriedadesDeAtributos,
-		paraCada: Linda.propriedadesDeAtributos
+		paraCada: Linda.propriedadesDeAtributosGravaveis
 	});
 
 	Function.prototype.definirPropriedades({

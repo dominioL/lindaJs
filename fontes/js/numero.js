@@ -21,25 +21,25 @@
 
 	Number.definirPropriedades({
 		maximo: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return Number.MAX_VALUE;
 			}
 		},
 
 		minimo: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return Number.MIN_VALUE;
 			}
 		},
 
 		maisInfinito: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return Number.POSITIVE_INFINITY;
 			},
 		},
 
 		menosInfinito: {
-			funcaoFornecer: function () {
+			fornecer: function () {
 				return Number.NEGATIVE_INFINITY;
 			}
 		}
