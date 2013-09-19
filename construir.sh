@@ -71,7 +71,7 @@ construir() {
 	cat ${binariosJs}/enumeracoes.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/utilidades.js >> ${construcao}/${pacoteDoProjeto}.js;
 	cat ${binariosJs}/elemento.js >> ${construcao}/${pacoteDoProjeto}.js;
-	# cat ${binariosJs}/funcionalidades.js >> ${construcao}/${pacoteDoProjeto}.js;
+	cat ${binariosJs}/funcionalidades.js >> ${construcao}/${pacoteDoProjeto}.js;
 }
 
 testar() {

@@ -7,11 +7,7 @@
 	};
 
 	ExcecaoLinda.prototype.comoTexto = function () {
-		return "ExcecaoLinda: " + this.mensagem;
-	};
-
-	ExcecaoLinda.prototype.toString = function () {
-		return this.comoTexto();
+		return ("ExcecaoLinda: " + this.mensagem);
 	};
 
 	var Linda = {
@@ -40,6 +36,15 @@
 			valor: undefined
 		},
 
+		propriedadesDeAtributosGravaveisConfiguraveis: {
+			configuravel: true,
+			enumeravel: false,
+			gravavel: true,
+			funcaoFornecer: undefined,
+			funcaoFixar: undefined,
+			valor: undefined
+		},
+
 		tipos: {
 			OBJETO: "object",
 			FUNCAO: "function",
@@ -54,27 +59,22 @@
 		},
 
 		instanciaDe: function (objeto, tipo) {
-			if (!this.tipoDe(tipo, Function)) {
+			if (!this.tipoDe(tipo, Function) || this.nulo(objeto)) {
 				return false;
 			}
-			return this.privadoInstanciaDeTipoPrimitivo(objeto, tipo);
-		},
-
-		privadoInstanciaDeTipoPrimitivo: function (objeto, tipo) {
-			if (this.tipoDe(objeto, String) ||
-					this.tipoDe(objeto, Number) ||
-					this.tipoDe(objeto, Boolean) ||
-					this.tipoDe(objeto, undefined)) {
+			if (this.tipoPrimitivo(objeto)) {
 				return this.tipoDe(objeto, tipo);
 			}
-			return this.privadoInstanciaDeDiretaOuIndireta(objeto, tipo);
+			return objeto.instanciaDe(tipo);
 		},
 
-		privadoInstanciaDeDiretaOuIndireta: function (objeto, tipo) {
-			while (!this.nulo(objeto) && (objeto !== tipo.prototype)) {
-				objeto = this.fornecerPrototipoDe(objeto);
-			}
-			return (objeto === tipo.prototype);
+		tipoPrimitivo: function (valor) {
+			return (
+				this.tipoDe(valor, String) ||
+				this.tipoDe(valor, Number) ||
+				this.tipoDe(valor, Boolean) ||
+				this.tipoDe(valor, undefined)
+			);
 		},
 
 		tipoDe: function (tipo, tipoComparado) {

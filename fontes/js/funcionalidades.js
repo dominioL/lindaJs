@@ -15,11 +15,41 @@
 	});
 
 	Object.prototype.definirPropriedades({
+		cadaPropriedade: Linda.propriedadesDeAtributosGravaveis,
+		cadaPropriedadeEnumeravel: Linda.propriedadesDeAtributos,
+		cadaPropriedadeInvisivel: Linda.propriedadesDeAtributos,
+		cadaPropriedadePropria: Linda.propriedadesDeAtributos,
+		cadaPropriedadePropriaEnumeravel: Linda.propriedadesDeAtributos,
+		cadaPropriedadePropriaInvisivel: Linda.propriedadesDeAtributos,
+		cadaPropriedadeHerdada: Linda.propriedadesDeAtributos,
+		cadaPropriedadeHerdadaEnumeravel: Linda.propriedadesDeAtributos,
+		cadaPropriedadeHerdadaInvisivel: Linda.propriedadesDeAtributos,
+		fornecerPropriedades: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesEnumeraveis: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesInvisiveis: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesProprias: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesPropriasEnumeraveis: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesPropriasInvisiveis: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesHerdadas: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesHerdadasEnumeraveis: Linda.propriedadesDeAtributos,
+		fornecerPropriedadesHerdadasInvisiveis: Linda.propriedadesDeAtributos,
+		possuiPropriedade: Linda.propriedadesDeAtributos,
+		possuiPropriedadeEnumeravel: Linda.propriedadesDeAtributos,
+		possuiPropriedadeInvisivel: Linda.propriedadesDeAtributos,
+		possuiPropriedadePropria: Linda.propriedadesDeAtributos,
+		possuiPropriedadePropriaEnumeravel: Linda.propriedadesDeAtributos,
+		possuiPropriedadePropriaInvisivel: Linda.propriedadesDeAtributos,
+		possuiPropriedadeHerdada: Linda.propriedadesDeAtributos,
+		possuiPropriedadeHerdadaEnumeravel: Linda.propriedadesDeAtributos,
+		possuiPropriedadeHerdadaInvisivel: Linda.propriedadesDeAtributos,
+		instanciaDe: Linda.propriedadesDeAtributos,
+		prototipadoDe: Linda.propriedadesDeAtributos,
+		prototipoDe: Linda.propriedadesDeAtributos,
+		fornecerPrototipo: Linda.propriedadesDeAtributos,
+		fornecerDescritorDePropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedades: Linda.propriedadesDeAtributos,
 		privadoDefinirPropriedade: Linda.propriedadesDeAtributos,
-		fornecerPropriedades: Linda.propriedadesDeAtributos,
-		fornecerPropriedadesEnumeraveis: Linda.propriedadesDeAtributos,
 		fundir: Linda.propriedadesDeAtributos,
 		observar: Linda.propriedadesDeAtributos,
 		observarAtualizacao: Linda.propriedadesDeAtributos,
@@ -27,10 +57,7 @@
 		observarReconfiguracao: Linda.propriedadesDeAtributos,
 		observarRemocao: Linda.propriedadesDeAtributos,
 		desobservar: Linda.propriedadesDeAtributos,
-		paraCada: Linda.propriedadesDeAtributosGravaveis,
-		possuiPropriedade: Linda.propriedadesDeAtributos,
-		possuiPropriedadePropria: Linda.propriedadesDeAtributos,
-		prototipoDe: Linda.propriedadesDeAtributos
+		paraCada: Linda.propriedadesDeAtributos  
 	});
 
 	Function.prototype.definirPropriedades({
@@ -48,6 +75,7 @@
 		embaralhar: Linda.propriedadesDeAtributos,
 		fornecerIndice: Linda.propriedadesDeAtributos,
 		fundir: Linda.propriedadesDeAtributos,
+		limpar: Linda.propriedadesDeAtributos,
 		paraCada: Linda.propriedadesDeAtributos,
 		quantidadeMenorQue: Linda.propriedadesDeAtributos,
 		quantidadeMenorIgualQue: Linda.propriedadesDeAtributos,
@@ -63,6 +91,8 @@
 	});
 
 	String.prototype.definirPropriedades({
+		emBranco: Linda.propriedadesDeAtributos,
+		formatarNumero: Linda.propriedadesDeAtributos,
 		paraInteiro: Linda.propriedadesDeAtributos,
 		paraFlutuante: Linda.propriedadesDeAtributos
 	});
