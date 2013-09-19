@@ -1,14 +1,11 @@
-/*global deepEqual*/
-/*global equal*/
-/*global module*/
-/*global test*/
+/*global QUnit*/
 
 (function () {
 	"use strict";
 
-	module("fornecerPropriedades");
+	QUnit.module("fornecerPropriedades");
 
-	test("Itera sobre todas propriedades.", function () {
+	QUnit.test("Itera sobre todas propriedades.", function () {
 		function O() {}
 		O.prototype.he = "HE";
 		O.prototype.definirPropriedade("hi", {valor: "HI", enumeravel: false});
@@ -16,8 +13,8 @@
 		o.pe = "PE";
 		o.definirPropriedade("pi", {valor: "PI", enumeravel: false});
 
-		deepEqual(o.fornecerPropriedadesProprias(), ["pe", "pi"], "Fornecer propriedades próprias.");
-		deepEqual(o.fornecerPropriedadesPropriasEnumeraveis(), ["pe"], "Fornecer propriedades próprias enumeráveis");
-		deepEqual(o.fornecerPropriedadesPropriasInvisiveis(), ["pi"], "Fornecer propriedades próprias invisíveis");
+		QUnit.deepEqual(o.fornecerPropriedadesProprias(), ["pe", "pi"], "Fornecer propriedades próprias.");
+		QUnit.deepEqual(o.fornecerPropriedadesPropriasEnumeraveis(), ["pe"], "Fornecer propriedades próprias enumeráveis");
+		QUnit.deepEqual(o.fornecerPropriedadesPropriasInvisiveis(), ["pi"], "Fornecer propriedades próprias invisíveis");
 	});
 }());
