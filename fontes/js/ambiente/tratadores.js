@@ -70,7 +70,7 @@
 			return this;
 		},
 
-		paraAbortado: function (tratador, escopo) {
+		paraAborto: function (tratador, escopo) {
 			this.adicionar(Evento.ABORTADO, tratador.vincularEscopo(escopo));
 			return this;
 		},
