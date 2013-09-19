@@ -2,9 +2,9 @@
 /*global HTMLTemplateElement*/
 /*global Linda*/
 /*global NodeList*/
-/*global TratadorDeAlteracao*/
+/*global Tratador*/
+/*global TratadorDeCarregamento*/
 /*global TratadorDeMouse*/
-/*global TratadorDePagina*/
 /*global TratadorDeTeclado*/
 
 (function () {
@@ -35,32 +35,64 @@
 			return this.querySelectorAll(selecao);
 		},
 
-		tratadorDeClique: function (tratador) {
-			return new TratadorDeMouse(this).paraClique(tratador);
+		tratadorDeAlteracao: function (tratador, escopo) {
+			return new Tratador(this).paraAlteracao(tratador, escopo);
 		},
 
-		tratadorDeCarregamento: function (tratador) {
-			return new TratadorDePagina(this).paraCarregamento(tratador);
+		tratadorDeAlteracaoNoHistorico: function (tratador, escopo) {
+			return new Tratador(this).paraAlteracaoNoHistorico(tratador, escopo);
 		},
 
-		tratadorDeAlteracaoNoHistorico: function (tratador) {
-			return new TratadorDePagina(this).paraAlteracaoNoHistorico(tratador);
+		tratadorDeErro: function (tratador, escopo) {
+			return new Tratador(this).paraErro(tratador, escopo);
 		},
 
-		tratadorDeTeclaPressionada: function (tratador, tecla) {
-			return new TratadorDeTeclado(this, tecla).paraTeclaPressionada(tratador);
+		tratadorDeCarregamento: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraCarregamento(tratador, escopo);
 		},
 
-		tratadorDeTeclaSolta: function (tratador, tecla) {
-			return new TratadorDeTeclado(this, tecla).paraTeclaSolta(tratador);
+		tratadorDeCarregamentoIniciado: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraCarregamentoIniciado(tratador, escopo);
 		},
 
-		tratadorDeCaractereDigitado: function (tratador) {
-			return new TratadorDeTeclado(this).paraQualquerCaractere(tratador);
+		tratadorDeCarregamentoFinalizado: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraCarregamentoFinalizado(tratador, escopo);
 		},
 
-		tratadorDeAlteracao: function (tratador) {
-			return new TratadorDeAlteracao(this).paraAlteracao(tratador);
+		tratadorDeProgresso: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraProgresso(tratador, escopo);
+		},
+
+		tratadorDeAbortado: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraAbortado(tratador, escopo);
+		},
+
+		tratadorDeEstouroDeTempo: function (tratador, escopo) {
+			return new TratadorDeCarregamento(this).paraEstouroDeTempo(tratador, escopo);
+		},
+
+		tratadorDeClique: function (tratador, escopo) {
+			return new TratadorDeMouse(this).paraClique(tratador, escopo);
+		},
+
+		tratadorDeCliqueDuplo: function (tratador, escopo) {
+			return new TratadorDeMouse(this).paraCliqueDuplo(tratador, escopo);
+		},
+
+		tratadorDeTeclaPressionada: function (tecla, tratador, escopo) {
+			return new TratadorDeTeclado(this).paraTeclaPressionada(tecla, tratador, escopo);
+		},
+
+		tratadorDeTeclaSolta: function (tecla, tratador, escopo) {
+			return new TratadorDeTeclado(this).paraTeclaSolta(tecla, tratador, escopo);
+		},
+
+		tratadorDeQualquerTeclaPressionada: function (tratador, escopo) {
+			return new TratadorDeTeclado(this).paraQualquerTeclaPressionada(tratador, escopo);
+		},
+
+		tratadorDeQualquerTeclaSolta: function (tratador, escopo) {
+			return new TratadorDeTeclado(this).paraQualquerTeclaSolta(tratador, escopo);
 		}
 	});
 
