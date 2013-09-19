@@ -70,8 +70,10 @@ construir() {
 	cat $binariosJs/numero.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/utilidades.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/elemento.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/http.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/ambiente/ambiente.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/ambiente/elemento.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/ambiente/tratadores.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
 }
 

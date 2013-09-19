@@ -3,17 +3,6 @@
 (function () {
 	"use strict";
 
-	Linda.definirPropriedades({
-		privadoInstanciaDeTipoPrimitivo: Linda.propriedadesDeAtributos,
-		privadoInstanciaDeDiretaOuIndireta: Linda.propriedadesDeAtributos,
-		privadoHabilitarTelaCheia: Linda.propriedadesDeAtributos,
-		privadoHabilitarTelaCheiaChrome: Linda.propriedadesDeAtributos,
-		privadoHabilitarTelaCheiaFirefox: Linda.propriedadesDeAtributos,
-		privadoDesabilitarTelaCheia: Linda.propriedadesDeAtributos,
-		privadoDesabilitarTelaCheiaChrome: Linda.propriedadesDeAtributos,
-		privadoDesabilitarTelaCheiaFirefox: Linda.propriedadesDeAtributos
-	});
-
 	Object.prototype.definirPropriedades({
 		cadaPropriedade: Linda.propriedadesDeAtributos,
 		cadaPropriedadeEnumeravel: Linda.propriedadesDeAtributos,

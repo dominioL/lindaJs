@@ -11,13 +11,6 @@
 	};
 
 	var Linda = {
-		documento: document,
-		janela: window,
-		historico: window.history,
-		localizacao: window.location,
-		performance: window.performance,
-		global: global,
-
 		propriedadesDeAtributos: {
 			configuravel: false,
 			enumeravel: false,
@@ -52,10 +45,6 @@
 			NUMERO: "number",
 			BOOLEANO: "boolean",
 			INDEFINIDO: "undefined"
-		},
-
-		fornecerPrototipoDe: function (objeto) {
-			return Object.getPrototypeOf(objeto);
 		},
 
 		instanciaDe: function (objeto, tipo) {
@@ -115,90 +104,6 @@
 
 		assegureQueNao: function (condicao) {
 			this.assegureQue(!condicao);
-		},
-
-		selecionar: function (selecao) {
-			return document.querySelector(selecao);
-		},
-
-		selecionarTodos: function (selecao) {
-			return document.querySelectorAll(selecao);
-		},
-
-		obterPelaClasse: function (classe) {
-			return document.getElementsByClassName(classe)[0];
-		},
-
-		obterTodosPelaClasse: function (classe) {
-			return document.getElementsByClassName(classe);
-		},
-
-		obterPeloNome: function (nome) {
-			return document.getElementsByName(nome)[0];
-		},
-
-		obterTodosPeloNome: function (nome) {
-			return document.getElementsByName(nome);
-		},
-
-		obterPeloIdentificador: function (identificador) {
-			return document.getElementById(identificador);
-		},
-
-		criarElemento: function (elemento) {
-			return document.createElement(elemento);
-		},
-
-		avaliar: function (texto) {
-			return window.eval(texto);
-		},
-
-		habilitarTelaCheia: function () {
-			this.privadoHabilitarTelaCheia();
-			this.privadoHabilitarTelaCheiaChrome();
-			this.privadoHabilitarTelaCheiaFirefox();
-		},
-
-		privadoHabilitarTelaCheia: function () {
-			if (this.instanciaDe(document.documentElement.requestFullScreen, Function)) {
-				document.documentElement.requestFullScreen();
-			}
-		},
-
-		privadoHabilitarTelaCheiaChrome: function () {
-			if (this.instanciaDe(document.documentElement.mozRequestFullScreen, Function)) {
-				document.documentElement.mozRequestFullScreen();
-			}
-		},
-
-		privadoHabilitarTelaCheiaFirefox: function () {
-			if (this.instanciaDe(document.documentElement.webkitRequestFullScreen, Function)) {
-				document.documentElement.webkitRequestFullScreen();
-			}
-		},
-
-		desabilitarTelaCheia: function () {
-			this.privadoDesabilitarTelaCheia();
-			this.privadoDesabilitarTelaCheiaChrome();
-			this.privadoDesabilitarTelaCheiaFirefox();
-		},
-
-		privadoDesabilitarTelaCheia: function () {
-			if (this.instanciaDe(document.cancelFullScreen, Function)) {
-				document.cancelFullScreen();
-			}
-		},
-
-		privadoDesabilitarTelaCheiaChrome: function () {
-			if (this.instanciaDe(document.webkitCancelFullScreen, Function)) {
-				document.webkitCancelFullScreen();
-			}
-		},
-
-		privadoDesabilitarTelaCheiaFirefox: function () {
-			if (this.instanciaDe(document.mozCancelFullScreen, Function)) {
-				document.mozCancelFullScreen();
-			}
 		}
 	};
 
