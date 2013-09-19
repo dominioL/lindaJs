@@ -135,7 +135,7 @@
 	});
 
 	var RequisicaoJson = Classe.criar({
-		estende: RequisicaoHttp,
+		SuperClasse: RequisicaoHttp,
 
 		inicializar: function (uri) {
 			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.JSON);
@@ -147,7 +147,7 @@
 	});
 
 	var RequisicaoDocumento = Classe.criar({
-		estende: RequisicaoHttp,
+		SuperClasse: RequisicaoHttp,
 
 		inicializar: function (uri) {
 			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.DOCUMENTO);
@@ -155,7 +155,7 @@
 	});
 
 	var RequisicaoTexto = Classe.criar({
-		estende: RequisicaoHttp,
+		SuperClasse: RequisicaoHttp,
 
 		inicializar: function (uri) {
 			RequisicaoHttp.prototipo.inicializar.chamarComEscopo(this, uri, TipoDeResposta.TEXTO);
@@ -184,7 +184,7 @@
 	});
 
 	var TratadorDeTeclado = Classe.criar({
-		estende: Tratador,
+		SuperClasse: Tratador,
 
 		inicializar: function (elemento, tecla) {
 			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
@@ -225,7 +225,7 @@
 	});
 
 	var TratadorDeMouse = Classe.criar({
-		estende: Tratador,
+		SuperClasse: Tratador,
 
 		inicializar: function (elemento) {
 			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
@@ -238,7 +238,7 @@
 	});
 
 	var TratadorDePagina = Classe.criar({
-		estende: Tratador,
+		SuperClasse: Tratador,
 
 		inicializar: function (elemento) {
 			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);
@@ -256,7 +256,7 @@
 	});
 
 	var TratadorDeAlteracao = Classe.criar({
-		estende: Tratador,
+		SuperClasse: Tratador,
 
 		inicializar: function (elemento) {
 			Tratador.prototipo.inicializar.chamarComEscopo(this, elemento);

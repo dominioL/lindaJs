@@ -13,49 +13,95 @@
 	(function () {
 		module("Classe");
 
-		test("Criar classe Carro com método andar.", function () {
-			var Carro = Classe.criar({
+		test("Criar classe Objeto e criar exemplar objeto.", function () {
+			var objeto = new Objeto();
+			objeto.atributo = "valor";
+
+			equal(Objeto.prototype, Objeto.prototipo, "Objeto recebe a propriedade prototipo que aponta para o seu prototype.");
+			equal(Objeto.prototype.SuperClasse, undefined, "Objeto não possui super classe em seu protótipo.");
+			deepEqual(Objeto.prototype.fornecerPropriedadesPropriasEnumeraveis(), ["inicializar", "destruir", "super", "igual"], "Objeto possui propriedades proprias enumeráveis associadas a ele.");
+			deepEqual(Objeto.prototype.fornecerPropriedadesPropriasInvisiveis(), ["constructor"], "Objeto possui propriedades proprias invisíveis associadas a ele.");
+			ok(Objeto.prototype.prototipoDe(objeto), "Protótipo de Objeto é protótipo de objeto.");
+			ok(objeto.instanciaDe(Objeto), "objeto é instância de Objeto.");
+			ok(objeto.prototipadoDe(Objeto.prototype), "objeto é prototipado de protótipo de Objeto.");
+			equal(objeto.SuperClasse, undefined, "objeto não possui super classe.");
+			deepEqual(objeto.fornecerPropriedadesPropriasEnumeraveis(), ["atributo"], "objeto possui propriedades próprias enumeráveis associadas a ele.");
+			deepEqual(objeto.fornecerPropriedadesPropriasInvisiveis(), [], "objeto possui propriedades próprias invisíveis associadas a ele.");
+		});
+
+		test("Criar classe Veiculo sem super classe, sem método inicializar e criar exemplar veiculo.", function () {
+			var Veiculo = Classe.criar({
 				andar: function () {
-					return 1;
+					return "...";
+				}
+			});
+
+			var veiculo = new Veiculo();
+			veiculo.pneu = "Michelan";
+
+			equal(Veiculo.prototype, Veiculo.prototipo, "Veiculo recebe a propriedade prototipo que aponta para o seu prototype.");
+			equal(Veiculo.prototype.SuperClasse, Objeto, "Veiculo possui a super classe Objeto em seu protótipo.");
+			deepEqual(Veiculo.prototype.fornecerPropriedadesPropriasEnumeraveis(), ["andar"], "Veiculo possui propriedades proprias enumeráveis associadas a ele.");
+			deepEqual(Veiculo.prototype.fornecerPropriedadesPropriasInvisiveis(), ["SuperClasse"], "Veiculo possui propriedades proprias invisíveis associadas a ele.");
+			ok(Veiculo.prototype.prototipoDe(veiculo), "Protótipo de Veiculo é protótipo de veiculo.");
+			ok(Objeto.prototype.prototipoDe(veiculo), "Protótipo de Objeto é protótipo de veiculo.");
+			ok(veiculo.prototipadoDe(Veiculo.prototype), "veiculo é prototipado de protótipo de Veiculo.");
+			ok(veiculo.prototipadoDe(Objeto.prototype), "veiculo é prototipado de protótipo de Objeto.");
+			ok(Linda.instanciaDe(veiculo, Veiculo), "veiculo é instância de Veiculo.");
+			ok(Linda.instanciaDe(veiculo, Objeto), "veiculo é instância de Objeto.");
+			equal(veiculo.SuperClasse, Objeto, "veiculo possui super classe Objeto.");
+			deepEqual(veiculo.fornecerPropriedadesPropriasEnumeraveis(), ["pneu"], "veiculo possui propriedades próprias enumeráveis associadas a ele.");
+			deepEqual(veiculo.fornecerPropriedadesPropriasInvisiveis(), [], "veiculo possui propriedades próprias invisíveis associadas a ele.");
+		});
+
+		test("Criar classe Carro com super classe Veiculo, com método inicializar e criar exemplar carro e exemplar veiculo.", function () {
+			var Veiculo = Classe.criar({
+				andar: function () {
+					return "...";
+				},
+
+				buzinar: function () {
+					return "";
+				}
+			});
+
+			var Carro = Classe.criar({
+				SuperClasse: Veiculo,
+
+				inicializar: function () {
+					this.marca = "Toyota";
+				},
+
+				buzinar: function () {
+					return "Bibi!";
 				}
 			});
 
 			var carro = new Carro();
-			carro.buzina = "Bibi";
-			equal(carro.andar(), 1, "Instância de carro pode executar métodos.");
-			equal(carro.igual(new Carro()), false, "Instância de carro pode executar métodos de Objeto.");
-			equal(carro.igual(carro), true, "Instância de carro pode executar métodos de Objeto.");
-			deepEqual(carro.fornecerPropriedades(), ["buzina"], "Instância de Carro não possui propriedades extras.");
-			deepEqual(Carro.prototype.fornecerPropriedades(), ["andar", "inicializar"], "Protótipo de Carro possui propriedades fornecidas na criação de Carro  mais o método inicializar.");
-			ok(Carro.prototype.prototipoDe(carro), "Protótipo de Carro é o prototipo de uma instância de Carro.");
-			ok(Linda.instanciaDe(carro, Carro), "Instância de Carro é uma instância de Carro.");
-			ok(Linda.instanciaDe(carro, Objeto), "Instância de Carro é uma instância de Objeto.");
+			var veiculo = new Veiculo();
+
+			equal(Carro.prototype.SuperClasse, Veiculo, "Carro possui a super classe Veiculo em seu protótipo.");
+			deepEqual(Carro.prototype.fornecerPropriedadesPropriasEnumeraveis(), ["inicializar", "buzinar"], "Veiculo possui propriedades proprias enumeráveis associadas a ele.");
+			deepEqual(Carro.prototype.fornecerPropriedadesPropriasInvisiveis(), ["SuperClasse"], "Veiculo possui propriedades proprias invisíveis associadas a ele.");
+			ok(Carro.prototype.prototipoDe(carro), "Protótipo de Carro é protótipo de carro.");
+			ok(Veiculo.prototype.prototipoDe(carro), "Protótipo de Veiculo é protótipo de carro.");
+			ok(Objeto.prototype.prototipoDe(carro), "Protótipo de Objeto é protótipo de carro.");
+			ok(carro.prototipadoDe(Carro.prototype), "carro é prototipado de protótipo de Carro.");
+			ok(carro.prototipadoDe(Veiculo.prototype), "carro é prototipado de protótipo de Veiculo.");
+			ok(carro.prototipadoDe(Objeto.prototype), "carro é prototipado de protótipo de Objeto.");
+			ok(Linda.instanciaDe(carro, Carro), "carro é instância de Carro.");
+			ok(Linda.instanciaDe(carro, Veiculo), "carro é instância de Veiculo.");
+			ok(Linda.instanciaDe(carro, Objeto), "carro é instância de Objeto.");
+			equal(carro.SuperClasse, Veiculo, "carro possui super classe Veiculo.");
+			deepEqual(carro.fornecerPropriedadesPropriasEnumeraveis(), ["marca"], "carro possui propriedades próprias enumeráveis associadas a ele.");
+			deepEqual(carro.fornecerPropriedadesPropriasInvisiveis(), [], "carro possui propriedades próprias invisíveis associadas a ele.");
+			equal(veiculo.buzinar(), "", "veiculo pode executar métodos de Veiculo.");
+			equal(veiculo.andar(), "...", "veiculo pode executar métodos de Veiculo.");
+			equal(carro.buzinar(), "Bibi!", "carro pode executar métodos de Carro que foram sobreescritos de Veiculo.");
+			equal(veiculo.andar(), "...", "carro pode executar métodos de Veiculo.");
 		});
 
-		test("Criar classe Carro com método inicializar.", function () {
-			var Carro = Classe.criar({
-				inicializar: function (buzina, pneu) {
-					this.buzina = buzina;
-					this.pneu = pneu;
-				},
-
-				buzinar: function () {
-					return this.buzina;
-				}
-			});
-
-			var carroA = new Carro("Bibi", "Michelan");
-			var carroB = new Carro("Fonfon", "Bridgestone");
-			equal(carroA.buzinar(), "Bibi", "Instância de carro pode executar métodos que acessam suas propriedades.");
-			equal(carroB.buzinar(), "Fonfon", "Instância de carro pode executar métodos que acessam suas propriedades.");
-			equal(carroA.pneu, "Michelan", "Instância de carro pode acessar suas propriedades.");
-			equal(carroB.pneu, "Bridgestone", "Instância de carro pode acessar suas propriedades.");
-			deepEqual(carroA.fornecerPropriedades(), ["buzina", "pneu"], "Instância de carro não possui propriedades extras.");
-			deepEqual(carroA.fornecerPropriedades(), ["buzina", "pneu"], "Instância de carro não possui propriedades extras.");
-			deepEqual(Carro.prototype.fornecerPropriedades(), ["inicializar", "buzinar"], "Protótipo de Carro possui propriedades fornecidas na criação de Carro.");
-		});
-
-		test("Criar classe Carro  e Bicicleta que estende classe Veiculo.", function () {
+		test("Criar classe Carro e Bicicleta que estende classe Veiculo.", function () {
 			var Veiculo = Classe.criar({
 				inicializar: function (velocidade) {
 					this.velocidade = velocidade;
@@ -67,17 +113,19 @@
 			});
 
 			var Carro = Classe.criar({
-				estende: Veiculo,
+				SuperClasse: Veiculo,
+
 				inicializar: function (velocidade, pneu) {
-					Veiculo.prototipo.inicializar.chamarComEscopo(this, velocidade);
+					Veiculo.prototype.inicializar.chamarComEscopo(this, velocidade);
 					this.pneu = pneu;
 				}
 			});
 
 			var CarroQuebrado = Classe.criar({
-				estende: Carro,
+				SuperClasse: Carro,
+
 				inicializar: function (velocidade, pneu) {
-					Carro.prototipo.inicializar.chamarComEscopo(this, velocidade, pneu);
+					this.super(velocidade, pneu);
 				},
 
 				andar: function () {
@@ -85,14 +133,15 @@
 				},
 
 				andarSuper: function () {
-					return Carro.prototipo.andar.chamarComEscopo(this);
+					return this.SuperClasse.prototipo.andar.chamarComEscopo(this);
 				}
 			});
 
 			var Bicicleta = Classe.criar({
-				estende: Veiculo,
+				SuperClasse: Veiculo,
+
 				inicializar: function (velocidade) {
-					Veiculo.prototipo.inicializar.chamarComEscopo(this, velocidade);
+					this.super(velocidade);
 				}
 			});
 
@@ -100,6 +149,21 @@
 			var carro = new Carro(80, "Michelan");
 			var carroQuebrado = new CarroQuebrado(60, "Bridgestone");
 			var bicicleta = new Bicicleta(20);
+
+			equal(veiculo.super, Objeto.prototype.super, "Instância de veículo possui métodos de Objeto.");
+			equal(veiculo.inicializar, Veiculo.prototype.inicializar, "Instância de veículo possui métodos de Veículo.");
+			notEqual(veiculo.inicializar, Objeto.prototype.inicializar, "Instância de veículo possui métodos  do primeiro protótipo.");
+			equal(veiculo.SuperClasse, Objeto, "Instância de veículo possui acesso a super classe.");
+			equal(Veiculo.prototype.super, Objeto.prototype.super, "Protótipo Veículo possui métodos de Objeto.");
+			notEqual(Veiculo.prototype.inicializar, Object.prototype.inicializar, "Protótipo Veículo possui métodos do primeiro protótipo.");
+			equal(Veiculo.prototype.SuperClasse, Objeto, "Protótipo Veículo possui acesso a super classe.");
+			equal(carro.super, Objeto.prototype.super, "Instância de carro possui métodos de Objeto.");
+			equal(carro.inicializar, Carro.prototype.inicializar, "Instância de carro possui métodos de Carro.");
+			equal(carro.SuperClasse, Veiculo, "Instância de carro possui acesso a super classe.");
+			equal(Carro.prototype.super, Objeto.prototype.super, "Protótipo Carro possui métodos de Objeto.");
+			notEqual(Carro.prototype.inicializar, Objeto.prototype.inicializar, "Protótipo Carro possui métodos do primeiro protótipo.");
+			notEqual(Carro.prototype.inicializar, Veiculo.prototype.inicializar, "Protótipo Carro possui métodos do primeiro protótipo.");
+			equal(Carro.prototype.SuperClasse, Veiculo, "Protótipo Carro possui acesso a super classe.");
 			ok(Linda.instanciaDe(veiculo, Veiculo), "Instância de Veiculo é um Veiculo.");
 			ok(Linda.instanciaDe(carro, Veiculo), "Instância de Carro é um Veiculo.");
 			ok(Linda.instanciaDe(carroQuebrado, Veiculo), "Instância de CarroQuebrado é um Veiculo.");
@@ -137,10 +201,10 @@
 			});
 
 			var CouchDb = Classe.criarSingleton({
-				estende: BancoDeDados,
+				SuperClasse: BancoDeDados,
 
 				inicializar: function (nomeDaBase) {
-					BancoDeDados.prototipo.inicializar.chamarComEscopo(this, "CouchDB");
+					this.super("CouchDB");
 					this.nomeDaBase = nomeDaBase;
 				},
 

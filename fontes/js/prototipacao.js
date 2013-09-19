@@ -3,31 +3,43 @@
 (function (global) {
 	"use strict";
 
-	var Objeto = function Objeto() {};
+	function Objeto() {}
 
 	Objeto.implementar({
+		inicializar: function () {},
+
+		destruir: function () {},
+
+		super: function () {
+			this.SuperClasse.prototipo.inicializar.aplicarComEscopo(this, arguments);
+		},
+
 		igual: function (outro) {
 			return (this === outro);
 		}
 	});
 
-	var Classe = function Classe() {};
+	Objeto.estender({
+		prototipo: Objeto.prototype
+	});
+
+	function Classe() {}
 
 	Classe.estender({
 		criar: function (corpoDaClasse) {
-			var SuperClasse = corpoDaClasse.estende;
+			var SuperClasse = corpoDaClasse.SuperClasse;
 			var estende = Linda.instanciaDe(SuperClasse, Function);
-			var inicializa = Linda.instanciaDe(corpoDaClasse.inicializar, Function);
-			var NovaClasse = function Objeto() { this.inicializar.aplicarComEscopo(this, arguments); };
-			var prototipo = Objeto.prototype;
-			if (estende) {
-				prototipo = SuperClasse.prototype;
-				delete corpoDaClasse.estende;
+			function NovaClasse() {
+				this.inicializar.aplicarComEscopo(this, arguments);
 			}
-			NovaClasse.prototype = Object.create(prototipo);
+			SuperClasse = (estende) ? SuperClasse : Objeto;
+			corpoDaClasse.SuperClasse = SuperClasse
+			NovaClasse.prototype = Object.create(SuperClasse.prototype);
 			NovaClasse.prototipo = NovaClasse.prototype;
-			corpoDaClasse.inicializar = (inicializa) ? corpoDaClasse.inicializar : function () {};
 			NovaClasse.implementar(corpoDaClasse);
+			NovaClasse.prototype.definirPropriedades({
+				SuperClasse: Linda.propriedadesDeAtributosGravaveisConfiguraveis
+			});
 			return NovaClasse;
 		},
 
