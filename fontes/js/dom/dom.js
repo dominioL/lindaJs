@@ -59,5 +59,15 @@
 		}
 	}).instancia();
 
+	var $ = function (seletor) {
+		return Dom.selecionar(seletor);
+	};
+
+	var $$ = function (seletor) {
+		return Dom.selecionarTodos(seletor);
+	};
+
 	global.Dom = Dom;
+	global.$ = $;
+	global.$$ = $$;
 }(this));
