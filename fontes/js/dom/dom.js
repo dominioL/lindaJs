@@ -4,7 +4,7 @@
 (function (global) {
 	"use strict";
 
-	var Ambiente = Classe.criarSingleton({
+	var Dom = Classe.criarSingleton({
 		inicializar: function () {
 			this.global = global;
 			this.janela = (window || global);
@@ -14,36 +14,24 @@
 			this.performance = this.janela.performance;
 		},
 
-		selecionar: function (selecao) {
-			return this.documento.querySelector(selecao);
-		},
-
-		selecionarTodos: function (selecao) {
-			return this.documento.querySelectorAll(selecao);
-		},
-
-		obterPelaClasse: function (classe) {
-			return this.documento.getElementsByClassName(classe)[0];
-		},
-
-		obterTodosPelaClasse: function (classe) {
-			return this.documento.getElementsByClassName(classe);
-		},
-
-		obterPeloNome: function (nome) {
-			return this.documento.getElementsByName(nome)[0];
-		},
-
-		obterTodosPeloNome: function (nome) {
-			return this.documento.getElementsByName(nome);
-		},
-
-		obterPeloIdentificador: function (identificador) {
-			return this.documento.getElementById(identificador);
+		criarComentario: function (comentario) {
+			return this.documento.createComment(comentario);
 		},
 
 		criarElemento: function (elemento) {
 			return this.documento.createElement(elemento);
+		},
+
+		criarTexto: function (texto) {
+			return this.documento.createTextNode(texto);
+		},
+
+		selecionar: function (seletor) {
+			return this.documento.querySelector(seletor);
+		},
+
+		selecionarTodos: function (seletor) {
+			return this.documento.querySelectorAll(seletor);
 		},
 
 		avaliar: function (texto) {
@@ -71,5 +59,5 @@
 		}
 	}).instancia();
 
-	global.Ambiente = Ambiente;
+	global.Dom = Dom;
 }(this));

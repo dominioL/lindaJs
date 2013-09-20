@@ -71,9 +71,11 @@ construir() {
 	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/http.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/ambiente/ambiente.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/ambiente/elemento.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/ambiente/tratadores.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/dom.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/evento.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/nodo.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/elemento.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/tratadores.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
 }
 
