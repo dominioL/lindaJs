@@ -1,6 +1,6 @@
+/*global Element*/
 /*global HTMLCollection*/
-/*global HTMLTemplateElement*/
-/*global Linda*/
+
 (function () {
 	"use strict";
 
@@ -25,7 +25,7 @@
 		},
 
 		combina: function (seletor) {
-			return this.matches();
+			return this.matches(seletor);
 		},
 
 		rolarParaTopo: function () {
@@ -100,7 +100,7 @@
 			},
 
 			fixar: function (novaClasse) {
-				this.className = novaClase;
+				this.className = novaClasse;
 			}
 		},
 

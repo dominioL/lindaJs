@@ -1,3 +1,5 @@
+/*global NodeList*/
+
 (function () {
 	"use strict";
 
@@ -42,7 +44,7 @@
 		},
 
 		substituirNodo: function (nodoNovo, nodoAntigo) {
-			return this.replaceChild(novoNodo, nodoAntigo);
+			return this.replaceChild(nodoNovo, nodoAntigo);
 		}
 	});
 

@@ -1,5 +1,5 @@
-/*global Ambiente*/
 /*global Classe*/
+/*global Dom*/
 /*global Evento*/
 /*global Tecla*/
 
@@ -8,7 +8,7 @@
 
 	var Tratador = Classe.criar({
 		inicializar: function (elemento) {
-			this.elemento = elemento || Ambiente.janela;
+			this.elemento = elemento || Dom.janela;
 			this.eventosTratadores = [];
 		},
 
