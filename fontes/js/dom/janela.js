@@ -1,3 +1,4 @@
+/*global Classe*/
 /*global Dom*/
 /*global Notificavel*/
 
@@ -11,16 +12,16 @@
 			Notificavel.prototipo.inicializar.chamarComEscopo(this, elementoDom);
 		},
 
-		iniciarTemporizador: function (tratador, escopo, tempo) {
-			return Dom.extrair(this).setTimeout(tratador.vincularEscopo(escopo));
+		iniciarTemporizador: function (tratador, tempo, escopo) {
+			return Dom.extrair(this).setTimeout(tratador.vincularEscopo(escopo), tempo);
 		},
 
-		iniciarTemporizadorContinuo: function (tratador, escopo, tempo) {
-			return Dom.extrair(this).setInterval(tratador.vincularEscopo(escopo));
+		iniciarTemporizadorContinuo: function (tratador, tempo, escopo) {
+			return Dom.extrair(this).setInterval(tratador.vincularEscopo(escopo), tempo);
 		},
 
-		iniciarTemporizadorImediato: function (tratador, escopo, tempo) {
-			return Dom.extrair(this).setImmediate(tratador.vincularEscopo(escopo));
+		iniciarTemporizadorImediato: function (tratador, tempo, escopo) {
+			return Dom.extrair(this).setImmediate(tratador.vincularEscopo(escopo), tempo);
 		},
 
 		cancelarTemporizador: function (identificador) {

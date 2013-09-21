@@ -1,3 +1,4 @@
+/*global Classe*/
 /*global Dom*/
 /*global Nodo*/
 
@@ -65,10 +66,18 @@
 
 		obterPeloIdentificador: function (identificador) {
 			return Dom.encapsular(Dom.extrair(this).getElementById(identificador));
+		},
+
+		adicionarClasse: function (classe) {
+			Dom.extrair(this).classList.add(classe);
+		},
+
+		removerClasse: function (classe) {
+			Dom.extrair(this).classList.remove(classe);
 		}
 	});
 
-	Element.prototype.definirPropriedades({
+	Elemento.prototype.definirPropriedades({
 		filhos: {
 			fornecer: function () {
 				return Dom.encapsular(Dom.extrair(this).children);

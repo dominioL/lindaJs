@@ -1,3 +1,5 @@
+/*global Classe*/
+/*global Dom*/
 /*global Tecla*/
 
 (function (global) {
@@ -11,71 +13,71 @@
 		tratarAlteracao: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("change", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarAlteracaoNoHistorico: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("popstate", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarErro: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("error", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarCarregamento: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("load", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarCarregamentoIniciado: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("loadstart", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarCarregamentoFinalizado: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("loadend", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarProgresso: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("progress", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarAborto: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("abort", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarEstouroDeTempo: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("timeout", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarClique: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("click", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarCliqueDuplo: function (tratador, escopo) {
 			tratador = tratador.vincularEscopo(escopo);
 			Dom.extrair(this).addEventListener("dbclick", tratador);
-			return tratador
+			return tratador;
 		},
 
 		tratarTeclaPressionada: function (tecla, tratador, escopo) {
-			var tratadorPersonalizado = function () {
+			var tratadorPersonalizado = function (evento) {
 				if (tecla === evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}
@@ -85,7 +87,7 @@
 		},
 
 		tratarTeclaSolta: function (tecla, tratador, escopo) {
-			var tratadorPersonalizado = function () {
+			var tratadorPersonalizado = function (evento) {
 				if (tecla === evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}
@@ -95,7 +97,7 @@
 		},
 
 		tratarQualquerTeclaPressionada: function (tratador, escopo) {
-			var tratadorPersonalizado = function () {
+			var tratadorPersonalizado = function (evento) {
 				if (Tecla.APAGAR !== evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}
@@ -105,7 +107,7 @@
 		},
 
 		tratarQualquerTeclaSolta: function (tratador, escopo) {
-			var tratadorPersonalizado = function () {
+			var tratadorPersonalizado = function (evento) {
 				if (Tecla.APAGAR !== evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}

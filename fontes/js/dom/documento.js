@@ -1,4 +1,6 @@
+/*global Classe*/
 /*global Dom*/
+/*global Linda*/
 /*global Nodo*/
 
 (function (global) {

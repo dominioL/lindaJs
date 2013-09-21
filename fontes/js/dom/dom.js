@@ -1,5 +1,6 @@
 /*global Classe*/
 /*global Document*/
+/*global Documento*/
 /*global Element*/
 /*global Elemento*/
 /*global HTMLCollection*/
@@ -8,6 +9,7 @@
 /*global Node*/
 /*global NodeList*/
 /*global Nodo*/
+/*global Notificavel*/
 /*global Window*/
 
 (function (global) {
@@ -45,36 +47,16 @@
 			return suplementoDom.elementoDom;
 		},
 
-		criarComentario: function (comentario) {
-			return this.documentoDom.criarComentario(comentario);
-		},
-
-		criarElemento: function (elemento) {
-			return this.documentoDom.criarElemento(elemento);
-		},
-
-		criarTexto: function (texto) {
-			return this.documentoDom.criarTexto(texto);
-		},
-
-		selecionar: function (seletor) {
-			return this.documentoDom.selecionar(seletor);
-		},
-
-		selecionarTodos: function (seletor) {
-			return this.documentoDom.selecionar(seletor);
-		},
-
 		$: function (seletorOuElemento) {
 			if (Linda.instanciaDe(seletorOuElemento, String)) {
-				return this.selecionar(seletorOuElemento);
+				return this.documentoDom.selecionar(seletorOuElemento);
 			}
 			return this.encapsular(seletorOuElemento);
 		},
 
 		$$: function (seletorOuElemento) {
 			if (Linda.instanciaDe(seletorOuElemento, String)) {
-				return this.selecionarTodos(seletorOuElemento);
+				return this.documentoDom.selecionarTodos(seletorOuElemento);
 			}
 			return this.encapsular(seletorOuElemento);
 		}
@@ -94,4 +76,6 @@
 
 	global.Dom = Dom;
 	global.ListaDom = ListaDom;
+	global.documento = Dom.documento;
+	global.janela = Dom.janela;
 }(this));

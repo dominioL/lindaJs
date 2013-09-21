@@ -1,3 +1,4 @@
+/*global Classe*/
 /*global Dom*/
 /*global Notificavel*/
 
@@ -48,7 +49,7 @@
 		}
 	});
 
-	Node.prototype.definirPropriedades({
+	Nodo.prototype.definirPropriedades({
 		texto: {
 			fornecer: function () {
 				return Dom.extrair(this).textContent;
