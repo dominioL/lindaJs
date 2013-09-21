@@ -1,135 +1,132 @@
-/*global Element*/
-/*global HTMLCollection*/
+/*global Dom*/
+/*global Nodo*/
 
-(function () {
+(function (global) {
 	"use strict";
 
-	Element.implementar = Function.prototype.implementar;
-	HTMLCollection.implementar = Function.prototype.implementar;
+	var Elemento = Classe.criar({
+		SuperClasse: Nodo,
 
-	Element.implementar({
+		inicializar: function (elementoDom) {
+			Nodo.prototipo.inicializar.chamarComEscopo(this, elementoDom);
+		},
+
 		fornecerAtributo: function (nome) {
-			return this.getAttribute(nome);
+			return Dom.extrair(this).getAttribute(nome);
 		},
 
 		fixarAtributo: function (nome, valor) {
-			this.setAttribute(nome, valor);
+			Dom.extrair(this).setAttribute(nome, valor);
 		},
 
 		removerAtributo: function (nome) {
-			this.removeAttribute(nome);
+			Dom.extrair(this).removeAttribute(nome);
 		},
 
 		possuiAtributo: function (nome) {
-			return this.hasAttribute(nome);
+			return Dom.extrair(this).hasAttribute(nome);
 		},
 
 		combina: function (seletor) {
-			return this.matches(seletor);
+			return Dom.extrair(this).matches(seletor);
 		},
 
 		rolarParaTopo: function () {
-			this.scrollIntoView(true);
+			Dom.extrair(this).scrollIntoView(true);
 		},
 
 		rolarParaBase: function () {
-			this.scrollIntoView(false);
+			Dom.extrair(this).scrollIntoView(false);
 		},
 
 		selecionar: function (selecao) {
-			return this.querySelector(selecao);
+			return Dom.encapsular(Dom.extrair(this).querySelector(selecao));
 		},
 
 		selecionarTodos: function (selecao) {
-			return this.querySelectorAll(selecao);
+			return Dom.encapsular(Dom.extrair(this).querySelectorAll(selecao));
 		},
 
 		obterPelaClasse: function (classe) {
-			return this.getElementsByClassName(classe)[0];
+			return Dom.encapsular(Dom.extrair(this).getElementsByClassName(classe).item(0));
 		},
 
 		obterTodosPelaClasse: function (classe) {
-			return this.getElementsByClassName(classe);
+			return Dom.encapsular(Dom.extrair(this).getElementsByClassName(classe));
 		},
 
 		obterPeloNome: function (nome) {
-			return this.getElementsByName(nome)[0];
+			return Dom.encapsular(Dom.extrair(this).getElementsByName(nome).item(0));
 		},
 
 		obterTodosPeloNome: function (nome) {
-			return this.getElementsByName(nome);
+			return Dom.encapsular(Dom.extrair(this).getElementsByName(nome));
 		},
 
 		obterPeloIdentificador: function (identificador) {
-			return this.getElementById(identificador);
+			return Dom.encapsular(Dom.extrair(this).getElementById(identificador));
 		}
 	});
 
 	Element.prototype.definirPropriedades({
 		filhos: {
 			fornecer: function () {
-				return this.children;
+				return Dom.encapsular(Dom.extrair(this).children);
 			}
 		},
 
 		primeiroFilho: {
 			fornecer: function () {
-				return this.firstElementChild;
+				return Dom.encapsular(Dom.extrair(this).firstElementChild);
 			}
 		},
 
 		ultimoFilho: {
 			fornecer: function () {
-				return this.lastElementChild;
+				return Dom.encapsular(Dom.extrair(this).lastElementChild);
 			}
 		},
 
 		identificador: {
 			fornecer: function () {
-				return this.id;
+				return Dom.extrair(this).id;
 			},
 
 			fixar: function (novoIdentificador) {
-				this.id = novoIdentificador;
+				Dom.extrair(this).id = novoIdentificador;
 			}
 		},
 
 		classe: {
 			fornecer: function () {
-				return this.className;
+				return Dom.extrair(this).className;
 			},
 
 			fixar: function (novaClasse) {
-				this.className = novaClasse;
+				Dom.extrair(this).className = novaClasse;
 			}
 		},
 
 		htmlInterno: {
 			fornecer: function () {
-				return this.innerHTML;
+				return Dom.extrair(this).innerHTML;
 			},
 
 			fixar: function (html) {
-				this.innerHTML = html;
+				Dom.extrair(this).innerHTML = html;
 			}
 		},
 
 		htmlExterno: {
 			fornecer: function () {
-				return this.outerHTML;
+				return Dom.extrair(this).outerHTML;
 			},
 
 			fixar: function (html) {
-				this.outerHTML = html;
+				Dom.extrair(this).outerHTML = html;
 			}
 		}
 	});
 
-	HTMLCollection.implementar({
-		padaCada: function (tratador, escopo) {
-			for (var indice = 0; indice < this.length; indice++) {
-				tratador.chamarComEscopo(escopo, this.item(indice), indice);
-			}
-		}
-	});
+	global.Elemento = Elemento;
 }(this));

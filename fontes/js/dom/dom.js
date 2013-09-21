@@ -1,73 +1,97 @@
 /*global Classe*/
+/*global Document*/
+/*global Element*/
+/*global Elemento*/
+/*global HTMLCollection*/
+/*global Janela*/
 /*global Linda*/
+/*global Node*/
+/*global NodeList*/
+/*global Nodo*/
+/*global Window*/
 
 (function (global) {
 	"use strict";
 
 	var Dom = Classe.criarSingleton({
 		inicializar: function () {
-			this.global = global;
-			this.janela = (window || global);
+			this.janela = window;
 			this.documento = this.janela.document;
 			this.historico = this.janela.history;
 			this.localizacao = this.janela.location;
-			this.performance = this.janela.performance;
+			this.janelaDom = this.encapsular(this.janela);
+			this.documentoDom = this.encapsular(this.documento);
+		},
+
+		encapsular: function (elementoDom) {
+			if (Linda.instanciaDe(elementoDom, NodeList)) {
+				return new ListaDom(elementoDom);
+			} else if (Linda.instanciaDe(elementoDom, HTMLCollection)) {
+				return new ListaDom(elementoDom);
+			} else if (Linda.instanciaDe(elementoDom, Element)) {
+				return new Elemento(elementoDom);
+			} else if (Linda.instanciaDe(elementoDom, Document)) {
+				return new Documento(elementoDom);
+			} else if (Linda.instanciaDe(elementoDom, Node)) {
+				return new Nodo(elementoDom);
+			} else if (Linda.instanciaDe(elementoDom, Window)) {
+				return new Janela(elementoDom);
+			} else {
+				return new Notificavel(elementoDom);
+			}
+		},
+
+		extrair: function (suplementoDom) {
+			return suplementoDom.elementoDom;
 		},
 
 		criarComentario: function (comentario) {
-			return this.documento.createComment(comentario);
+			return this.documentoDom.criarComentario(comentario);
 		},
 
 		criarElemento: function (elemento) {
-			return this.documento.createElement(elemento);
+			return this.documentoDom.criarElemento(elemento);
 		},
 
 		criarTexto: function (texto) {
-			return this.documento.createTextNode(texto);
+			return this.documentoDom.criarTexto(texto);
 		},
 
 		selecionar: function (seletor) {
-			return this.documento.querySelector(seletor);
+			return this.documentoDom.selecionar(seletor);
 		},
 
 		selecionarTodos: function (seletor) {
-			return this.documento.querySelectorAll(seletor);
+			return this.documentoDom.selecionar(seletor);
 		},
 
-		avaliar: function (texto) {
-			return this.janela.eval(texto);
-		},
-
-		habilitarTelaCheia: function () {
-			if (Linda.instanciaDe(this.documento.documentElement.requestFullScreen, Function)) {
-				this.documento.documentElement.requestFullScreen();
-			} else if (Linda.instanciaDe(this.documento.documentElement.mozRequestFullScreen, Function)) {
-				this.documento.documentElement.mozRequestFullScreen();
-			} else if (Linda.instanciaDe(this.documento.documentElement.webkitRequestFullScreen, Function)) {
-				this.documento.documentElement.webkitRequestFullScreen();
+		$: function (seletorOuElemento) {
+			if (Linda.instanciaDe(seletorOuElemento, String)) {
+				return this.selecionar(seletorOuElemento);
 			}
+			return this.encapsular(seletorOuElemento);
 		},
 
-		desabilitarTelaCheia: function () {
-			if (Linda.instanciaDe(this.documento.cancelFullScreen, Function)) {
-				this.documento.cancelFullScreen();
-			} else if (Linda.instanciaDe(this.documento.webkitCancelFullScreen, Function)) {
-				this.documento.webkitCancelFullScreen();
-			} else if (Linda.instanciaDe(this.documento.mozCancelFullScreen, Function)) {
-				this.documento.mozCancelFullScreen();
+		$$: function (seletorOuElemento) {
+			if (Linda.instanciaDe(seletorOuElemento, String)) {
+				return this.selecionarTodos(seletorOuElemento);
 			}
+			return this.encapsular(seletorOuElemento);
 		}
 	}).instancia();
 
-	var $ = function (seletor) {
-		return Dom.selecionar(seletor);
-	};
+	var ListaDom = Classe.criar({
+		inicializar: function (elementosDom) {
+			this.elementosDom = elementosDom;
+		},
 
-	var $$ = function (seletor) {
-		return Dom.selecionarTodos(seletor);
-	};
+		paraCada: function (tratador, escopo) {
+			for (var indice = 0; indice < this.elementosDom.length; indice++) {
+				tratador.chamarComEscopo(escopo, Dom.encapsular(this.elementosDom.item(indice), indice));
+			}
+		}
+	});
 
 	global.Dom = Dom;
-	global.$ = $;
-	global.$$ = $$;
+	global.ListaDom = ListaDom;
 }(this));

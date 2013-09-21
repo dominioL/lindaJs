@@ -14,9 +14,9 @@
 		CARREGAMENTO_FINALIZADO: "loadend",
 		CLIQUE: "click",
 		DUPLO_CLIQUE: "dbclick",
+		ESTADO_REMOVIDO: "popstate",
 		ESTOURO_DE_TEMPO: "timeout",
 		ERRO: "error",
-		HISTORICO_ALTERADO: "popstate",
 		PROGRESSO: "progress",
 		TECLA_PRESSIONADA: "keydown",
 		TECLA_SOLTA: "keyup"

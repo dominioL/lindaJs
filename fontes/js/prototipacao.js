@@ -29,23 +29,23 @@
 		criar: function (corpoDaClasse) {
 			var SuperClasse = corpoDaClasse.SuperClasse;
 			var estende = Linda.instanciaDe(SuperClasse, Function);
-			function NovaClasse() {
+			function ClasseLinda() {
 				this.inicializar.aplicarComEscopo(this, arguments);
 			}
 			SuperClasse = (estende) ? SuperClasse : Objeto;
 			corpoDaClasse.SuperClasse = SuperClasse;
-			NovaClasse.prototype = Object.create(SuperClasse.prototype);
-			NovaClasse.prototipo = NovaClasse.prototype;
-			NovaClasse.implementar(corpoDaClasse);
-			NovaClasse.prototype.definirPropriedades({
+			ClasseLinda.prototype = Object.create(SuperClasse.prototype);
+			ClasseLinda.prototipo = ClasseLinda.prototype;
+			ClasseLinda.implementar(corpoDaClasse);
+			ClasseLinda.prototype.definirPropriedades({
 				SuperClasse: Linda.propriedadesDeAtributosGravaveisConfiguraveis
 			});
-			return NovaClasse;
+			return ClasseLinda;
 		},
 
 		criarSingleton: function(corpoDaClasse) {
-			var NovaClasseUnica = Classe.criar(corpoDaClasse);
-			NovaClasseUnica.estender({
+			var ClasseLindaUnica = Classe.criar(corpoDaClasse);
+			ClasseLindaUnica.estender({
 				instanciaUnica: null,
 				instancia: function () {
 					this.instanciaUnica = Object.create(this.prototipo);
@@ -63,7 +63,7 @@
 					return this.instanciaUnica;
 				}
 			});
-			return NovaClasseUnica;
+			return ClasseLindaUnica;
 		},
 
 		criarEnumeracao: function (enumeracoes, corpoDaClasse) {

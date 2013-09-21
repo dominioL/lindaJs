@@ -1,94 +1,88 @@
-/*global NodeList*/
+/*global Dom*/
+/*global Notificavel*/
 
-(function () {
+(function (global) {
 	"use strict";
 
-	Node.implementar = Function.prototype.implementar;
-	NodeList.implementar = Function.prototype.implementar;
+	var Nodo = Classe.criar({
+		SuperClasse: Notificavel,
 
-	Node.implementar({
+		inicializar: function (elementoDom) {
+			Notificavel.prototipo.inicializar.chamarComEscopo(this, elementoDom);
+		},
+
 		adicionarNodo: function (nodo) {
-			return this.appendChild(nodo);
+			return Dom.extrair(this).appendChild(Dom.extrair(nodo));
 		},
 
 		adicionarNodoNoInicio: function (nodo) {
-			return this.insertBefore(nodo, this.primeiroFilho);
+			return Dom.extrair(this).insertBefore(Dom.extrair(nodo), Dom.extrair(this.primeiroFilho));
 		},
 
 		adicionarNodoAntesDe: function (nodo, nodoReferencia) {
-			return this.insertBefore(nodo, nodoReferencia);
+			return Dom.extrair(this).insertBefore(Dom.extrair(nodo), Dom.extrair(nodoReferencia));
 		},
 
 		clonarNodo: function (clonarFilhos) {
-			return this.cloneNode(clonarFilhos);
+			return Dom.extrair(this).cloneNode(clonarFilhos);
 		},
 
 		normalizarNodos: function () {
-			this.normalize();
-		},
-
-		possuiAtributos: function () {
-			return this.hasAttributes();
+			Dom.extrair(this).normalize();
 		},
 
 		possuiNodos: function () {
-			return this.hasChildNodes();
+			return Dom.extrair(this).hasChildNodes();
 		},
 
 		possuiNodo: function (nodo) {
-			return this.contains(nodo);
+			return Dom.extrair(this).contains(Dom.extrair(nodo));
 		},
 
 		removerNodo: function (nodo) {
-			return this.removeChild(nodo);
+			return Dom.extrair(this).removeChild(Dom.extrair(nodo));
 		},
 
 		substituirNodo: function (nodoNovo, nodoAntigo) {
-			return this.replaceChild(nodoNovo, nodoAntigo);
+			return Dom.extrair(this).replaceChild(Dom.extrair(nodoNovo), Dom.extrair(nodoAntigo));
 		}
 	});
 
 	Node.prototype.definirPropriedades({
 		texto: {
 			fornecer: function () {
-				return this.textContent;
+				return Dom.extrair(this).textContent;
 			},
 
 			fixar: function (valor) {
-				this.textContent = valor;
+				Dom.extrair(this).textContent = valor;
 			}
 		},
 
 		nodoFilhos: {
 			fornecer: function () {
-				return this.childNodes;
+				return Dom.encapsular(Dom.extrair(this).childNodes);
 			}
 		},
 
 		primeiroNodoFilho: {
 			fornecer: function () {
-				return this.firstChild;
+				return Dom.encapsular(Dom.extrair(this).firstChild);
 			}
 		},
 
 		ultimoNodoFilho: {
 			fornecer: function () {
-				return this.lastChild;
+				return Dom.encapsular(Dom.extrair(this).lastChild);
 			}
 		},
 
 		nodoPai: {
 			fornecer: function () {
-				return this.parentNode;
+				return Dom.encapsular(Dom.extrair(this).parentNode);
 			}
 		}
 	});
 
-	NodeList.implementar({
-		padaCada: function (tratador, escopo) {
-			for (var indice = 0; indice < this.length; indice++) {
-				tratador.chamarComEscopo(escopo, this.item(indice), indice);
-			}
-		}
-	});
+	global.Nodo = Nodo;
 }(this));
