@@ -1,10 +1,9 @@
 /*global AtributoHttp*/
 /*global Classe*/
 /*global CodigoHttp*/
+/*global Dom*/
 /*global Linda*/
 /*global MetodoHttp*/
-/*global Tratador*/
-/*global TratadorDeCarregamento*/
 /*global TipoDeMidia*/
 /*global TipoDeResposta*/
 
@@ -12,86 +11,86 @@
 	"use strict";
 
 	var RequisicaoHttp = Classe.criar({
-		inicializar: function (uri, tipoDeResposta) {
+		inicializar: function (uri, assincrono, tipoDeResposta) {
 			this.requisicaoXml = new XMLHttpRequest();
-			this.requisicaoXml.responseType = tipoDeResposta;
 			this.uri = uri;
 			this.usuario = null;
 			this.senha = null;
 			this.codigoDeEstado = null;
+			this.assincrono = Linda.indefinido(assincrono) ? true : !!assincrono;
 			this.cabecalho = [];
-			this.tratadorDeCarregamento = new TratadorDeCarregamento(this.requisicaoXml);
-			this.tratador = new Tratador(this.requisicaoXml);
+			if (this.assincrono) {
+				this.requisicaoXml.responseType = tipoDeResposta;
+			}
 		},
 
-		enviar: function (metodo, dados, sincrono) {
-			var assincrono = !sincrono;
+		enviar: function (metodo, dados) {
 			metodo = MetodoHttp.mapear(metodo);
-			this.requisicaoXml.open(metodo, this.uri, assincrono, this.usuario, this.senha);
+			this.requisicaoXml.open(metodo, this.uri, this.assincrono, this.usuario, this.senha);
 			this.cabecalho.paraCada(function (atributo) {
 				this.requisicaoXml.setRequestHeader(atributo.nome, atributo.valor);
 			}, this);
 			this.requisicaoXml.send(dados);
-			if (!assincrono) {
+			if (!this.assincrono) {
 				return this.fornecerResposta();
 			}
 		},
 
-		enviarGet: function (sincrono) {
-			return this.enviar(MetodoHttp.GET, null, sincrono);
+		get: function (dados) {
+			return this.enviar(MetodoHttp.GET, dados);
 		},
 
-		enviarPut: function (dados, sincrono) {
-			return this.enviar(MetodoHttp.PUT, dados, sincrono);
+		put: function (dados) {
+			return this.enviar(MetodoHttp.PUT, dados);
 		},
 
-		enviarPost: function (dados, sincrono) {
-			return this.enviar(MetodoHttp.POST, dados, sincrono);
+		post: function (dados) {
+			return this.enviar(MetodoHttp.POST, dados);
 		},
 
-		envirDelete: function (sincrono) {
-			return this.enviar(MetodoHttp.DELETE, null, sincrono);
+		delete: function (dados) {
+			return this.enviar(MetodoHttp.DELETE, dados);
 		},
 
 		tratarInicio: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamentoIniciado(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarCarregamento(tratador, escopo);
 			return this;
 		},
 
 		tratarProgresso: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraProgresso(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarProgresso(tratador, escopo);
 			return this;
 		},
 
 		tratarTermino: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamentoFinalizado(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarCarregamentoFinalizado(tratador, escopo);
 			return this;
 		},
 
 		tratarAborto: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraAborto(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarAborto(tratador, escopo);
 			return this;
 		},
 
 		tratarEstouroDeTempo: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraEstouroDeTempo(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarEstouroDeTempo(tratador, escopo);
 			return this;
 		},
 
 		tratarErro: function (tratador, escopo) {
-			this.tratador.paraErro(tratador, escopo);
+			Dom.$(this.requisicaoXml).tratarErro(tratador, escopo);
 			return this;
 		},
 
 		tratarResposta: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamento(function () {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				tratador.chamarComEscopo(escopo, this.fornecerResposta(), this.fornecerCodigoDeEstado());
 			}, this);
 			return this;
 		},
 
 		tratarRedirecionamento: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamento(function () {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.redirecionamento()) {
 					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
@@ -101,7 +100,7 @@
 		},
 
 		tratarSucesso: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamento(function () {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.sucesso()) {
 					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
@@ -111,7 +110,7 @@
 		},
 
 		tratarErroDoCliente: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamento(function () {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.erroDoCliente()) {
 					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
@@ -121,7 +120,7 @@
 		},
 
 		tratarErroDoServidor: function (tratador, escopo) {
-			this.tratadorDeCarregamento.paraCarregamento(function () {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.erroDoServidor()) {
 					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
@@ -166,8 +165,8 @@
 	var RequisicaoJson = Classe.criar({
 		SuperClasse: RequisicaoHttp,
 
-		inicializar: function (uri) {
-			this.super(uri, TipoDeResposta.JSON);
+		inicializar: function (uri, assincrono) {
+			this.super(uri, assincrono, TipoDeResposta.JSON);
 			this.fixarAtributoDeCabecalho(AtributoHttp.ACCEPT, TipoDeMidia.JSON.comoTexto());
 		},
 
@@ -183,8 +182,8 @@
 	var RequisicaoHtml = Classe.criar({
 		SuperClasse: RequisicaoHttp,
 
-		inicializar: function (uri) {
-			this.super(uri, TipoDeResposta.DOCUMENTO);
+		inicializar: function (uri, assincrono) {
+			this.super(uri, assincrono, TipoDeResposta.DOCUMENTO);
 			this.fixarAtributoDeCabecalho(AtributoHttp.ACCEPT, TipoDeMidia.HTML.comoTexto());
 		},
 	});
@@ -192,16 +191,16 @@
 	var RequisicaoDocumento = Classe.criar({
 		SuperClasse: RequisicaoHttp,
 
-		inicializar: function (uri) {
-			this.super(uri, TipoDeResposta.DOCUMENTO);
+		inicializar: function (uri, assincrono) {
+			this.super(uri, assincrono, TipoDeResposta.DOCUMENTO);
 		}
 	});
 
 	var RequisicaoTexto = Classe.criar({
 		SuperClasse: RequisicaoHttp,
 
-		inicializar: function (uri) {
-			this.super(uri, TipoDeResposta.TEXTO);
+		inicializar: function (uri, assincrono) {
+			this.super(uri, assincrono, TipoDeResposta.TEXTO);
 		}
 	});
 

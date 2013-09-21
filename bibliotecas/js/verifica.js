@@ -74,12 +74,12 @@
 		},
 
 		obterArquivo: function (nome) {
-			// var requisicao = RequisicaoTexto(nome);
-			// return requisicao.get(null, false);
-			var requisicao = new XMLHttpRequest();
-			requisicao.open("GET", nome, false);
-			requisicao.send();
-			return requisicao.responseText;
+			var requisicao = new RequisicaoTexto(nome, false);
+			return requisicao.get();
+			// var requisicao = new XMLHttpRequest();
+			// requisicao.open("GET", nome, false);
+			// requisicao.send();
+			// return requisicao.responseText;
 		},
 
 		criarListaSecaoDeErros: function () {
