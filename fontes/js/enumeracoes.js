@@ -205,7 +205,7 @@
 			return this.textoIngles;
 		},
 
-		informacional: function () {
+		informacao: function () {
 			return (this.chave >= 100 && this.chave < 200);
 		},
 

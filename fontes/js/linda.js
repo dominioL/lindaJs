@@ -96,6 +96,10 @@
 			return (valor === undefined);
 		},
 
+		existe: function (valor) {
+			return (valor !== null && valor !== undefined);
+		},
+
 		assegureQue: function (condicao) {
 			if (!condicao) {
 				throw new ExcecaoLinda("Asserção inválida. Quebra de contrato.");

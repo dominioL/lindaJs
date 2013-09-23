@@ -4,6 +4,22 @@
 	"use strict";
 
 	Array.implementar({
+		adicionar: function () {
+			this.push.aplicarComEscopo(this, arguments);
+		},
+
+		tirar: function () {
+			return this.pop();
+		},
+
+		adicionarNoInicio: function () {
+			this.unshift.aplicarComEscopo(this, arguments);
+		},
+
+		tirarDoInicio: function () {
+			return this.shift();
+		},
+
 		clonar: function () {
 			var clone = new Array(this.length);
 			for (var indice = 0; indice < this.length; indice++) {

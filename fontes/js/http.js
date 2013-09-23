@@ -17,6 +17,7 @@
 			this.usuario = null;
 			this.senha = null;
 			this.codigoDeEstado = null;
+			this.metodo = null;
 			this.assincrono = Linda.indefinido(assincrono) ? true : !!assincrono;
 			this.cabecalho = [];
 			if (this.assincrono) {
@@ -25,8 +26,8 @@
 		},
 
 		enviar: function (metodo, dados) {
-			metodo = MetodoHttp.mapear(metodo);
-			this.requisicaoXml.open(metodo, this.uri, this.assincrono, this.usuario, this.senha);
+			this.metodo = MetodoHttp.mapear(metodo);
+			this.requisicaoXml.open(this.metodo, this.uri, this.assincrono, this.usuario, this.senha);
 			this.cabecalho.paraCada(function (atributo) {
 				this.requisicaoXml.setRequestHeader(atributo.nome, atributo.valor);
 			}, this);
@@ -84,16 +85,16 @@
 
 		tratarResposta: function (tratador, escopo) {
 			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
-				tratador.chamarComEscopo(escopo, this.fornecerResposta(), this.fornecerCodigoDeEstado());
+				tratador.chamarComEscopo(escopo, this.fornecerResposta(), this.fornecerCodigoDeEstado(), this);
 			}, this);
 			return this;
 		},
 
-		tratarRedirecionamento: function (tratador, escopo) {
+		tratarInformacao: function (tratador, escopo) {
 			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
-				if (codigoDeEstado.redirecionamento()) {
-					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
+				if (codigoDeEstado.informacao()) {
+					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado, this);
 				}
 			}, this);
 			return this;
@@ -103,7 +104,17 @@
 			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.sucesso()) {
-					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
+					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado, this);
+				}
+			}, this);
+			return this;
+		},
+
+		tratarRedirecionamento: function (tratador, escopo) {
+			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
+				var codigoDeEstado = this.fornecerCodigoDeEstado();
+				if (codigoDeEstado.redirecionamento()) {
+					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado, this);
 				}
 			}, this);
 			return this;
@@ -113,7 +124,7 @@
 			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.erroDoCliente()) {
-					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
+					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado, this);
 				}
 			}, this);
 			return this;
@@ -123,7 +134,7 @@
 			Dom.$(this.requisicaoXml).tratarCarregamento(function () {
 				var codigoDeEstado = this.fornecerCodigoDeEstado();
 				if (codigoDeEstado.erroDoServidor()) {
-					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado);
+					tratador.chamarComEscopo(escopo, this.fornecerResposta(), codigoDeEstado, this);
 				}
 			}, this);
 			return this;

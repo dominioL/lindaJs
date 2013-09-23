@@ -316,6 +316,10 @@
 		desobservar: function (tratador) {
 			Object.unobserve(this, tratador);
 		},
+
+		removerPropriedade: function (propriedade) {
+			delete this[propriedade];
+		}
 	});
 
 	Object.implementar({
