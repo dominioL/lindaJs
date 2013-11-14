@@ -1,4 +1,4 @@
-(function (global) {
+(function (contexto) {
 	"use strict";
 
 	var ExcecaoLinda = function (mensagem) {
@@ -111,5 +111,5 @@
 		}
 	};
 
-	global.Linda = Linda;
+	contexto.Linda = Linda;
 }(this));

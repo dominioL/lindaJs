@@ -1,7 +1,7 @@
-/*global Linda*/
-
-(function () {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
 
 	Object.prototype.definirPropriedades({
 		cadaPropriedade: Linda.propriedadesDeAtributos,
@@ -39,6 +39,7 @@
 		privadoFornecerDescritorDePropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedades: Linda.propriedadesDeAtributos,
+		removerPropriedade: Linda.propriedadesDeAtributos,
 		privadoDefinirPropriedade: Linda.propriedadesDeAtributos,
 		fundir: Linda.propriedadesDeAtributos,
 		observar: Linda.propriedadesDeAtributos,
@@ -59,6 +60,8 @@
 	});
 
 	Array.prototype.definirPropriedades({
+		adicionar: Linda.propriedadesDeAtributos,
+		adicionarNoInicio: Linda.propriedadesDeAtributos,
 		clonar: Linda.propriedadesDeAtributos,
 		contem: Linda.propriedadesDeAtributos,
 		dentroDosLimites: Linda.propriedadesDeAtributos,
@@ -77,7 +80,9 @@
 		reduzirSemUltimo: Linda.propriedadesDeAtributos,
 		removerPosicao: Linda.propriedadesDeAtributos,
 		removerElemento: Linda.propriedadesDeAtributos,
-		vazio: Linda.propriedadesDeAtributos
+		vazio: Linda.propriedadesDeAtributos,
+		tirar: Linda.propriedadesDeAtributos,
+		tirarDoInicio: Linda.propriedadesDeAtributos
 	});
 
 	String.prototype.definirPropriedades({
@@ -98,4 +103,4 @@
 		sortear: Linda.propriedadesDeAtributos,
 		sortearInteiro: Linda.propriedadesDeAtributos
 	});
-}());
+}(this));

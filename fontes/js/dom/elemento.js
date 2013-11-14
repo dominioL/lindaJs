@@ -1,9 +1,9 @@
-/*global Classe*/
-/*global Dom*/
-/*global Nodo*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Dom = contexto.Dom;
+	var Nodo = contexto.Nodo;
+	var Classe = contexto.Classe;
 
 	var Elemento = Classe.criar({
 		SuperClasse: Nodo,
@@ -137,5 +137,5 @@
 		}
 	});
 
-	global.Elemento = Elemento;
+	contexto.Elemento = Elemento;
 }(this));

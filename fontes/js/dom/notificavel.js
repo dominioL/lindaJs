@@ -1,9 +1,9 @@
-/*global Classe*/
-/*global Dom*/
-/*global Tecla*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Dom = contexto.Dom;
+	var Classe = contexto.Classe;
+	var Tecla = contexto.Tecla;
 
 	var Notificavel = Classe.criar({
 		inicializar: function (elementoDom) {
@@ -173,5 +173,5 @@
 		}
 	});
 
-	global.Notificavel = Notificavel;
+	contexto.Notificavel = Notificavel;
 }(this));

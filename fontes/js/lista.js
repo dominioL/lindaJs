@@ -1,7 +1,7 @@
-/*global Linda*/
-
-(function () {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
 
 	Array.implementar({
 		adicionar: function () {
@@ -153,4 +153,4 @@
 			}
 		}
 	});
-} ());
+} (this));

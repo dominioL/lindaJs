@@ -70,13 +70,27 @@ construir() {
 	cat $binariosJs/numero.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/http.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/dom/dom.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/dom/notificavel.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/dom/janela.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/dom/nodo.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/dom/documento.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/dom/elemento.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/dom.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/http.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
+}
+
+construirSemDom() {
+	compilar
+	echo ":construirSemDom"
+	cat $binariosJs/linda.js > $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/funcao.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/objeto.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/lista.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/texto.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/numero.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
+	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
 	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
 }
 

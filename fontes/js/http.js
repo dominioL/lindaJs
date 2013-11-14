@@ -1,14 +1,14 @@
-/*global AtributoHttp*/
-/*global Classe*/
-/*global CodigoHttp*/
-/*global Dom*/
-/*global Linda*/
-/*global MetodoHttp*/
-/*global TipoDeMidia*/
-/*global TipoDeResposta*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Dom = contexto.Dom;
+	var Linda = contexto.Linda;
+	var Classe = contexto.Classe;
+	var AtributoHttp = contexto.AtributoHttp;
+	var CodigoHttp = contexto.CodigoHttp;
+	var MetodoHttp = contexto.MetodoHttp;
+	var TipoDeMidia = contexto.TipoDeMidia;
+	var TipoDeResposta = contexto.TipoDeResposta;
 
 	var RequisicaoHttp = Classe.criar({
 		inicializar: function (uri, assincrono, tipoDeResposta) {
@@ -215,8 +215,8 @@
 		}
 	});
 
-	global.RequisicaoJson = RequisicaoJson;
-	global.RequisicaoHtml = RequisicaoHtml;
-	global.RequisicaoDocumento = RequisicaoDocumento;
-	global.RequisicaoTexto = RequisicaoTexto;
+	contexto.RequisicaoJson = RequisicaoJson;
+	contexto.RequisicaoHtml = RequisicaoHtml;
+	contexto.RequisicaoDocumento = RequisicaoDocumento;
+	contexto.RequisicaoTexto = RequisicaoTexto;
 }(this));

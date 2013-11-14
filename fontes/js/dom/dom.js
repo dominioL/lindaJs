@@ -1,19 +1,15 @@
-/*global Classe*/
 /*global Document*/
-/*global Documento*/
 /*global Element*/
-/*global Elemento*/
 /*global HTMLCollection*/
-/*global Janela*/
-/*global Linda*/
 /*global Node*/
 /*global NodeList*/
-/*global Nodo*/
-/*global Notificavel*/
 /*global Window*/
 
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
+	var Classe = contexto.Classe;
 
 	var Dom = Classe.criarSingleton({
 		inicializar: function () {
@@ -21,11 +17,19 @@
 			this.documento = this.janela.document;
 			this.historico = this.janela.history;
 			this.localizacao = this.janela.location;
+		},
+
+		carregarComponentes: function () {
 			this.janelaDom = this.encapsular(this.janela);
 			this.documentoDom = this.encapsular(this.documento);
 		},
 
 		encapsular: function (elementoDom) {
+			var Documento = contexto.Documento;
+			var Elemento = contexto.Elemento;
+			var Janela = contexto.Janela;
+			var Nodo = contexto.Nodo;
+			var Notificavel = contexto.Notificavel;
 			if (Linda.instanciaDe(elementoDom, NodeList)) {
 				return new ListaDom(elementoDom);
 			} else if (Linda.instanciaDe(elementoDom, HTMLCollection)) {
@@ -65,6 +69,7 @@
 	var ListaDom = Classe.criar({
 		inicializar: function (elementosDom) {
 			this.elementosDom = elementosDom;
+			this.elementoDom = elementosDom;
 		},
 
 		paraCada: function (tratador, escopo) {
@@ -74,8 +79,12 @@
 		}
 	});
 
-	global.Dom = Dom;
-	global.ListaDom = ListaDom;
-	global.documento = Dom.documento;
-	global.janela = Dom.janela;
+	contexto.addEventListener("load", function () {
+		Dom.carregarComponentes();
+	});
+
+	contexto.Dom = Dom;
+	contexto.ListaDom = ListaDom;
+	contexto.documento = Dom.documento;
+	contexto.janela = Dom.janela;
 }(this));

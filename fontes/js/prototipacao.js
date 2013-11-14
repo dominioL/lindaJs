@@ -1,7 +1,7 @@
-/*global Linda*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
 
 	function Objeto() {}
 
@@ -140,6 +140,6 @@
 		}
 	});
 
-	global.Classe = Classe;
-	global.Objeto = Objeto;
+	contexto.Classe = Classe;
+	contexto.Objeto = Objeto;
 }(this));

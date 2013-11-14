@@ -1,8 +1,8 @@
-/*global Linda*/
-/*global Classe*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
+	var Classe = contexto.Classe;
 
 	var Tipo = Classe.criarEnumeracaoDeConstantes(Linda.tipos);
 
@@ -226,14 +226,14 @@
 		}
 	});
 
-	global.Tipo = Tipo;
-	global.Evento = Evento;
-	global.Tecla = Tecla;
-	global.AtributoHttp = AtributoHttp;
-	global.MetodoHttp = MetodoHttp;
-	global.CodigoHttp = CodigoHttp;
-	global.TipoDeResposta = TipoDeResposta;
-	global.TipoDeMidia = TipoDeMidia;
-	global.TipoGenericoDeMidia = TipoGenericoDeMidia;
-	global.TipoDeObservacao = TipoDeObservacao;
+	contexto.Tipo = Tipo;
+	contexto.Evento = Evento;
+	contexto.Tecla = Tecla;
+	contexto.AtributoHttp = AtributoHttp;
+	contexto.MetodoHttp = MetodoHttp;
+	contexto.CodigoHttp = CodigoHttp;
+	contexto.TipoDeResposta = TipoDeResposta;
+	contexto.TipoDeMidia = TipoDeMidia;
+	contexto.TipoGenericoDeMidia = TipoGenericoDeMidia;
+	contexto.TipoDeObservacao = TipoDeObservacao;
 }(this));

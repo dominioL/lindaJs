@@ -1,9 +1,9 @@
-/*global Classe*/
-/*global Dom*/
-/*global Notificavel*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Dom = contexto.Dom;
+	var Notificavel = contexto.Notificavel;
+	var Classe = contexto.Classe;
 
 	var Janela = Classe.criar({
 		SuperClasse: Notificavel,
@@ -37,5 +37,5 @@
 		}
 	});
 
-	global.Janela = Janela;
+	contexto.Janela = Janela;
 }(this));

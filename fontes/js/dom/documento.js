@@ -1,10 +1,10 @@
-/*global Classe*/
-/*global Dom*/
-/*global Linda*/
-/*global Nodo*/
-
-(function (global) {
+(function (contexto) {
 	"use strict";
+
+	var Dom = contexto.Dom;
+	var Nodo = contexto.Nodo;
+	var Linda = contexto.Linda;
+	var Classe = contexto.Classe;
 
 	var Documento = Classe.criar({
 		SuperClasse: Nodo,
@@ -54,5 +54,5 @@
 		}
 	});
 
-	global.Documento = Documento;
+	contexto.Documento = Documento;
 }(this));

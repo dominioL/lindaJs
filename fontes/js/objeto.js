@@ -1,8 +1,7 @@
-/*global Linda*/
-/*global TipoDeObservacao*/
-
-(function () {
+(function (contexto) {
 	"use strict";
+
+	var Linda = contexto.Linda;
 
 	Object.implementar({
 		cadaPropriedade: function (iterador, escopo) {
@@ -298,18 +297,22 @@
 		},
 
 		observarAtualizacao: function (tratador, propriedade) {
+			var TipoDeObservacao = contexto.TipoDeObservacao;
 			this.observar(tratador, propriedade, TipoDeObservacao.ATUALIZACAO);
 		},
 
 		observarCriacao: function (tratador, propriedade) {
+			var TipoDeObservacao = contexto.TipoDeObservacao;
 			this.observar(tratador, propriedade, TipoDeObservacao.CRIACAO);
 		},
 
 		observarReconfiguracao: function (tratador, propriedade) {
+			var TipoDeObservacao = contexto.TipoDeObservacao;
 			this.observar(tratador, propriedade, TipoDeObservacao.RECONFIGURACAO);
 		},
 
 		observarRemocao: function (tratador, propriedade) {
+			var TipoDeObservacao = contexto.TipoDeObservacao;
 			this.observar(tratador, propriedade, TipoDeObservacao.REMOCAO);
 		},
 
