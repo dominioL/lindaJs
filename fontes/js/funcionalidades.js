@@ -39,7 +39,7 @@
 		privadoFornecerDescritorDePropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedade: Linda.propriedadesDeAtributos,
 		definirPropriedades: Linda.propriedadesDeAtributos,
-		removerPropriedade: Linda.propriedadesDeAtributos,
+		// removerPropriedade: Linda.propriedadesDeAtributos,
 		privadoDefinirPropriedade: Linda.propriedadesDeAtributos,
 		fundir: Linda.propriedadesDeAtributos,
 		observar: Linda.propriedadesDeAtributos,
