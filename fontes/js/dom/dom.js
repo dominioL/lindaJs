@@ -1,5 +1,6 @@
 /*global Document*/
 /*global Element*/
+/*global History*/
 /*global HTMLCollection*/
 /*global Location*/
 /*global Node*/
@@ -86,6 +87,7 @@
 
 	var Localizacao = Classe.criar({
 		inicializar: function (elementoDom) {
+			var Notificavel = contexto.Notificavel;
 			Notificavel.prototipo.inicializar.chamarComEscopo(this, elementoDom);
 		},
 
@@ -139,12 +141,13 @@
 
 	var Historico = Classe.criar({
 		inicializar: function (elementoDom) {
+			var Notificavel = contexto.Notificavel;
 			Notificavel.prototipo.inicializar.chamarComEscopo(this, elementoDom);
 		},
 
 		adicionarEstado: function (uri, estado, titulo) {
 			if (!Linda.existe(titulo)) {
-				titulo = Dom.$(documento).titulo;
+				titulo = Dom.documentoDom.titulo;
 			}
 			Dom.extrair(this).pushState(estado, titulo, uri);
 		},
@@ -154,12 +157,12 @@
 		},
 
 		ir: function (distancia) {
-			Dom.extrair(this).go(uri);
+			Dom.extrair(this).go(distancia);
 		},
 
 		substituirEstado: function (uri, estado, titulo) {
 			if (!Linda.existe(titulo)) {
-				titulo = Dom.$(documento).titulo;
+				titulo = Dom.documentoDom.titulo;
 			}
 			Dom.extrair(this).replaceState(estado, titulo, uri);
 		},

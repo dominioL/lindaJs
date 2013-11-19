@@ -86,10 +86,14 @@
 	});
 
 	String.prototype.definirPropriedades({
+		combinar: Linda.propriedadesDeAtributos,
 		emBranco: Linda.propriedadesDeAtributos,
 		formatarNumero: Linda.propriedadesDeAtributos,
 		paraInteiro: Linda.propriedadesDeAtributos,
-		paraFlutuante: Linda.propriedadesDeAtributos
+		paraFlutuante: Linda.propriedadesDeAtributos,
+		separar: Linda.propriedadesDeAtributos,
+		substituir: Linda.propriedadesDeAtributos,
+		substituirTodos: Linda.propriedadesDeAtributos
 	});
 
 	String.definirPropriedades({

@@ -69,7 +69,7 @@
 		},
 
 		decodificarResposta: function (dado) {
-			return dados
+			return dado;
 		},
 
 		decodificarRespostaJson: function (dado) {
@@ -85,7 +85,7 @@
 		},
 
 		codificarEnvio: function (dado) {
-			return dados;
+			return dado;
 		},
 
 		codificarEnvioJson: function (dado) {
