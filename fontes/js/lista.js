@@ -141,6 +141,12 @@
 			}
 		},
 
+		quantidade: {
+			fornecer: function () {
+				return this.length;
+			}
+		},
+
 		ultimo: {
 			fornecer: function () {
 				return this[this.length - 1];

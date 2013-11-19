@@ -2,6 +2,10 @@
 	"use strict";
 
 	String.implementar({
+		combinar: function (padrao) {
+			return this.match(padrao);
+		},
+
 		emBranco: function () {
 			var padraoSemEspaco = /^\s*$/;
 			return padraoSemEspaco.test(this);
@@ -29,6 +33,19 @@
 
 		paraFlutuante: function () {
 			return parseFloat(this, 10);
+		},
+
+		separar: function (padrao) {
+			return this.split(padrao);
+		},
+
+		substituir: function (padrao, novoTexto) {
+			return this.replace(padrao, novoTexto);
+		},
+
+		substituirTodos: function (padrao, novoTexto) {
+			padrao = new RegExp(padrao, "g");
+			return this.replace(padrao, novoTexto);
 		}
 	});
 
