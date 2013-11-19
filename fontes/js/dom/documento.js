@@ -54,5 +54,13 @@
 		}
 	});
 
+	Documento.prototipo.definirPropriedades({
+		titulo: {
+			fornecer: function () {
+				return Dom.extrair(this).title;
+			}
+		}
+	});
+
 	contexto.Documento = Documento;
 }(this));
