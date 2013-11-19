@@ -118,7 +118,7 @@
 		CSS: [TipoGenericoDeMidia.TEXTO, "css"],
 		CSV: [TipoGenericoDeMidia.TEXTO, "csv"],
 		HTML: [TipoGenericoDeMidia.TEXTO, "html"],
-		TEXTO: [TipoGenericoDeMidia.TEXTO, "plain"],
+		TXT: [TipoGenericoDeMidia.TEXTO, "plain"],
 		MP4: [TipoGenericoDeMidia.VIDEO, "mp4"],
 		MPEG: [TipoGenericoDeMidia.VIDEO, "mpeg"],
 		OGG: [TipoGenericoDeMidia.VIDEO, "ogg"],

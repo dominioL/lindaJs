@@ -11,18 +11,93 @@
 	var TipoDeResposta = contexto.TipoDeResposta;
 
 	var RequisicaoHttp = Classe.criar({
-		inicializar: function (uri, assincrono, tipoDeResposta) {
+		inicializar: function (uri, assincrono) {
 			this.requisicaoXml = new XMLHttpRequest();
 			this.uri = uri;
 			this.usuario = null;
 			this.senha = null;
 			this.codigoDeEstado = null;
 			this.metodo = null;
+			this.respostaDecodificada = null;
 			this.assincrono = Linda.indefinido(assincrono) ? true : !!assincrono;
 			this.cabecalho = [];
+		},
+
+		aceita: function (tipoDeResposta, tipoDeMidia, decodificadorDeReposta) {
 			if (this.assincrono) {
 				this.requisicaoXml.responseType = tipoDeResposta;
 			}
+			this.fixarAtributoDeCabecalho(AtributoHttp.ACCEPT, tipoDeMidia);
+			this.decodificarResposta = decodificadorDeReposta;
+			return this;
+		},
+
+		aceitaJson: function () {
+			this.aceita(TipoDeResposta.JSON, TipoDeMidia.JSON.comoTexto(), this.decodificarRespostaJson);
+			return this;
+		},
+
+		aceitaHtml: function () {
+			this.aceita(TipoDeResposta.DOCUMENTO, TipoDeMidia.HTML.comoTexto(), this.decodificarRespostaHtml);
+			return this;
+		},
+
+		aceitaTexto: function () {
+			this.aceita(TipoDeResposta.TEXTO, TipoDeMidia.TXT.comoTexto(), this.decodificarRespostaTexto);
+			return this;
+		},
+
+		envia: function (tipoDeMidia, codificadorDeEnvio) {
+			this.fixarAtributoDeCabecalho(AtributoHttp.CONTENT_TYPE, tipoDeMidia);
+			this.codificarEnvio = codificadorDeEnvio;
+			return this;
+		},
+
+		enviaJson: function () {
+			this.envia(TipoDeMidia.JSON.comoTexto(), this.codificarEnvioJson);
+			return this;
+		},
+
+		enviaHtml: function () {
+			this.envia(TipoDeMidia.HTML.comoTexto(), this.codificarEnvioHtml);
+			return this;
+		},
+
+		enviaTexto: function () {
+			this.envia(TipoDeMidia.TXT.comoTexto(), this.codificarEnvioTexto);
+			return this;
+		},
+
+		decodificarResposta: function (dado) {
+			return dados
+		},
+
+		decodificarRespostaJson: function (dado) {
+			return JSON.parse(dado);
+		},
+
+		decodificarRespostaHtm: function (dado) {
+			return dado;
+		},
+
+		decodificarRespostaTexto: function (dado) {
+			return dado;
+		},
+
+		codificarEnvio: function (dado) {
+			return dados;
+		},
+
+		codificarEnvioJson: function (dado) {
+			return JSON.stringify(dado);
+		},
+
+		codificarEnvioHtm: function (dado) {
+			return dado;
+		},
+
+		codificarEnvioTexto: function (dado) {
+			return dado;
 		},
 
 		enviar: function (metodo, dados) {
@@ -31,10 +106,11 @@
 			this.cabecalho.paraCada(function (atributo) {
 				this.requisicaoXml.setRequestHeader(atributo.nome, atributo.valor);
 			}, this);
-			this.requisicaoXml.send(dados);
+			this.requisicaoXml.send(this.codificarEnvio(dados));
 			if (!this.assincrono) {
 				return this.fornecerResposta();
 			}
+			return this;
 		},
 
 		get: function (dados) {
@@ -162,7 +238,10 @@
 		},
 
 		fornecerResposta: function () {
-			return this.requisicaoXml.response;
+			if (Linda.nulo(this.respostaDecodificada)) {
+				this.respostaDecodificada = this.decodificarResposta(this.requisicaoXml.response);
+			}
+			return this.respostaDecodificada;
 		},
 
 		fornecerCodigoDeEstado: function () {
@@ -173,50 +252,5 @@
 		}
 	});
 
-	var RequisicaoJson = Classe.criar({
-		SuperClasse: RequisicaoHttp,
-
-		inicializar: function (uri, assincrono) {
-			this.super(uri, assincrono, TipoDeResposta.JSON);
-			this.fixarAtributoDeCabecalho(AtributoHttp.ACCEPT, TipoDeMidia.JSON.comoTexto());
-		},
-
-		enviaJson: function () {
-			this.fixarAtributoDeCabecalho(AtributoHttp.CONTENT_TYPE, TipoDeMidia.JSON.comoTexto());
-		},
-
-		fornecerResposta: function () {
-			return JSON.parse(this.requisicaoXml.response);
-		}
-	});
-
-	var RequisicaoHtml = Classe.criar({
-		SuperClasse: RequisicaoHttp,
-
-		inicializar: function (uri, assincrono) {
-			this.super(uri, assincrono, TipoDeResposta.DOCUMENTO);
-			this.fixarAtributoDeCabecalho(AtributoHttp.ACCEPT, TipoDeMidia.HTML.comoTexto());
-		},
-	});
-
-	var RequisicaoDocumento = Classe.criar({
-		SuperClasse: RequisicaoHttp,
-
-		inicializar: function (uri, assincrono) {
-			this.super(uri, assincrono, TipoDeResposta.DOCUMENTO);
-		}
-	});
-
-	var RequisicaoTexto = Classe.criar({
-		SuperClasse: RequisicaoHttp,
-
-		inicializar: function (uri, assincrono) {
-			this.super(uri, assincrono, TipoDeResposta.TEXTO);
-		}
-	});
-
-	contexto.RequisicaoJson = RequisicaoJson;
-	contexto.RequisicaoHtml = RequisicaoHtml;
-	contexto.RequisicaoDocumento = RequisicaoDocumento;
-	contexto.RequisicaoTexto = RequisicaoTexto;
+	contexto.RequisicaoHttp = RequisicaoHttp;
 }(this));
