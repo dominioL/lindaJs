@@ -10,7 +10,6 @@ documentacao=documentacao
 fontes=fontes
 recursos=recursos
 testes=testes
-integracao=/var/www/$pacoteDoProjeto
 
 bibliotecasCss=$bibliotecas/css
 bibliotecasJs=$bibliotecas/js
@@ -21,6 +20,9 @@ fontesHtml=$fontes/html
 fontesJs=$fontes/js
 testesHtml=$testes/html
 testesJs=$testes/js
+
+# integracao=/var/www/$pacoteDoProjeto
+integracao=$binariosJs/nodoWeb.js
 
 limpar() {
 	echo ":limpar"
@@ -47,6 +49,7 @@ adicionarBibliotecas() {
 	cp -rf ../verificaJs/construcao/verifica.css $bibliotecasCss
 	cp -rf ../verificaJs/construcao/verifica.js $bibliotecasJs
 	cp -rf ../verificaJs/construcao/jsHint.js $bibliotecasJs
+	cp -rf ../nodoWeb/construcao/nodoWeb.js $bibliotecasJs
 }
 
 compilar() {
@@ -115,9 +118,10 @@ executar() {
 integrar() {
 	construir
 	echo ":integrar"
-	sudo rm -rf $integracao
-	sudo mkdir -p $integracao
-	sudo cp -r $binarios/* $integracao
+	node $integracao
+	# sudo rm -rf $integracao
+	# sudo mkdir -p $integracao
+	# sudo cp -r $binarios/* $integracao
 }
 
 echo :$pacoteDoProjeto
