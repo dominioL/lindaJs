@@ -3,125 +3,89 @@
 projeto=Linda
 pacoteDoProjeto=linda
 
-bibliotecas=bibliotecas
-binarios=binarios
+css=css
+js=js
+html=html
 construcao=construcao
-documentacao=documentacao
-fontes=fontes
-recursos=recursos
-testes=testes
-
-bibliotecasCss=$bibliotecas/css
-bibliotecasJs=$bibliotecas/js
-binariosCss=$binarios/css
-binariosHtml=$binarios/html
-binariosJs=$binarios/js
-fontesHtml=$fontes/html
-fontesJs=$fontes/js
-testesHtml=$testes/html
-testesJs=$testes/js
-
-# integracao=/var/www/$pacoteDoProjeto
-integracao=$binariosJs/nodoWeb.js
 
 limpar() {
 	echo ":limpar"
-	rm -rf $binarios
-	rm -rf $construcao
+	rm -rf ${construcao}
 }
 
 criarEstrutura() {
 	echo ":criarEstrutura"
-	mkdir -p $bibliotecasCss
-	mkdir -p $bibliotecasJs
-	mkdir -p $binariosCss
-	mkdir -p $binariosHtml
-	mkdir -p $binariosJs
-	mkdir -p $construcao
-	mkdir -p $fontesHtml
-	mkdir -p $fontesJs
-	mkdir -p $testesHtml
-	mkdir -p $testesJs
+	mkdir -p css
+	mkdir -p js
+	mkdir -p html
+	mkdir -p construcao
 }
 
 adicionarBibliotecas() {
 	echo ":adicionarBibliotecas"
-	cp -rf ../verificaJs/construcao/verifica.css $bibliotecasCss
-	cp -rf ../verificaJs/construcao/verifica.js $bibliotecasJs
-	cp -rf ../verificaJs/construcao/jsHint.js $bibliotecasJs
-	cp -rf ../nodoWeb/construcao/nodoWeb.js $bibliotecasJs
-}
-
-compilar() {
-	limpar
-	criarEstrutura
-	adicionarBibliotecas
-	echo ":compilar"
-	cp -rf $bibliotecasCss/* $binariosCss
-	cp -rf $fontesHtml/* $testesHtml/* $binariosHtml
-	cp -rf $bibliotecasJs/* $fontesJs/* $testesJs/* $binariosJs
+	cp -rf ../verificaJs/construcao/verifica.css ${css}
+	cp -rf ../verificaJs/construcao/verifica.js ${js}/bibliotecas
+	cp -rf ../verificaJs/construcao/jsHint.js ${js}/bibliotecas
+	cp -rf ../nodoWeb/construcao/nodoWeb.js ${js}/bibliotecas
 }
 
 construir() {
-	compilar
+	limpar
+	criarEstrutura
+	adicionarBibliotecas
 	echo ":construir"
-	cat $binariosJs/linda.js > $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/funcao.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/objeto.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/lista.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/texto.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/numero.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/dom.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/notificavel.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/janela.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/nodo.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/documento.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/dom/elemento.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/http.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
+	cat ${js}/linda.js > ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/funcao.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/objeto.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/lista.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/texto.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/numero.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/prototipacao.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/enumeracoes.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/dom.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/notificavel.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/janela.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/nodo.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/documento.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/dom/elemento.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/http.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/funcionalidades.js >> ${construcao}/$pacoteDoProjeto.js
 }
 
-construirSemDom() {
-	compilar
+construirNode() {
+	limpar
+	criarEstrutura
+	adicionarBibliotecas
 	echo ":construirSemDom"
-	cat $binariosJs/linda.js > $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/funcao.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/objeto.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/lista.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/texto.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/numero.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/prototipacao.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/enumeracoes.js >> $construcao/$pacoteDoProjeto.js
-	cat $binariosJs/funcionalidades.js >> $construcao/$pacoteDoProjeto.js
+	cat ${js}/linda.js > ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/funcao.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/objeto.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/lista.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/texto.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/numero.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/prototipacao.js >> ${construcao}/$pacoteDoProjeto.js
+	cat ${js}/enumeracoes.js >> ${construcao}/$pacoteDoProjeto.js
 }
 
 testar() {
-	construir
+	# integrar &
 	echo ":testar"
-	chromium-browser `find $binariosHtml -name teste*.html` --allow-file-access-from-files
-}
-
-depurar() {
-	construir
-	echo ":depurar"
-	chromium-browser $binariosHtml/testeDeCodigo.html --allow-file-access-from-files
+	integrar &
+	testes=`find ${html}/testes -name teste*.html`
+	testes=`echo ${testes} | sed -e s@html/@http://localhost:7000/html/@g`
+	chromium-browser ${testes} --allow-file-access-from-files
 }
 
 executar() {
 	construir
 	echo ":executar"
-	chromium-browser $binariosHtml/$pacoteDoProjeto.html
+	chromium-browser ${html}/$pacoteDoProjeto.html
 }
 
 integrar() {
 	construir
 	echo ":integrar"
-	node $integracao
-	# sudo rm -rf $integracao
-	# sudo mkdir -p $integracao
-	# sudo cp -r $binarios/* $integracao
+	node ${js}/bibliotecas/nodoWeb.js
 }
 
 echo :$pacoteDoProjeto

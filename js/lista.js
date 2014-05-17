@@ -36,6 +36,14 @@
 			return (this.indexOf(valor) >= 0);
 		},
 
+		juntarEmTexto: function (separador) {
+			return this.join(separador);
+		},
+
+		ordenar: function (comparador) {
+			return this.sort(comparador);
+		},
+
 		embaralhar: function () {
 			for (var indice = 0; indice < this.length; indice++) {
 				var novoIndice = Number.sortearInteiro(0, this.length - 1);

@@ -77,7 +77,7 @@
 
 		obterArquivo: function (nome) {
 			var requisicao = new RequisicaoHttp(nome, false);
-			requisicao.aceitaTexto();
+			requisicao.aceitaTxt();
 			return requisicao.get();
 		},
 

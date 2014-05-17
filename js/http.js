@@ -42,8 +42,13 @@
 			return this;
 		},
 
-		aceitaTexto: function () {
-			this.aceita(TipoDeResposta.TEXTO, TipoDeMidia.TXT.comoTexto(), this.decodificarRespostaTexto);
+		aceitaTxt: function () {
+			this.aceita(TipoDeResposta.TEXTO, TipoDeMidia.TXT.comoTexto(), this.decodificarRespostaTxt);
+			return this;
+		},
+
+		aceitaQualquer: function () {
+			this.aceita(TipoDeResposta.QUALQUER, TipoDeMidia.QUALQUER.comoTexto(), this.decodificarResposta);
 			return this;
 		},
 
@@ -64,7 +69,7 @@
 		},
 
 		enviaTexto: function () {
-			this.envia(TipoDeMidia.TXT.comoTexto(), this.codificarEnvioTexto);
+			this.envia(TipoDeMidia.TXT.comoTexto(), this.codificarEnvioTxt);
 			return this;
 		},
 
@@ -73,14 +78,18 @@
 		},
 
 		decodificarRespostaJson: function (dado) {
-			return JSON.parse(dado);
+			try {
+				return JSON.parse(dado);
+			} catch (excecao) {
+				return dado;
+			}
 		},
 
-		decodificarRespostaHtm: function (dado) {
+		decodificarRespostaHtml: function (dado) {
 			return dado;
 		},
 
-		decodificarRespostaTexto: function (dado) {
+		decodificarRespostaTxt: function (dado) {
 			return dado;
 		},
 
@@ -96,7 +105,7 @@
 			return dado;
 		},
 
-		codificarEnvioTexto: function (dado) {
+		codificarEnvioTxt: function (dado) {
 			return dado;
 		},
 

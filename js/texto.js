@@ -27,6 +27,14 @@
 			return formatado;
 		},
 
+		paraCaixaAlta: function () {
+			return this.toUpperCase();
+		},
+
+		paraCaixaBaixa: function () {
+			return this.toLowerCase();
+		},
+
 		paraInteiro: function () {
 			return parseInt(this, 10);
 		},

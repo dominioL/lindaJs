@@ -134,6 +134,16 @@
 			fixar: function (html) {
 				Dom.extrair(this).outerHTML = html;
 			}
+		},
+
+		valor: {
+			fornecer: function () {
+				return Dom.extrair(this).value;
+			},
+
+			fixar: function (valor) {
+				Dom.extrair(this).value = valor;
+			}
 		}
 	});
 

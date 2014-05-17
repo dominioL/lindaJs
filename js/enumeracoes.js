@@ -70,7 +70,8 @@
 		TEXTO: "text",
 		DOCUMENTO: "document",
 		BLOB: "blob",
-		ARRAY_BUFFER: "arraybuffer"
+		ARRAY_BUFFER: "arraybuffer",
+		QUALQUER: "",
 	});
 
 	var TipoDeObservacao = Classe.criarEnumeracaoDeConstantes({
@@ -88,7 +89,8 @@
 		MODELO: ["model"],
 		MULTIPARTE: ["multipart"],
 		TEXTO: ["text"],
-		VIDEO: ["video"]
+		VIDEO: ["video"],
+		QUALQUER: ["*"]
 	}, {
 		inicializar: function (chave) {
 			this.chave = chave;
@@ -123,7 +125,8 @@
 		MPEG: [TipoGenericoDeMidia.VIDEO, "mpeg"],
 		OGG: [TipoGenericoDeMidia.VIDEO, "ogg"],
 		VORBIS: [TipoGenericoDeMidia.VIDEO, "vorbis"],
-		WEBM: [TipoGenericoDeMidia.VIDEO, "webm"]
+		WEBM: [TipoGenericoDeMidia.VIDEO, "webm"],
+		QUALQUER: [TipoGenericoDeMidia.QUALQUER, "*"]
 	}, {
 		inicializar: function (tipoGenerico, tipo) {
 			this.tipoGenerico = tipoGenerico;

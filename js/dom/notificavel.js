@@ -4,6 +4,7 @@
 	var Dom = contexto.Dom;
 	var Classe = contexto.Classe;
 	var Tecla = contexto.Tecla;
+	var Linda = contexto.Linda;
 
 	var Notificavel = Classe.criar({
 		inicializar: function (elementoDom) {
@@ -124,9 +125,19 @@
 			this.deixarDeTratar("dbclick", funcao);
 		},
 
+		tratarTecla: function (tecla, tratador, escopo) {
+			var tratadorPersonalizado = function (evento) {
+				if (!Linda.existe(tecla) || tecla === evento.keyCode) {
+					tratador.chamarComEscopo(escopo);
+				}
+			};
+			Dom.extrair(this).addEventListener("keypress", tratadorPersonalizado);
+			return tratadorPersonalizado;
+		},
+
 		tratarTeclaPressionada: function (tecla, tratador, escopo) {
 			var tratadorPersonalizado = function (evento) {
-				if (tecla === evento.keyCode) {
+				if (!Linda.existe(tecla) || tecla === evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}
 			};
@@ -140,7 +151,7 @@
 
 		tratarTeclaSolta: function (tecla, tratador, escopo) {
 			var tratadorPersonalizado = function (evento) {
-				if (tecla === evento.keyCode) {
+				if (!Linda.existe(tecla) || tecla === evento.keyCode) {
 					tratador.chamarComEscopo(escopo);
 				}
 			};

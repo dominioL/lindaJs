@@ -27,11 +27,14 @@
 		},
 
 		encapsular: function (elementoDom) {
+			var Notificavel = contexto.Notificavel;
+			if (Linda.instanciaDe(elementoDom, Notificavel)) {
+				return elementoDom;
+			}
 			var Documento = contexto.Documento;
 			var Elemento = contexto.Elemento;
 			var Janela = contexto.Janela;
 			var Nodo = contexto.Nodo;
-			var Notificavel = contexto.Notificavel;
 			if (Linda.instanciaDe(elementoDom, NodeList)) {
 				return new ListaDom(elementoDom);
 			} else if (Linda.instanciaDe(elementoDom, HTMLCollection)) {
@@ -74,13 +77,13 @@
 
 	var ListaDom = Classe.criar({
 		inicializar: function (elementosDom) {
-			this.elementosDom = elementosDom;
 			this.elementoDom = elementosDom;
 		},
 
 		paraCada: function (tratador, escopo) {
-			for (var indice = 0; indice < this.elementosDom.length; indice++) {
-				tratador.chamarComEscopo(escopo, Dom.encapsular(Dom.extrair(this).item(indice), indice));
+			var tamanho = Dom.extrair(this).length;
+			for (var indice = 0; indice < tamanho; indice++) {
+				tratador.chamarComEscopo(escopo, Dom.encapsular(Dom.extrair(this).item(indice)), indice);
 			}
 		}
 	});
