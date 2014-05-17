@@ -68,9 +68,7 @@ construirNode() {
 }
 
 testar() {
-	# integrar &
 	echo ":testar"
-	integrar &
 	testes=`find ${html}/testes -name teste*.html`
 	testes=`echo ${testes} | sed -e s@html/@http://localhost:7000/html/@g`
 	chromium-browser ${testes} --allow-file-access-from-files
