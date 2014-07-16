@@ -83,7 +83,7 @@ executar() {
 integrar() {
 	construir
 	echo ":integrar"
-	node ${js}/bibliotecas/nodoWeb.js
+	nodejs ${js}/bibliotecas/nodoWeb.js
 }
 
 echo :${pacoteDoProjeto}
